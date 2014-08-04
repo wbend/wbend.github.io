@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ben Dalton</title>
+    <link></link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <description>TBD</description>
+    <language>en-us</language>
+    <pubDate>Mon, 04 Aug 2014 18:21:24 -0400</pubDate>
+    <lastBuildDate>Mon, 04 Aug 2014 18:21:24 -0400</lastBuildDate>
+
+    
+      <item>
+        <title>Starting with Ruby and GDELT</title>
+        <link>/starting-with-gdelt</link>
+        <pubDate>Wed, 30 Jul 2014 00:00:00 -0400</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;p&gt;GDELT, or Global Data on Events, Location and Tone, is a big, free database, updated daily, that claims to monitor &quot;the world&#39;s broadcast, print, and web news from nearly every corner of every country in over 100 languages&quot; and identify &quot;the people, locations, organizations, counts, themes, sources, and events driving our global society every second of every day.&quot; It&#39;s gotten some &lt;a href=&quot;http://www.foreignpolicy.com/articles/2014/01/03/half_a_billion_clicks_can_t_be_wrong_mapping_crisis_zones&quot; target=&quot;_blank&quot;&gt;media&lt;/a&gt; &lt;a href=&quot;http://www.theguardian.com/news/datablog/2013/apr/12/gdelt-global-database-events-location&quot; target=&quot;_blank&quot;&gt;attention&lt;/a&gt; in the last few years, as well as &lt;a href=&quot;http://aaboyles.com/blog/2014/05/gdelts-unit-of-analysis-problem/&quot; target=&quot;_blank&quot;&gt;criticism&lt;/a&gt;. Many objections point out that GDELT presents itself, and is often used, as a comprehensive database of events, rather than media coverage of those events.
+	
+&lt;p&gt;GDELT servers intake hundreds of thousands of news reports and use natural language processing to identify discrete &quot;events.&quot; If GDELT&#39;s algorithms determine that another article references the same event, it&#39;s added to the same entry in the database; each entry records how many times the event has been mentioned in world media. A particularly newsworthy event might have dozens of media mentions, but would still occupy just a single entry in the GDELT database. Likewise, a single news story is likely to yield multiple events.&lt;/p&gt;
+
+&lt;p&gt;No doubt, GDELT&#39;s algorithms are sophisticated, but tapping this database means you&#39;re trusting a computer to distinguish between one event and the next, code it as a &quot;protest,&quot; &quot;meeting,&quot; &quot;missile strike,&quot; etc., and geocode it meaningfully. Plus, as lots of people &lt;a href=&quot;https://source.opennews.org/en-US/articles/gdelt-decontextualized-data/&quot; target=&quot;_blank&quot;&gt;pointed out&lt;/a&gt; with reference to 538&#39;s notorious kidnapping analysis, it&#39;s pretty naïve to assume that news coverage accurately mirrors events on the ground.&lt;/p&gt;
+	
+&lt;p&gt;All those caveats notwithstanding, GDELT does seem like a good source for tracking how events are covered in global media, rather than events themselves. Given its scale, GDELT could do well for media analysis. Everything below is an initial attempt at using GDELT data for this purpose -- plus a chance to practice some Ruby.&lt;/p&gt;
+
+&lt;p&gt;I downloaded data for July 29, 2014 from the GDELT site, a TSV file with nearly 150,000 entries. I added column headers at the top so I&#39;d be able to query different rows by name rather than position. Then I used Ruby&#39;s CSV class to import the file. (GDELT files have a .csv extension, despite being TSV files.)
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;csv&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parsed_file&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CSV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;20140729.export.CSV&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;col_sep&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;header_converters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:symbol&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;GDELT codes events according to the CAMEO (Conflict and Mediation Event Observations) system, allowing users to, say, pull out all the protests that occurred within a particular date range. (GDELT events are also geocoded, allowing researchers to produce maps like &lt;a href=&quot;http://www.joshuastevens.net/images/afgEventsSmall.png&quot; target=&quot;_blank&quot;&gt;this&lt;/a&gt;.) As an experiment, I designated all the codes between 15 (&quot;exhibit force posture&quot;) and 20 (&quot;use unconventional mass violence&quot;) as &quot;violent&quot; events, and tallied the number of mentions GDELT recorded for each event taking place in relation to Israel.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;country&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;IS&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#&amp;quot;IS&amp;quot; = &amp;quot;Israel&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;mentions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;violent_events&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;violent_coding?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;15&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;16&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;17&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;18&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;19&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:eventrootcode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;20&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:actiongeo_countrycode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt; 
+
+&lt;span class=&quot;n&quot;&gt;parsed_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;violent_coding?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;country&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;mentions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:nummentions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;violent_events&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:actor1geo_lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:actor1geo_long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:sourceurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;violent_events&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;include?&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:actor1geo_lat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:actor1geo_long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:sourceurl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This yielded a number for total mentions (49,190) and, as a further experiment, a list of unique latitude/longitude values and article URLs that could be mapped very easily. Changing &lt;em&gt;nummentions&lt;/em&gt; to &lt;em&gt;numarticles&lt;/em&gt; produces a count of &quot;source documents containing one or more mentions&quot; of each event: 48,354. Again, this is the number of articles mentioning &quot;violent&quot; events taking place with relation to Israel on July 29, 2014, according to GDELT.&lt;/p&gt;
+
+&lt;p&gt;I ran the &lt;em&gt;nummentions&lt;/em&gt; &quot;violence&quot; count on a few other conflicts and came up with the following numbers.&lt;/p&gt;
+
+&lt;div style=&quot;width:500px; margin-left:auto; margin-right:auto&quot; id=&quot;chart_div&quot;&gt;&lt;/div&gt;
+
+&lt;p&gt;Nothing surprising here, except possibly that GDELT recorded more coverage of &quot;violent&quot; events in Afghanistan than in Syria.&lt;/p&gt;
+
+&lt;p&gt;If you do actually map these GDELT entries, you&#39;ll find that these aren&#39;t events taking place &quot;in&quot; so much as &quot;relating to&quot; each country. For example, GDELT recorded &lt;a href=&quot;http://www.algemeiner.com/2014/07/28/somali-terror-group-al-shabaab-muslims-must-attack-jewish-targets-globally/&quot; target=&quot;_blank&quot;&gt;this&lt;/a&gt; article, geocoded to Somalia, as having an &quot;ActionGeo_CountryCode&quot; of &quot;IS,&quot; for Israel. But this isn&#39;t important if you&#39;re simply using GDELT to gauge global media coverage.&lt;/p&gt;
+
+&lt;p&gt;Next, I&#39;d like to graph these numbers for a longer period of time against casualty estimates for each conflict -- assuming I can find some reliable numbers.&lt;/p&gt;
+
+    &lt;script type=&quot;text/javascript&quot; src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+
+      google.load(&#39;visualization&#39;, &#39;1.0&#39;, {&#39;packages&#39;:[&#39;corechart&#39;]});
+
+      google.setOnLoadCallback(drawChart);
+
+     function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn(&#39;string&#39;, &#39;Country&#39;);
+        data.addColumn(&#39;number&#39;, &#39;Media mentions&#39;);
+        data.addRows([
+          [&#39;Israel/Gaza&#39;, 49190],
+          [&#39;Afghanistan&#39;, 5134],
+          [&#39;Iraq&#39;, 3191],
+          [&#39;Syria&#39;, 2105],
+          [&#39;Central African Republic&#39;, 425],
+          [&#39;Honduras&#39;, 227],
+          [&#39;South Sudan&#39;, 168]
+        ]);
+
+        // Set chart options
+        var options = {&#39;title&#39;:&#39;Media Coverage of Selected Conflicts on July 29, 2014&#39;,
+						backgroundColor: { fill:&#39;transparent&#39; },
+                       &#39;width&#39;:500,
+                       &#39;height&#39;:400};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById(&#39;chart_div&#39;));
+        chart.draw(data, options);
+      }
+    &lt;/script&gt;</description>
+      </item>
+    
+      <item>
+        <title>On the Frontlines</title>
+        <link>/on-the-frontlines</link>
+        <pubDate>Wed, 07 May 2014 00:00:00 -0400</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/eA2gonkg9hg&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Filmmaker Dan Evans and I traveled to Turkey, Libya, and Kenya (and he proceeded on to Afghanistan) to capture Crisis Group analysts in the field — to get a sense of what a day in the life of an analyst is really like. We filmed interviews with Syrian refugees, Libyan militias, and radicalized youth in Mombasa, Kenya. Dan shot and edited the piece, while I recorded field audio, conducted interviews, and served as producer. Kimberly Abbott oversaw and produced the project.&lt;/p&gt;</description>
+      </item>
+    
+
+  </channel>
+</rss>
