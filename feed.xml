@@ -3,16 +3,16 @@
   <channel>
     <title>Ben Dalton</title>
     <link></link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="wbend.github.io//feed.xml" rel="self" type="application/rss+xml" />
     <description>TBD</description>
     <language>en-us</language>
-    <pubDate>Mon, 04 Aug 2014 18:21:24 -0400</pubDate>
-    <lastBuildDate>Mon, 04 Aug 2014 18:21:24 -0400</lastBuildDate>
+    <pubDate>Mon, 04 Aug 2014 18:55:26 -0400</pubDate>
+    <lastBuildDate>Mon, 04 Aug 2014 18:55:26 -0400</lastBuildDate>
 
     
       <item>
         <title>Starting with Ruby and GDELT</title>
-        <link>/starting-with-gdelt</link>
+        <link>wbend.github.io//starting-with-gdelt</link>
         <pubDate>Wed, 30 Jul 2014 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;p&gt;GDELT, or Global Data on Events, Location and Tone, is a big, free database, updated daily, that claims to monitor &quot;the world&#39;s broadcast, print, and web news from nearly every corner of every country in over 100 languages&quot; and identify &quot;the people, locations, organizations, counts, themes, sources, and events driving our global society every second of every day.&quot; It&#39;s gotten some &lt;a href=&quot;http://www.foreignpolicy.com/articles/2014/01/03/half_a_billion_clicks_can_t_be_wrong_mapping_crisis_zones&quot; target=&quot;_blank&quot;&gt;media&lt;/a&gt; &lt;a href=&quot;http://www.theguardian.com/news/datablog/2013/apr/12/gdelt-global-database-events-location&quot; target=&quot;_blank&quot;&gt;attention&lt;/a&gt; in the last few years, as well as &lt;a href=&quot;http://aaboyles.com/blog/2014/05/gdelts-unit-of-analysis-problem/&quot; target=&quot;_blank&quot;&gt;criticism&lt;/a&gt;. Many objections point out that GDELT presents itself, and is often used, as a comprehensive database of events, rather than media coverage of those events.
@@ -99,7 +99,7 @@
     
       <item>
         <title>On the Frontlines</title>
-        <link>/on-the-frontlines</link>
+        <link>wbend.github.io//on-the-frontlines</link>
         <pubDate>Wed, 07 May 2014 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;//www.youtube.com/embed/eA2gonkg9hg&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
