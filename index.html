@@ -4,14 +4,14 @@
     <!-- meta information -->
 <meta charset="utf-8">
 <meta name="description" 
-      content="TBD" >
+      content="{% for post in site.posts %}{% unless post.next %}{% unless forloop.first %}{% endunless %}      {{ post.date | date:..." >
 <meta name="author" content="Ben Dalton">
 
 <!-- Enable responsiveness on mobile devices-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
 <!-- title -->
-<title>Home &middot; Ben Dalton</title>
+<title>Blog &middot; Ben Dalton</title>
 
 <!-- icons -->
 <link rel="shortcut icon" href="/public/images/favicon.ico" />
@@ -44,7 +44,7 @@
         <nav class="col span_10 top-navbar">
   
   <a href="/" title="Blog"
-     >Blog</a>
+     class="current-page">Blog</a>
   
   <a href="/about" title="About"
      >About</a>
@@ -68,7 +68,7 @@
 
 
 <!--Following classes removed from following div: fadeInDown animated-->
-  <div class="bundle row gutters">
+  <div class="bundle row gutters fadeInDown animated">
     <h2 class="post-year col span_2">2014</h2>
     <div class="posts-by-year col span_10">
 
