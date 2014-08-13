@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>TBD</description>
     <language>en-us</language>
-    <pubDate>Tue, 12 Aug 2014 20:48:17 -0400</pubDate>
-    <lastBuildDate>Tue, 12 Aug 2014 20:48:17 -0400</lastBuildDate>
+    <pubDate>Tue, 12 Aug 2014 22:34:49 -0400</pubDate>
+    <lastBuildDate>Tue, 12 Aug 2014 22:34:49 -0400</lastBuildDate>
 
     
       <item>
@@ -617,7 +617,9 @@
         <link>/crisiswatch</link>
         <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
-        <description>&lt;p&gt;This project maps Crisis Group’s CrisisWatch publication, which provides a succinct update on some 70 global conflicts on the first of each month. A jQuery datepicker allows users to view the last 12 months of CrisisWatch data. I made this primarily with leaflet.js, and the underlying map is from Mapbox. There is also a mobile version that relies on jQuery Mobile.&lt;/p&gt;</description>
+        <description>&lt;a href=&quot;http://crisisgroup.be/maps/crisiswatch/index.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/public/images/crisiswatch.png&quot;&gt;&lt;/a&gt;
+&lt;p&gt;This project maps Crisis Group’s CrisisWatch publication, which provides succinct updates on some 70 global conflicts on the first of each month. A jQuery datepicker allows users to view the last 12 months of CrisisWatch data. I made this primarily with leaflet.js, and the underlying map is from Mapbox. There is also a mobile version that relies on jQuery Mobile.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://crisisgroup.be/maps/crisiswatch/index.html&quot; target=&quot;_blank&quot;&gt;crisisgroup.be&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
       </item>
     
       <item>
