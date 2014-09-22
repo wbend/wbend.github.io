@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>TBD</description>
     <language>en-us</language>
-    <pubDate>Sun, 21 Sep 2014 20:54:29 -0400</pubDate>
-    <lastBuildDate>Sun, 21 Sep 2014 20:54:29 -0400</lastBuildDate>
+    <pubDate>Sun, 21 Sep 2014 21:18:46 -0400</pubDate>
+    <lastBuildDate>Sun, 21 Sep 2014 21:18:46 -0400</lastBuildDate>
 
     
       <item>
@@ -15,7 +15,7 @@
         <link>/july-conflict-coverage</link>
         <pubDate>Tue, 12 Aug 2014 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
-        <description>&lt;p&gt;After &lt;a href=&quot;/starting-with-gdelt&quot;&gt;experimenting with GDELT data for a single day&lt;/a&gt;, I was anxious to see whether I could compare media coverage of conflicts over a longer span of time. Arbitrarily, I picked the month of July, which saw the escalation of Israel&#39;s Operation Protective Edge, the downing of flight MH17 over Ukraine, ISIS&#39;s expansion in Iraq, and lots of other horrible news.&lt;/p&gt;
+        <description>&lt;p&gt;After &lt;a href=&quot;/starting-with-gdelt&quot;&gt;experimenting with GDELT data for a single day&lt;/a&gt;, I was eager to see whether I could compare media coverage of conflicts over a longer span of time. Arbitrarily, I picked the month of July, which saw the escalation of Israel&#39;s Operation Protective Edge, the downing of flight MH17 over Ukraine, ISIS&#39;s expansion in Iraq, and lots of other horrible news.&lt;/p&gt;
 &lt;p&gt;I used a slightly tweaked version of the Ruby script described in the last post to add up the total article count for &amp;quot;violent&amp;quot; events related to eight national conflicts: Israel, Ukraine, Afghanistan, Iraq, Syria, Central African Republic, Honduras, and South Sudan. I keep putting the word &amp;quot;violent&amp;quot; in scare quotes because I suspect my methodology rests on very shaky ground, even ignoring GDELT&#39;s various flaws. Let me explain.&lt;/p&gt;
 &lt;p&gt;As I mentioned in July, GDELT uses algorithms to extract distinct &amp;quot;events&amp;quot; from news reports and then codes each event according to the CAMEO system. I, more or less arbitrarily, designated events with codes fifteen through twenty as &amp;quot;violent&amp;quot; events. Here&#39;s what those codes mean, officially.&lt;/p&gt;
 &lt;table width=&quot;200&quot; border=&quot;1&quot; align=&quot;center&quot;&gt;
