@@ -89,7 +89,28 @@ textBottom = svg.append("text")
     .style("text-anchor", "middle")
     .attr("class", "textBottom")
     .text("Mouse over the graph for details.")
-    .attr("y", 10);
+    .attr("y", 10),
+textQuoteLineOne = svg.append("text")
+    .attr("dy", "-13em")
+    .attr("dx", "-30em")
+    .style("text-anchor", "left")
+    .attr("class", "textQuote")
+    .text("\"Study abroad alumni achieve bachelor’s degrees")
+	.attr("y", -10);
+textQuoteLineTwo = svg.append("text")
+    .attr("dy", "-13em")
+    .attr("dx", "-30em")
+    .style("text-anchor", "left")
+    .attr("class", "textQuote")
+    .text("and advanced degrees at higher rates than")
+	.attr("y", 10);
+textQuoteLineThree = svg.append("text")
+    .attr("dy", "-13em")
+    .attr("dx", "-30em")
+    .style("text-anchor", "left")
+    .attr("class", "textQuote")
+    .text("non-study abroad students.\"")
+	.attr("y", 30);			
 
 console.log(data);
 
