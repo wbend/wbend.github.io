@@ -47,75 +47,78 @@ jQuery(function($) {
 
 });
 
+var data = [{"label":"Health/Medicine","value":241,"oranges":1},{"label":"International/Intercultural","value":203,"oranges":2},{"label":"Education","value":174,"oranges":3},{"label":"JD or other law-related","value":107,"oranges":4},{"label":"Environmental Science, Conservation, or Ecology-related","value":95,"oranges":5},{"label":"Liberal Arts","value":82,"oranges":6},{"label":"MPA, MPP or nonprofit management","value":73,"oranges":7},{"label":"Social Science (not Anthropology)","value":69,"oranges":8},{"label":"Business or MBA","value":62,"oranges":9},{"label":"Arts","value":54,"oranges":1},{"label":"Anthropology","value":45,"oranges":2},{"label":"MSW","value":44,"oranges":3},{"label":"Psychology/Counseling","value":35,"oranges":4},{"label":"General science","value":34,"oranges":5},{"label":"Peacebuilding","value":19,"oranges":6},{"label":"Geography","value":14,"oranges":7},{"label":"Religion","value":12,"oranges":8},{"label":"Engineering","value":7,"oranges":9},{"label":"Other","value":4,"oranges":0},{"label":"IT","value":3,"oranges":0}];
+
+var total = d3.sum(data, function(d) {
+    return d3.sum(d3.values(d));
+});
 
 var width = 960,
     height = 500,
     radius = Math.min(width, height) / 2;
  
-var color = d3.scale.category20();
+var color = d3.scale.category20();		//builtin range of colors
  
 var pie = d3.layout.pie()
-    .value(function(d) { return d.count; })
+    .value(function(d) { return d.value; })
     .sort(null);
  
 var arc = d3.svg.arc()
     .innerRadius(radius - 100)
     .outerRadius(radius - 20);
+	
+var arcOver = d3.svg.arc()
+    .innerRadius((radius - 100) + 5)
+    .outerRadius((radius - 20) + 5);	
  
 var svg = d3.select("#viz").append("svg")
     .attr("width", width)
     .attr("height", height)
-  .append("g")
+    .append("g")
   //place chart in center of viewport
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-/*jshint multistr: true */
-var tsvData = "degree	count	oranges\n\
-Health/Medicine	241	7\n\
-International/Intercultural	203	8\n\
-Education	174	5\n\
-JD or other law-related degree	107	4\n\
-Environmental Science, Conservation, or Ecology-related	95	1\n\
-Liberal Arts	82	5\n\
-MPA, MPP or nonprofit management	73	3\n\
-Social Science (not Anthropology)	69	9\n\
-Business or MBA	62	9\n\
-Arts	54	7\n\
-Anthropology	45	6\n\
-MSW	44	6\n\
-Psychology/Counseling	35	8\n\
-General science	34	4\n\
-Peacebuilding	19	9\n\
-Geography	14	5\n\
-Religion	12	9\n\
-Engineering	7	7\n\
-Other	4	4";
-
-var data = d3.tsv.parse(tsvData);
+	
+var textTop = svg.append("text")
+    .attr("dy", ".35em")
+    .style("text-anchor", "middle")
+    .attr("class", "textTop")
+    .text(total + " respondents held advanced degrees.")
+    .attr("y", -10),
+textBottom = svg.append("text")
+    .attr("dy", ".35em")
+    .style("text-anchor", "middle")
+    .attr("class", "textBottom")
+    .text("Mouse over the graph for details.")
+    .attr("y", 10);
 
 console.log(data);
-
-
 
 var path = svg.datum(data).selectAll("path")
 .data(pie)
 .enter().append("path")
 .attr("fill", function(d, i) { return color(i); })
 .attr("d", arc)
-.each(function(d) { this._current = d;})
-    .on("mouseover", function (d) {
-    d3.select("#tooltip")
-        .style("left", d3.event.pageX + "px")
-        .style("top", d3.event.pageY + "px")
-        .style("opacity", 1)
-        .select("#value")
-        .text(d.value);
-})
-    .on("mouseout", function () {
-    // Hide the tooltip
-    d3.select("#tooltip")
-        .style("opacity", 0);;
-}); // store the initial angles
+.each(function(d) { this._current = d;})	// store the initial angles
+.on("mouseover", function (d) {	
+	d3.select(this).transition()
+	    .duration(200)
+        .attr("d", arcOver)
+	textTop.text(d3.select(this).datum().data.value + " respondents held a")
+        .attr("y", -10);
+	textBottom.text(d3.select(this).datum().data.label + " degree.")
+        .attr("y", 10);
+	})
+.on("mouseout", function(d) {
+    d3.select(this).transition()
+        .duration(100)
+        .attr("d", arc);
+	textTop.text(total + " respondents held advanced degrees.")
+        .attr("y", -10);
+        textBottom.text("Mouse over the graph for details.");
+	});
+					
+
+
 
 
 

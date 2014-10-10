@@ -39,6 +39,11 @@
     font-size: 16px;
     line-height: 20px;
 }
+
+.legend rect {
+ fill:white;
+ stroke:black;
+ opacity:0.8; }
  
 form {
   position: absolute;
