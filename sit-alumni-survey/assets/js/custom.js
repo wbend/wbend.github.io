@@ -47,7 +47,7 @@ jQuery(function($) {
 
 });
 
-var data = [{"label":"Health/Medicine","value":241,"oranges":1},{"label":"International/Intercultural","value":203,"oranges":2},{"label":"Education","value":174,"oranges":3},{"label":"JD or other law-related","value":107,"oranges":4},{"label":"Environmental Science, Conservation, or Ecology-related","value":95,"oranges":5},{"label":"Liberal Arts","value":82,"oranges":6},{"label":"MPA, MPP or nonprofit management","value":73,"oranges":7},{"label":"Social Science (not Anthropology)","value":69,"oranges":8},{"label":"Business or MBA","value":62,"oranges":9},{"label":"Arts","value":54,"oranges":1},{"label":"Anthropology","value":45,"oranges":2},{"label":"MSW","value":44,"oranges":3},{"label":"Psychology/Counseling","value":35,"oranges":4},{"label":"General science","value":34,"oranges":5},{"label":"Peacebuilding","value":19,"oranges":6},{"label":"Geography","value":14,"oranges":7},{"label":"Religion","value":12,"oranges":8},{"label":"Engineering","value":7,"oranges":9},{"label":"Other","value":4,"oranges":0},{"label":"IT","value":3,"oranges":0}];
+var data = [{"label":"Health/Medicine","value":241,"respondents":2,"decade":"1980 & 1989"},{"label":"International/Intercultural","value":203,"respondents":18,"decade":"1990  & 1999"},{"label":"Education","value":174,"respondents":61,"decade":"2000 & 2009"},{"label":"JD or other law-related","value":107,"respondents":19,"decade":"2010 & 2011"},{"label":"Environmental Science, Conservation, or Ecology-related","value":95,"respondents":null,"decade":null},{"label":"Liberal Arts","value":82,"respondents":null,"decade":null},{"label":"MPA, MPP or nonprofit management","value":73,"respondents":null,"decade":null},{"label":"Social Science (not Anthropology)","value":69,"respondents":null,"decade":null},{"label":"Business or MBA","value":62,"respondents":null,"decade":null},{"label":"Arts","value":54,"respondents":null,"decade":null},{"label":"Anthropology","value":45,"respondents":null,"decade":null},{"label":"MSW","value":44,"respondents":null,"decade":null},{"label":"Psychology/Counseling","value":35,"respondents":null,"decade":null},{"label":"General science","value":34,"respondents":null,"decade":null},{"label":"Peacebuilding","value":19,"respondents":null,"decade":null},{"label":"Geography","value":14,"respondents":null,"decade":null},{"label":"Religion","value":12,"respondents":null,"decade":null},{"label":"Engineering","value":7,"respondents":null,"decade":null},{"label":"Other","value":4,"respondents":null,"decade":null}];
 
 var total = d3.sum(data, function(d) {
     return d3.sum(d3.values(d));
@@ -70,6 +70,13 @@ var arc = d3.svg.arc()
 var arcOver = d3.svg.arc()
     .innerRadius((radius - 100) + 5)
     .outerRadius((radius - 20) + 5);	
+
+var textTopContent = total + " respondents held advanced degrees."
+	textBottomContent = "Mouse over the graph for details."
+	textQuoteLineOneContent = "\"Study abroad alumni achieve bachelor’s degrees"
+	textQuoteLineTwoContent = "and advanced degrees at higher rates than"
+	textQuoteLineThreeContent = "non-study abroad students.\""
+
  
 var svg = d3.select("#viz").append("svg")
     .attr("width", width)
@@ -82,37 +89,38 @@ var textTop = svg.append("text")
     .attr("dy", ".35em")
     .style("text-anchor", "middle")
     .attr("class", "textTop")
-    .text(total + " respondents held advanced degrees.")
+    .text(textTopContent)
     .attr("y", -10),
 textBottom = svg.append("text")
     .attr("dy", ".35em")
     .style("text-anchor", "middle")
     .attr("class", "textBottom")
-    .text("Mouse over the graph for details.")
+    .text(textBottomContent)
     .attr("y", 10),
 textQuoteLineOne = svg.append("text")
     .attr("dy", "-13em")
     .attr("dx", "-30em")
     .style("text-anchor", "left")
     .attr("class", "textQuote")
-    .text("\"Study abroad alumni achieve bachelor’s degrees")
+    .text(textQuoteLineOneContent)
 	.attr("y", -10);
 textQuoteLineTwo = svg.append("text")
     .attr("dy", "-13em")
     .attr("dx", "-30em")
     .style("text-anchor", "left")
     .attr("class", "textQuote")
-    .text("and advanced degrees at higher rates than")
+    .text(textQuoteLineTwoContent)
 	.attr("y", 10);
 textQuoteLineThree = svg.append("text")
     .attr("dy", "-13em")
     .attr("dx", "-30em")
     .style("text-anchor", "left")
     .attr("class", "textQuote")
-    .text("non-study abroad students.\"")
+    .text(textQuoteLineThreeContent)
 	.attr("y", 30);			
 
 console.log(data);
+var value = this.value;
 
 var path = svg.datum(data).selectAll("path")
 .data(pie)
@@ -124,10 +132,17 @@ var path = svg.datum(data).selectAll("path")
 	d3.select(this).transition()
 	    .duration(200)
         .attr("d", arcOver)
+	if (document.getElementById("degree").checked){
 	textTop.text(d3.select(this).datum().data.value + " respondents held a")
         .attr("y", -10);
 	textBottom.text(d3.select(this).datum().data.label + " degree.")
         .attr("y", 10);
+	} else if (document.getElementById("decade").checked){
+	textTop.text(d3.select(this).datum().data.respondents + "% of respondents")
+        .attr("y", -10);
+	textBottom.text("studied abroad between " + d3.select(this).datum().data.decade + ".")
+        .attr("y", 10);
+	}
 	})
 .on("mouseout", function(d) {
     d3.select(this).transition()
@@ -135,7 +150,7 @@ var path = svg.datum(data).selectAll("path")
         .attr("d", arc);
 	textTop.text(total + " respondents held advanced degrees.")
         .attr("y", -10);
-        textBottom.text("Mouse over the graph for details.");
+    textBottom.text("Mouse over the graph for details.");
 	});
 					
 
@@ -151,6 +166,30 @@ function change() {
   pie.value(function(d) { return d[value]; }); // change the value function
   path = path.data(pie); // compute the new angles
   path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
+  if(value === "respondents"){
+	  textTopContent = "Mouse over the graph"
+	  textBottomContent = "to see a decade breakdown."
+  	  textQuoteLineOneContent = "Though the alumni e-mails that SIT had in the system"
+  	  textQuoteLineTwoContent = "were not evenly distributed across the years,"
+  	  textQuoteLineThreeContent = "the response rate was fairly consistent by decade."
+	  textTop.text(textTopContent)
+	  textBottom.text(textBottomContent)
+	  textQuoteLineOne.text(textQuoteLineOneContent)
+	  textQuoteLineTwo.text(textQuoteLineTwoContent)
+	  textQuoteLineThree.text(textQuoteLineThreeContent)
+  }
+  else if (value == "value"){
+	  textTopContent = total + " respondents held advanced degrees."
+	  textBottomContent = "Mouse over the graph for details."
+  	  textQuoteLineOneContent = "\"Study abroad alumni achieve bachelor’s degrees"
+  	  textQuoteLineTwoContent = "and advanced degrees at higher rates than"
+  	  textQuoteLineThreeContent = "non-study abroad students.\""
+	  textTop.text(textTopContent)
+	  textBottom.text(textBottomContent)
+	  textQuoteLineOne.text(textQuoteLineOneContent)
+	  textQuoteLineTwo.text(textQuoteLineTwoContent)
+	  textQuoteLineThree.text(textQuoteLineThreeContent)
+  };
 }
 
 // Store the displayed angles in _current.
