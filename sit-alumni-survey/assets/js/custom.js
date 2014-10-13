@@ -47,20 +47,20 @@ jQuery(function($) {
 
 });
 
-var data = [{"label":"Health/Medicine","value":241,"respondents":2,"decade":"1980 & 1989"},{"label":"International/Intercultural","value":203,"respondents":18,"decade":"1990  & 1999"},{"label":"Education","value":174,"respondents":61,"decade":"2000 & 2009"},{"label":"JD or other law-related","value":107,"respondents":19,"decade":"2010 & 2011"},{"label":"Environmental Science, Conservation, or Ecology-related","value":95,"respondents":null,"decade":null},{"label":"Liberal Arts","value":82,"respondents":null,"decade":null},{"label":"MPA, MPP or nonprofit management","value":73,"respondents":null,"decade":null},{"label":"Social Science (not Anthropology)","value":69,"respondents":null,"decade":null},{"label":"Business or MBA","value":62,"respondents":null,"decade":null},{"label":"Arts","value":54,"respondents":null,"decade":null},{"label":"Anthropology","value":45,"respondents":null,"decade":null},{"label":"MSW","value":44,"respondents":null,"decade":null},{"label":"Psychology/Counseling","value":35,"respondents":null,"decade":null},{"label":"General science","value":34,"respondents":null,"decade":null},{"label":"Peacebuilding","value":19,"respondents":null,"decade":null},{"label":"Geography","value":14,"respondents":null,"decade":null},{"label":"Religion","value":12,"respondents":null,"decade":null},{"label":"Engineering","value":7,"respondents":null,"decade":null},{"label":"Other","value":4,"respondents":null,"decade":null}];
+var data = [{"label":"Health/Medicine","value":17.5,"respondents":null,"decade":null,"all":null},{"label":"International/Intercultural","value":14.7,"respondents":null,"decade":null,"all":null},{"label":"Education","value":12.6,"respondents":null,"decade":null,"all":null},{"label":"JD or other law-related","value":7.8,"respondents":null,"decade":null,"all":null},{"label":"Environmental Science, Conservation, or Ecology-related","value":6.9,"respondents":null,"decade":null,"all":null},{"label":"Liberal Arts","value":6,"respondents":null,"decade":null,"all":null},{"label":"MPA, MPP or nonprofit management","value":5.3,"respondents":null,"decade":null,"all":null},{"label":"Social Science (not Anthropology)","value":5,"respondents":null,"decade":null,"all":null},{"label":"Business or MBA","value":4.5,"respondents":null,"decade":null,"all":null},{"label":"Arts","value":3.9,"respondents":null,"decade":null,"all":null},{"label":"Anthropology","value":3.3,"respondents":null,"decade":null,"all":null},{"label":"MSW","value":3.2,"respondents":null,"decade":null,"all":null},{"label":"Psychology/Counseling","value":2.5,"respondents":null,"decade":null,"all":null},{"label":"General science","value":2.5,"respondents":null,"decade":null,"all":null},{"label":"Peacebuilding","value":1.4,"respondents":null,"decade":null,"all":null},{"label":"Geography","value":1,"respondents":null,"decade":null,"all":null},{"label":"Religion","value":0.9,"respondents":null,"decade":null,"all":null},{"label":"Engineering","value":0.5,"respondents":null,"decade":null,"all":null},{"label":"Other","value":0.3,"respondents":null,"decade":null,"all":null},{"label":"IT","value":0.2,"respondents":null,"decade":null,"all":null},{"label":null,"value":null,"respondents":2,"decade":"1980-1989","all":null},{"label":null,"value":null,"respondents":18,"decade":"1990-1999","all":null},{"label":null,"value":null,"respondents":61,"decade":"2000-2009","all":null},{"label":null,"value":null,"respondents":19,"decade":"2010-2011","all":null},{"label":null,"value":null,"respondents":null,"decade":null,"all":2107}];
 
 var total = d3.sum(data, function(d) {
     return d3.sum(d3.values(d));
 });
 
-var width = 960,
+var width = 1000,
     height = 500,
     radius = Math.min(width, height) / 2;
  
 var color = d3.scale.category20();		//builtin range of colors
  
 var pie = d3.layout.pie()
-    .value(function(d) { return d.value; })
+    .value(function(d) { return d.all; })
     .sort(null);
  
 var arc = d3.svg.arc()
@@ -71,11 +71,11 @@ var arcOver = d3.svg.arc()
     .innerRadius((radius - 100) + 5)
     .outerRadius((radius - 20) + 5);	
 
-var textTopContent = total + " respondents held advanced degrees."
-	textBottomContent = "Mouse over the graph for details."
-	textQuoteLineOneContent = "\"Study abroad alumni achieve bachelor’s degrees"
-	textQuoteLineTwoContent = "and advanced degrees at higher rates than"
-	textQuoteLineThreeContent = "non-study abroad students.\""
+var textTopContent = "2,107"
+	textBottomContent = "alumni"
+	textQuoteLineOneContent = "We asked 2,107 alumni of SIT"
+	textQuoteLineTwoContent = "study abroad programs how their"
+	textQuoteLineThreeContent = "time overseas affected their lives."
 
  
 var svg = d3.select("#viz").append("svg")
@@ -96,25 +96,25 @@ textBottom = svg.append("text")
     .style("text-anchor", "middle")
     .attr("class", "textBottom")
     .text(textBottomContent)
-    .attr("y", 10),
+    .attr("y", 20),
 textQuoteLineOne = svg.append("text")
-    .attr("dy", "-13em")
-    .attr("dx", "-30em")
-    .style("text-anchor", "left")
+    .attr("dy", "0em")
+    .attr("dx", "-25em")
+    .style("text-anchor", "right")
     .attr("class", "textQuote")
     .text(textQuoteLineOneContent)
-	.attr("y", -10);
+	.attr("y", -30);
 textQuoteLineTwo = svg.append("text")
-    .attr("dy", "-13em")
-    .attr("dx", "-30em")
-    .style("text-anchor", "left")
+    .attr("dy", "0em")
+    .attr("dx", "-25em")
+    .style("text-anchor", "right")
     .attr("class", "textQuote")
     .text(textQuoteLineTwoContent)
-	.attr("y", 10);
+	.attr("y", 0);
 textQuoteLineThree = svg.append("text")
-    .attr("dy", "-13em")
-    .attr("dx", "-30em")
-    .style("text-anchor", "left")
+    .attr("dy", "0em")
+    .attr("dx", "-25em")
+    .style("text-anchor", "right")
     .attr("class", "textQuote")
     .text(textQuoteLineThreeContent)
 	.attr("y", 30);			
@@ -133,24 +133,43 @@ var path = svg.datum(data).selectAll("path")
 	    .duration(200)
         .attr("d", arcOver)
 	if (document.getElementById("degree").checked){
-	textTop.text(d3.select(this).datum().data.value + " respondents held a")
+	textTop.text(d3.select(this).datum().data.value + "%")
         .attr("y", -10);
-	textBottom.text(d3.select(this).datum().data.label + " degree.")
-        .attr("y", 10);
-	} else if (document.getElementById("decade").checked){
-	textTop.text(d3.select(this).datum().data.respondents + "% of respondents")
+	textBottom.text(d3.select(this).datum().data.label)
+        .attr("y", 20);
+	}else if (document.getElementById("all").checked){
+		textTop.text(" ")
+	        .attr("y", -10);
+		textBottom.text("(Click a different value.)")
+	        .attr("y", 0);
+		}
+		 else if (document.getElementById("decade").checked){
+	textTop.text(d3.select(this).datum().data.respondents + "%")
         .attr("y", -10);
-	textBottom.text("studied abroad between " + d3.select(this).datum().data.decade + ".")
-        .attr("y", 10);
+	textBottom.text("studied abroad " + d3.select(this).datum().data.decade)
+        .attr("y", 20);
 	}
+	
 	})
 .on("mouseout", function(d) {
     d3.select(this).transition()
         .duration(100)
         .attr("d", arc);
-	textTop.text(total + " respondents held advanced degrees.")
+		if (document.getElementById("degree").checked){
+	textTop.text("1,377")
         .attr("y", -10);
-    textBottom.text("Mouse over the graph for details.");
+    textBottom.text("with advanced degrees");
+}
+else if (document.getElementById("all").checked){
+		textTop.text("2,107")
+        .attr("y", -10);
+		textBottom.text("alumni")
+	        .attr("y", 20);
+		}
+		else if (document.getElementById("decade").checked){
+			textTop.text("4")
+		        .attr("y", -10);
+		    textBottom.text("decades");}
 	});
 					
 
@@ -167,11 +186,11 @@ function change() {
   path = path.data(pie); // compute the new angles
   path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
   if(value === "respondents"){
-	  textTopContent = "Mouse over the graph"
-	  textBottomContent = "to see a decade breakdown."
-  	  textQuoteLineOneContent = "Though the alumni e-mails that SIT had in the system"
-  	  textQuoteLineTwoContent = "were not evenly distributed across the years,"
-  	  textQuoteLineThreeContent = "the response rate was fairly consistent by decade."
+	  textTopContent = "4"
+	  textBottomContent = "decades"
+  	  textQuoteLineOneContent = "Alumni responses represented"
+  	  textQuoteLineTwoContent = "four decades of SIT history."
+  	  textQuoteLineThreeContent = ""
 	  textTop.text(textTopContent)
 	  textBottom.text(textBottomContent)
 	  textQuoteLineOne.text(textQuoteLineOneContent)
@@ -179,11 +198,23 @@ function change() {
 	  textQuoteLineThree.text(textQuoteLineThreeContent)
   }
   else if (value == "value"){
-	  textTopContent = total + " respondents held advanced degrees."
-	  textBottomContent = "Mouse over the graph for details."
-  	  textQuoteLineOneContent = "\"Study abroad alumni achieve bachelor’s degrees"
-  	  textQuoteLineTwoContent = "and advanced degrees at higher rates than"
-  	  textQuoteLineThreeContent = "non-study abroad students.\""
+	  textTopContent = "1,377"
+	  textBottomContent = "with advanced degrees"
+  	  textQuoteLineOneContent = "1,377 held advanced degrees,"
+  	  textQuoteLineTwoContent = "much higher than U.S."
+  	  textQuoteLineThreeContent = "national averages."
+	  textTop.text(textTopContent)
+	  textBottom.text(textBottomContent)
+	  textQuoteLineOne.text(textQuoteLineOneContent)
+	  textQuoteLineTwo.text(textQuoteLineTwoContent)
+	  textQuoteLineThree.text(textQuoteLineThreeContent)
+  }
+  else if (value == "all"){
+	  textTopContent = "2,107"
+	  textBottomContent = "alumni"
+  	textQuoteLineOneContent = "We asked 2,107 alumni of SIT"
+  	textQuoteLineTwoContent = "study abroad programs how their"
+  	textQuoteLineThreeContent = "time overseas affected their lives."
 	  textTop.text(textTopContent)
 	  textBottom.text(textBottomContent)
 	  textQuoteLineOne.text(textQuoteLineOneContent)
