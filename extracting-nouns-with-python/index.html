@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="This is some real Python 101, so bear with me.I've never worked with Python, except for one Saturday afternoon when I..." >
+<meta name="author" content="Ben Dalton">
+
+<META NAME="Title" >
+<META NAME="Language" CONTENT="English">
+<META NAME="Robots" CONTENT="INDEX,FOLLOW">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>Extracting nouns with Python &middot; Ben Dalton</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+<!-- Font Awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container azul">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="http://benjamindalton.com" id="logo" title="Ben Dalton"
+             style="background-image: url(/public/images/logo.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Blog"
+     >Blog</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+  <a href="/work" title="Work"
+     >Work</a>
+  
+  <a href="/resume" title="Resume"
+     >Resume</a>
+  
+  <a href="/contact" title="Contact"
+     >Contact</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2014-10-23">23 October 2014</time>
+  <h2>Extracting nouns with Python</h2>
+
+  <p>This is some real Python 101, so bear with me.</p>
+<p>I've never worked with Python, except for one Saturday afternoon when I left a conference early and worked through the first two parts of the Django tutorial in a fog of considerable confusion. But for someone with aspirations of working with data, Python is clearly the future (or so I'm told by people who seem to know what they're about), and a project at work came along that presented a chance to explore Python's powerful Natural Language Toolkit (NLTK) module - or at least to scratch its surface.</p>
+<p>"Natural language" here means language encountered in the wild, language as humans use it day-to-day - language that from a computer's point of view is unruly, messy, and illogical. Python's NLTK module gives programmers the tools to parse and interpret natural language as data, to draw insights from raw text.</p>
+<p>My assignment was this: given a large chunk of raw text, extract only the nouns, both common and proper.</p>	
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">essays</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;text here&quot;&quot;&quot;</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">essays</span><span class="p">)</span>
+<span class="n">tagged</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+<span class="n">nouns</span> <span class="o">=</span> <span class="p">[</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span><span class="n">pos</span> <span class="ow">in</span> <span class="n">tagged</span> \
+	<span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">==</span> <span class="s">&#39;NN&#39;</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">==</span> <span class="s">&#39;NNP&#39;</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">==</span> <span class="s">&#39;NNS&#39;</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">==</span> <span class="s">&#39;NNPS&#39;</span><span class="p">)]</span>
+<span class="n">downcased</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nouns</span><span class="p">]</span>
+<span class="n">joined</span> <span class="o">=</span> <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">downcased</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">into_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">nouns</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">joined</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></div>
+<p>Import the Natural Language Toolkit module. Tokenize the raw text and then tag each token with a part-of-speech tag (e.g., noun, verb, adjective, etc.). Identify each token that's tagged as a noun or a proper noun. Make everything lowercase, and then join the noun tokens into a string, separated by spaces. Finally, write the result into a new file called output.txt.</p>
+<p>Simple as this is, it took a long time to get working because the terminal kept throwing errors related to the text encoding. I'm still unclear on the details, but in short the version of Python that comes packaged on Macs, 2.7.x, requires explicit handling of Unicode text, which is why there's a random "u" in front of the """text here""" string. Python 3+, the version under active development, handles Unicode text by default. (Every explanation of the difference that I've read online runs to the thousands of words, so this paragraph is likely simplified to the point of uselessness.)</p>
+<p>I'm excited to explore more of NLTK's capabilities. Next up might be a vocabulary frequency distribution.</p>
+</article>
+
+
+      <footer>
+        <p>
+          All content <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>. Theme by <a href="https://github.com/aigarsdz" target="_blank">Aigars Dzerviniks</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>
