@@ -111,7 +111,7 @@ var path = svg.datum(data).selectAll("path")
 		if (document.getElementById("degree").checked){
 	textTop.text("1,377")
         .attr("y", -10);
-    textBottom.text("with advanced degrees");
+    textBottom.text("advanced degrees");
 }
 else if (document.getElementById("all").checked){
 		textTop.text("2,107")
