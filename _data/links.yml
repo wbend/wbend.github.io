@@ -1,0 +1,14 @@
+- url: /
+  title: Blog
+
+- url: /about
+  title: About
+  
+- url: /work
+  title: Work
+
+- url: /resume
+  title: Resume
+  
+- url: /contact
+  title: Contact

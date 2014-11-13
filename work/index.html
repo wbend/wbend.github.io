@@ -1,189 +1,52 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!-- meta information -->
-<meta charset="utf-8">
-<meta name="description" 
-      content="	Maps & graphics  {% for post in site.categories.graphics %}                    {{ post.title }}                  {{ ..." >
-<meta name="author" content="Ben Dalton">
+---
+layout: work
+title: Work
+---
 
-<META NAME="Title" >
-<META NAME="Language" CONTENT="English">
-<META NAME="Robots" CONTENT="INDEX,FOLLOW">
-
-<!-- Enable responsiveness on mobile devices-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-<!-- title -->
-<title>Work &middot; Ben Dalton</title>
-
-<!-- icons -->
-<link rel="shortcut icon" href="/public/images/favicon.ico" />
-
-<!-- stylesheets -->
-<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
-<link rel="stylesheet" href="/public/css/animate.min.css">
-<link rel="stylesheet" href="/public/css/main.css">
-
-<!-- Google fonts -->
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
-
-<!-- Font Awesome -->
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
-
-
-<!-- feed links -->
-<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
-
-  </head>
-  <body>
-    <div class="container azul">
-      <header class="top row gutters">
-        <div class="col span_2 center">
-          <!-- TODO: add baseurl to the logo link -->
-          <a href="http://benjamindalton.com" id="logo" title="Ben Dalton"
-             style="background-image: url(/public/images/logo.png);"></a>
-        </div>
-        <nav class="col span_10 top-navbar">
-  
-  <a href="/" title="Blog"
-     >Blog</a>
-  
-  <a href="/about" title="About"
-     >About</a>
-  
-  <a href="/work" title="Work"
-     class="current-page">Work</a>
-  
-  <a href="/resume" title="Resume"
-     >Resume</a>
-  
-  <a href="/contact" title="Contact"
-     >Contact</a>
-  
-</nav>
-
-      </header>
-
-      <article class="single row gutters">
- 
-
-  <section class="archive">
+<section class="archive">
 	<h2>Maps & graphics</h2>
-  
+  {% for post in site.categories.graphics %}
       
       <article class="row gutters">
-        <a href="/crisiswatch" title="CrisisWatch" class="col span_8">CrisisWatch</a>
+        <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="col span_8">{{ post.title }}</a>
         <div class="post-date col span_4">
-          <time datetime="2014-01-01">1 January 2014</time>
+          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time>
         </div>
       </article>
       
-    
-      
-      <article class="row gutters">
-        <a href="/military-forces-in-car" title="Military Forces in the Central African Republic" class="col span_8">Military Forces in the Central African Republic</a>
-        <div class="post-date col span_4">
-          <time datetime="2013-05-01">1 May 2013</time>
-        </div>
-      </article>
-      
-    
-      
-      <article class="row gutters">
-        <a href="/spider-web" title="Spider Web - The Making and Unmaking of Iran Sanctions" class="col span_8">Spider Web - The Making and Unmaking of Iran Sanctions</a>
-        <div class="post-date col span_4">
-          <time datetime="2013-02-25">25 February 2013</time>
-        </div>
-      </article>
-      
-    
+    {% endfor %}
     <br>
   <h2>Video</h2>
-    
+    {% for post in site.categories.video %}
       
 	    <article class="row gutters">
-	      <a href="/on-the-frontlines" title="On the Frontlines" class="col span_8">On the Frontlines</a>
+	      <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="col span_8">{{ post.title }}</a>
 	      <div class="post-date col span_4">
-	        <time datetime="2014-05-07">7 May 2014</time>
+	        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time>
 	      </div>
 	    </article>
       
-    
-      
-	    <article class="row gutters">
-	      <a href="/turkeys-syrian-quagmire" title="Turkey's Syrian Quagmire" class="col span_8">Turkey's Syrian Quagmire</a>
-	      <div class="post-date col span_4">
-	        <time datetime="2014-04-30">30 April 2014</time>
-	      </div>
-	    </article>
-      
-    
-      
-	    <article class="row gutters">
-	      <a href="/we-are-the-international-crisis-group" title="We are the International Crisis Group" class="col span_8">We are the International Crisis Group</a>
-	      <div class="post-date col span_4">
-	        <time datetime="2012-11-14">14 November 2012</time>
-	      </div>
-	    </article>
-      
-    
+    {% endfor %}
 	<br>
 	<h2>Writing</h2>
-    
+    {% for post in site.categories.writing %}
     <article class="row gutters">
-      <a href="/boldness-required-to-end-sudan-misery" title="Boldness Required to End Sudan Misery" class="col span_8">Boldness Required to End Sudan Misery</a>
+      <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="col span_8">{{ post.title }}</a>
       <div class="post-date col span_4">
-        <time datetime="2012-12-12">12 December 2012</time>
+        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time>
       </div>
     </article>
-    
-    <article class="row gutters">
-      <a href="/five-things-to-know-about-the-food-crisis-in-the-horn-of-africa" title="Five Things to Know About the Food Crisis in the Horn of Africa" class="col span_8">Five Things to Know About the Food Crisis in the Horn of Africa</a>
-      <div class="post-date col span_4">
-        <time datetime="2011-07-26">26 July 2011</time>
-      </div>
-    </article>
-    
+    {% endfor %}
 	<br>
 	<h2>Photos</h2>
-    
+    {% for post in site.categories.photos %}
     <article class="row gutters">
-      <a href="/nuclear-steppe" title="Nuclear Steppe" class="col span_8">Nuclear Steppe</a>
+      <a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}" class="col span_8">{{ post.title }}</a>
       <div class="post-date col span_4">
-        <time datetime="2013-10-23">23 October 2013</time>
+        <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%-d %B %Y" }}</time>
       </div>
     </article>
-    
-    <article class="row gutters">
-      <a href="/astana" title="Astana" class="col span_8">Astana</a>
-      <div class="post-date col span_4">
-        <time datetime="2013-08-29">29 August 2013</time>
-      </div>
-    </article>
-    
+    {% endfor %}
 
 </section>
 
-
-</article>
-
-
-      <footer>
-        <p>
-          All content <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>. Theme by <a href="https://github.com/aigarsdz" target="_blank">Aigars Dzerviniks</a>.
-        </p>
-      </footer>
-    </div>
-
-    <!-- scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="/public/js/jquery.fitvids.js"></script>
-    <script>
-      $(document).ready(function(){
-        $("article").fitVids();
-      });
-    </script>
-  </body>
-</html>

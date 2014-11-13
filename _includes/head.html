@@ -1,0 +1,39 @@
+<!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" {% if page.title == "Blog" %}
+      content="Personal site for Ben Dalton." {% else %}
+      content="{{ page.content | strip_html | strip_newlines | truncate: 120 }}" {% endif %}>
+<meta name="author" content="{{ site.data.brume.author }}">
+
+<META NAME="Title" {% if page.title == "Blog" %} 
+	CONTENT="Ben Dalton" {% endif %}>
+<META NAME="Language" CONTENT="English">
+<META NAME="Robots" CONTENT="INDEX,FOLLOW">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>{{ page.title }} &middot; {{ site.data.brume.name }}</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="{{site.baseurl}}/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="{{site.baseurl}}/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="{{site.baseurl}}/public/css/animate.min.css">
+<link rel="stylesheet" href="{{site.baseurl}}/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+<!-- Font Awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+{% if site.paginate %}
+<!-- font Awesome -->
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+{% endif %}
+
+<!-- feed links -->
+<link rel="alternate" href="{{ site.baseurl }}/feed.xml" type="application/rss+xml" title="{{ site.name }}">
