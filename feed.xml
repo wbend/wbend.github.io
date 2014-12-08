@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Thu, 04 Dec 2014 11:10:36 -0500</pubDate>
-    <lastBuildDate>Thu, 04 Dec 2014 11:10:36 -0500</lastBuildDate>
+    <pubDate>Mon, 08 Dec 2014 09:57:30 -0500</pubDate>
+    <lastBuildDate>Mon, 08 Dec 2014 09:57:30 -0500</lastBuildDate>
 
     
       <item>
@@ -694,6 +694,7 @@
         <author>Ben Dalton</author>
         <description>&lt;a href=&quot;http://crisisgroup.be/maps/central-african-republic-map/central-african-republic-map.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/public/images/military-forces-in-car.png&quot;&gt;&lt;/a&gt;
 &lt;p&gt;This dual language map shows the distribution of military forces in the Central African Republic. After lots of experimentation with Google Maps API v3, I made this in February 2013 and updated it the following May after Seleka forces captured Bangui. An interactive slider illustrates the spread of the Seleka rebellion. Mousing over names in the legend provides details on each group.&lt;/p&gt;
+&lt;p&gt;Edit (6 December 2014): Looks like the slider functionality has stopped working on the live Crisis Group map.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://crisisgroup.be/maps/central-african-republic-map/central-african-republic-map.html&quot; target=&quot;_blank&quot;&gt;crisisgroup.be&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
       </item>
     
