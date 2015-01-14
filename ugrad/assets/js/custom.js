@@ -65,15 +65,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "East Asia and the Pacific (WHA)",
-        "major": null,
-        "region": 56
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Western Hemisphere (WHA)",
         "major": null,
         "region": 82
@@ -83,18 +74,27 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Near East, South Asia (NESA)",
+        "label": "Serbia and Montenegro (SAM)",
         "major": null,
-        "region": 25
+        "region": 57
     },
     {
         "all": null,
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Serbia and Montenegro (SAM)",
+        "label": "East Asia and the Pacific (WHA)",
         "major": null,
-        "region": 57
+        "region": 56
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Near East, South Asia (NESA)",
+        "major": null,
+        "region": 25
     },
     {
         "all": null,
@@ -118,62 +118,53 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
+        "hostinstitution": 9,
+        "label": "University of Arkansas",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 9,
+        "label": "University of Missouri - Columbia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 8,
+        "label": "University of Minnesota - Twin Cities",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 7,
+        "label": "Humboldt State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 7,
+        "label": "Utica College",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
         "hostinstitution": 6,
         "label": "American University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 3,
-        "label": "Augustana College",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 1,
-        "label": "Barnard College",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 1,
-        "label": "Bennett College",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 5,
-        "label": "California State - Monterey Bay",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "California State - San Marcos",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 2,
-        "label": "Carroll College",
         "major": null,
         "region": null
     },
@@ -190,8 +181,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 2,
-        "label": "Depauw University",
+        "hostinstitution": 6,
+        "label": "Grand Valley State University",
         "major": null,
         "region": null
     },
@@ -199,8 +190,125 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 3,
-        "label": "East Tennessee State University",
+        "hostinstitution": 6,
+        "label": "Kent State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 6,
+        "label": "Missouri State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 6,
+        "label": "Saginaw Valley State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 6,
+        "label": "University of Utah",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 6,
+        "label": "University of Wyoming",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "California State - Monterey Bay",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "Illinois State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "Snow College",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "St. Catherine University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "Tennessee Tech University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "University of Southern Indiana",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "University of Wisconsin - Eau Claire",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 5,
+        "label": "Wayne State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "California State - San Marcos",
         "major": null,
         "region": null
     },
@@ -210,6 +318,87 @@ var data = [
         "gender": null,
         "hostinstitution": 4,
         "label": "Emporia State University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "Lincoln University of Pennsylvania",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "Minnesota State University Mankato",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "Nazareth College",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "Old Dominion University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "University of Evansville",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "West Liberty University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 4,
+        "label": "Western Washington University",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 3,
+        "label": "Augustana College",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 3,
+        "label": "East Tennessee State University",
         "major": null,
         "region": null
     },
@@ -244,8 +433,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 6,
-        "label": "Grand Valley State University",
+        "hostinstitution": 3,
+        "label": "Presbyterian College",
         "major": null,
         "region": null
     },
@@ -253,8 +442,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 7,
-        "label": "Humboldt State University",
+        "hostinstitution": 3,
+        "label": "SUNY- Cobleskill",
         "major": null,
         "region": null
     },
@@ -262,8 +451,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 1,
-        "label": "Illinois Institute of Technology",
+        "hostinstitution": 2,
+        "label": "Carroll College",
         "major": null,
         "region": null
     },
@@ -271,8 +460,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 5,
-        "label": "Illinois State University",
+        "hostinstitution": 2,
+        "label": "Depauw University",
         "major": null,
         "region": null
     },
@@ -289,44 +478,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 6,
-        "label": "Kent State University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "Lincoln University of Pennsylvania",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
         "hostinstitution": 2,
         "label": "Millikin University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "Minnesota State University Mankato",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 6,
-        "label": "Missouri State University",
         "major": null,
         "region": null
     },
@@ -345,15 +498,6 @@ var data = [
         "gender": null,
         "hostinstitution": 2,
         "label": "Murray State University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "Nazareth College",
         "major": null,
         "region": null
     },
@@ -388,51 +532,6 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 4,
-        "label": "Old Dominion University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 3,
-        "label": "Presbyterian College",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 6,
-        "label": "Saginaw Valley State University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 5,
-        "label": "Snow College",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 5,
-        "label": "St. Catherine University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
         "hostinstitution": 2,
         "label": "St. Cloud State University",
         "major": null,
@@ -442,80 +541,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 3,
-        "label": "SUNY- Cobleskill",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 5,
-        "label": "Tennessee Tech University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 9,
-        "label": "University of Arkansas",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "University of Evansville",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 1,
-        "label": "University of Hawaii - Hilo",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 8,
-        "label": "University of Minnesota - Twin Cities",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
         "hostinstitution": 2,
         "label": "University of Mississippi",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 9,
-        "label": "University of Missouri - Columbia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 5,
-        "label": "University of Southern Indiana",
         "major": null,
         "region": null
     },
@@ -550,8 +577,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 6,
-        "label": "University of Utah",
+        "hostinstitution": 2,
+        "label": "Xavier University of Louisiana",
         "major": null,
         "region": null
     },
@@ -559,8 +586,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 5,
-        "label": "University of Wisconsin - Eau Claire",
+        "hostinstitution": 1,
+        "label": "Barnard College",
         "major": null,
         "region": null
     },
@@ -568,8 +595,8 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 6,
-        "label": "University of Wyoming",
+        "hostinstitution": 1,
+        "label": "Bennett College",
         "major": null,
         "region": null
     },
@@ -577,8 +604,17 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 7,
-        "label": "Utica College",
+        "hostinstitution": 1,
+        "label": "Illinois Institute of Technology",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": 1,
+        "label": "University of Hawaii - Hilo",
         "major": null,
         "region": null
     },
@@ -595,63 +631,9 @@ var data = [
         "all": null,
         "country": null,
         "gender": null,
-        "hostinstitution": 5,
-        "label": "Wayne State University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "West Liberty University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 4,
-        "label": "Western Washington University",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": 2,
-        "label": "Xavier University of Louisiana",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
         "hostinstitution": null,
-        "label": "International Relations",
-        "major": 14,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Political Science",
-        "major": 6,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "American Studies",
-        "major": 1,
+        "label": "TESL",
+        "major": 22,
         "region": null
     },
     {
@@ -677,8 +659,170 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "TESL",
-        "major": 22,
+        "label": "International Relations",
+        "major": 14,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Mass Communications",
+        "major": 8,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Industrial Engineering",
+        "major": 8,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Electrical Engineering",
+        "major": 8,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Political Science",
+        "major": 6,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Accounting",
+        "major": 6,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Business Management",
+        "major": 6,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Sociology",
+        "major": 5,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Education",
+        "major": 5,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Finance",
+        "major": 4,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Economics",
+        "major": 4,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Computer Science",
+        "major": 4,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Biology",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Civil Engineering",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Journalism",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Education",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Hospitality and Tourism Management",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Mechanical Engineering",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Information Technology",
+        "major": 3,
         "region": null
     },
     {
@@ -688,6 +832,123 @@ var data = [
         "hostinstitution": null,
         "label": "Architecture",
         "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "International Business",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Pre-Medicine",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Public Relations",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Public Health",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Anthropology",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Agriculture",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Mathematics",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Psychology",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Nutrition",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Computer Engineering",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Pre-Law",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "International Business",
+        "major": 2,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "American Studies",
+        "major": 1,
         "region": null
     },
     {
@@ -740,78 +1001,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Mass Communications",
-        "major": 8,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Biology",
-        "major": 3,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Finance",
-        "major": 4,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Civil Engineering",
-        "major": 3,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "International Business",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Journalism",
-        "major": 3,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Economics",
-        "major": 4,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Pre-Medicine",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Environmental Science",
         "major": 1,
         "region": null
@@ -821,44 +1010,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Education",
-        "major": 3,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Public Relations",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Accounting",
-        "major": 6,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Film Studies",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Hospitality and Tourism Management",
-        "major": 3,
         "region": null
     },
     {
@@ -884,26 +1037,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Business Management",
-        "major": 6,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Public Relations",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Public Health",
-        "major": 2,
         "region": null
     },
     {
@@ -929,26 +1064,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Sociology",
-        "major": 5,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Software Engineering",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Anthropology",
-        "major": 2,
         "region": null
     },
     {
@@ -965,35 +1082,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Mechanical Engineering",
-        "major": 3,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Industrial Engineering",
-        "major": 8,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Development Studies",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Information Technology",
-        "major": 3,
         "region": null
     },
     {
@@ -1010,26 +1100,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Computer Science",
-        "major": 4,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Audio-Visual Media",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Agriculture",
-        "major": 2,
         "region": null
     },
     {
@@ -1046,44 +1118,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Electrical Engineering",
-        "major": 8,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Mathematics",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Social Sciences",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Psychology",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Nutrition",
-        "major": 2,
         "region": null
     },
     {
@@ -1109,15 +1145,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Computer Engineering",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Agronomy",
         "major": 1,
         "region": null
@@ -1127,35 +1154,8 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Education",
-        "major": 5,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Pre-Law",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Pre-Law",
         "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "International Business",
-        "major": 2,
         "region": null
     },
     {
@@ -1295,55 +1295,10 @@ var data = [
     },
     {
         "all": null,
-        "country": 4,
+        "country": 18,
         "gender": null,
         "hostinstitution": null,
-        "label": "Mongolia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 6,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Egypt",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Morocco",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 2,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Nigeria",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 7,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Montenegro",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 6,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Guatemala",
+        "label": "Serbia",
         "major": null,
         "region": null
     },
@@ -1358,10 +1313,19 @@ var data = [
     },
     {
         "all": null,
-        "country": 6,
+        "country": 8,
         "gender": null,
         "hostinstitution": null,
-        "label": "Honduras",
+        "label": "Burma",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 7,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Montenegro",
         "major": null,
         "region": null
     },
@@ -1376,109 +1340,10 @@ var data = [
     },
     {
         "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Thailand",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 8,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Burma",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Cambodia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 18,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Serbia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
         "country": 7,
         "gender": null,
         "hostinstitution": null,
         "label": "Vietnam",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 5,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "India",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 5,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Lebanon",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 6,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Nicaragua",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Bangladesh",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Palestinian Territories",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 1,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Zambia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 6,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Dominican Republic",
         "major": null,
         "region": null
     },
@@ -1505,16 +1370,79 @@ var data = [
         "country": 6,
         "gender": null,
         "hostinstitution": null,
+        "label": "Egypt",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 6,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Guatemala",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 6,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Honduras",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 6,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Nicaragua",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 6,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Dominican Republic",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 6,
+        "gender": null,
+        "hostinstitution": null,
         "label": "Costa Rica",
         "major": null,
         "region": null
     },
     {
         "all": null,
-        "country": 4,
+        "country": 6,
         "gender": null,
         "hostinstitution": null,
-        "label": "Jordan",
+        "label": "Panama",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 5,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "India",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 5,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Lebanon",
         "major": null,
         "region": null
     },
@@ -1529,24 +1457,6 @@ var data = [
     },
     {
         "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Korea",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Philippines",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
         "country": 5,
         "gender": null,
         "hostinstitution": null,
@@ -1556,37 +1466,10 @@ var data = [
     },
     {
         "all": null,
-        "country": 3,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Nepal",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
         "country": 5,
         "gender": null,
         "hostinstitution": null,
         "label": "Oman",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 4,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Laos",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 1,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Mauritania",
         "major": null,
         "region": null
     },
@@ -1622,25 +1505,97 @@ var data = [
         "country": 4,
         "gender": null,
         "hostinstitution": null,
+        "label": "Mongolia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Morocco",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Thailand",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Cambodia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Bangladesh",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Palestinian Territories",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Jordan",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Korea",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Philippines",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Laos",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 4,
+        "gender": null,
+        "hostinstitution": null,
         "label": "Israel",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 6,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Panama",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 1,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "South Africa",
         "major": null,
         "region": null
     },
@@ -1650,6 +1605,69 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "Malaysia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 3,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Nepal",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 3,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Saudi Arabia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 3,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Algeria",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 2,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Nigeria",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 1,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Zambia",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 1,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Mauritania",
+        "major": null,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": 1,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "South Africa",
         "major": null,
         "region": null
     },
@@ -1677,24 +1695,6 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "Kenya",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 3,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Saudi Arabia",
-        "major": null,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": 3,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Algeria",
         "major": null,
         "region": null
     },
