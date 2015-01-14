@@ -1893,7 +1893,7 @@ var path = svg.datum(data).selectAll("path")
 				.attr("y", -10);
 			textBottom.text("")
 				.attr("y", 20);
-			textBottomBottom.text("an advanced degree")
+			textBottomBottom.text("")
 		} else if (document.getElementById("hostinstitution").checked) {
 			textTop.text("57")
 				.attr("y", -10);
