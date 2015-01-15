@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Thu, 15 Jan 2015 14:10:43 -0500</pubDate>
-    <lastBuildDate>Thu, 15 Jan 2015 14:10:43 -0500</lastBuildDate>
+    <pubDate>Thu, 15 Jan 2015 14:14:17 -0500</pubDate>
+    <lastBuildDate>Thu, 15 Jan 2015 14:14:17 -0500</lastBuildDate>
 
     
       <item>
@@ -17,7 +17,7 @@
         <author>Ben Dalton</author>
         <description>&lt;link href=&quot;../public/css/d3-pie-chart.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
 &lt;p&gt;Lots of people in the data viz community &lt;a href=&quot;https://www.google.com/#q=hate+pie+charts&quot; target=&quot;_blank&quot;&gt;hate pie charts&lt;/a&gt;. Gussied up pie charts – exploded, 3D charts that needlessly complicate presentations – are considered especially heinous. Still, I&#39;ll do you one better.&lt;/p&gt;
-&lt;p&gt;This is an animated, D3 pie chart that displays several categories of information about a group of students. Rather than make five seperate, static charts, which would present the same information in considerably less time, this one packs it into one and does a song and dance, too.&lt;/p&gt;
+&lt;p&gt;This is an animated, D3 pie chart that displays several categories of information about a group of students. Rather than make five separate, static charts, which would present the same information in considerably less time, this one packs it into one and does a song and dance, too.&lt;/p&gt;
 &lt;p&gt;Unfortunately, the chart is not optimized for mobile, so I hope you&#39;re on a desktop browser right now. Also, grouping colors to indicate subcategories would be an improvement. For example, majors could be grouped by hue into humanities, sciences, etc.&lt;/p&gt;
 
 					&lt;div id=&quot;viz&quot;&gt;
