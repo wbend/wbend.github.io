@@ -6,9 +6,39 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Wed, 14 Jan 2015 22:38:28 -0500</pubDate>
-    <lastBuildDate>Wed, 14 Jan 2015 22:38:28 -0500</lastBuildDate>
+    <pubDate>Thu, 15 Jan 2015 14:10:43 -0500</pubDate>
+    <lastBuildDate>Thu, 15 Jan 2015 14:10:43 -0500</lastBuildDate>
 
+    
+      <item>
+        <title>D3 animated pie chart</title>
+        <link>/d3-animated-pie-chart</link>
+        <pubDate>Thu, 15 Jan 2015 00:00:00 -0500</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;link href=&quot;../public/css/d3-pie-chart.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;p&gt;Lots of people in the data viz community &lt;a href=&quot;https://www.google.com/#q=hate+pie+charts&quot; target=&quot;_blank&quot;&gt;hate pie charts&lt;/a&gt;. Gussied up pie charts – exploded, 3D charts that needlessly complicate presentations – are considered especially heinous. Still, I&#39;ll do you one better.&lt;/p&gt;
+&lt;p&gt;This is an animated, D3 pie chart that displays several categories of information about a group of students. Rather than make five seperate, static charts, which would present the same information in considerably less time, this one packs it into one and does a song and dance, too.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the chart is not optimized for mobile, so I hope you&#39;re on a desktop browser right now. Also, grouping colors to indicate subcategories would be an improvement. For example, majors could be grouped by hue into humanities, sciences, etc.&lt;/p&gt;
+
+					&lt;div id=&quot;viz&quot;&gt;
+						&lt;form&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;all&quot; value=&quot;all&quot; checked&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;All&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;region&quot; value=&quot;region&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Region&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;gender&quot; value=&quot;gender&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Gender&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;hostinstitution&quot; value=&quot;hostinstitution&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Host Institution&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;major&quot; value=&quot;major&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Major&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;country&quot; value=&quot;country&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Country&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+						&lt;/form&gt;
+					&lt;/div&gt;
+					
+					
+					
+							&lt;script src=&quot;../public/js/jquery.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;&lt;!-- CORE BOOTSTRAP LIBRARY --&gt;
+						&lt;!-- D3--&gt;&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;&lt;!-- CUSTOM SCRIPT--&gt;&lt;script src=&quot;../public/js/custom.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;</description>
+      </item>
     
       <item>
         <title>Juggling</title>
@@ -694,17 +724,6 @@
         <description>&lt;img src=&quot;/public/images/astana/circus.jpg&quot;&gt;
 &lt;p&gt;In August 2013, I traveled with a small group of media professionals to Kazakhstan as an International Reporting Project fellow. We ended our trip in Astana, Kazakhstan’s Vegas-like capital, with Norman Foster-designed pyramids and space needles coexisting with dilapidated Soviet apartment blocks. The &lt;em&gt;Christian Science Monitor&lt;/em&gt; published some of these photos in a &lt;a href=&quot;http://www.csmonitor.com/Photo-Galleries/In-Pictures/Astana-A-city-built-for-giants&quot; target=&quot;_blank&quot;&gt;slideshow&lt;/a&gt; put together by Ben Arnoldy, another IRP fellow and &lt;em&gt;CSM&lt;/em&gt; editor. For more, head to &lt;a href=&quot;https://www.flickr.com/photos/58075298@N05/sets/72157636513569314/&quot; target=&quot;_target&quot;&gt;Flickr&lt;/a&gt;.&lt;/p&gt;
 &lt;img src=&quot;/public/images/astana/khan-shatyr.jpg&quot;&gt;</description>
-      </item>
-    
-      <item>
-        <title>Military Forces in the Central African Republic</title>
-        <link>/military-forces-in-car</link>
-        <pubDate>Wed, 01 May 2013 00:00:00 -0400</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;a href=&quot;http://crisisgroup.be/maps/central-african-republic-map/central-african-republic-map.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/public/images/military-forces-in-car.png&quot;&gt;&lt;/a&gt;
-&lt;p&gt;This dual language map shows the distribution of military forces in the Central African Republic. After lots of experimentation with Google Maps API v3, I made this in February 2013 and updated it the following May after Seleka forces captured Bangui. An interactive slider illustrates the spread of the Seleka rebellion. Mousing over names in the legend provides details on each group.&lt;/p&gt;
-&lt;p&gt;Edit, 6 December 2014: Looks like the slider functionality is no longer working on the live map.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://crisisgroup.be/maps/central-african-republic-map/central-african-republic-map.html&quot; target=&quot;_blank&quot;&gt;crisisgroup.be&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
       </item>
     
 

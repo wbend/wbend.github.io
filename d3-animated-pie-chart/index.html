@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- meta information -->
+<meta charset="utf-8">
+<meta name="description" 
+      content="Lots of people in the data viz community hate pie charts. Gussied up pie charts – exploded, 3D charts that needlessly..." >
+<meta name="author" content="Ben Dalton">
+
+<META NAME="Title" >
+<META NAME="Language" CONTENT="English">
+<META NAME="Robots" CONTENT="INDEX,FOLLOW">
+
+<!-- Enable responsiveness on mobile devices-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+<!-- title -->
+<title>D3 animated pie chart &middot; Ben Dalton</title>
+
+<!-- icons -->
+<link rel="shortcut icon" href="/public/images/favicon.ico" />
+
+<!-- stylesheets -->
+<link rel="stylesheet" href="/public/css/responsive.gs.12col.css">
+<link rel="stylesheet" href="/public/css/animate.min.css">
+<link rel="stylesheet" href="/public/css/main.css">
+
+<!-- Google fonts -->
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin-ext">
+
+<!-- Font Awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+<!-- feed links -->
+<link rel="alternate" href="/feed.xml" type="application/rss+xml" title="">
+
+  </head>
+  <body>
+    <div class="container azul">
+      <header class="top row gutters">
+        <div class="col span_2 center">
+          <!-- TODO: add baseurl to the logo link -->
+          <a href="http://benjamindalton.com" id="logo" title="Ben Dalton"
+             style="background-image: url(/public/images/logo.png);"></a>
+        </div>
+        <nav class="col span_10 top-navbar">
+  
+  <a href="/" title="Blog"
+     >Blog</a>
+  
+  <a href="/about" title="About"
+     >About</a>
+  
+  <a href="/work" title="Work"
+     >Work</a>
+  
+  <a href="/resume" title="Resume"
+     >Resume</a>
+  
+  <a href="/contact" title="Contact"
+     >Contact</a>
+  
+</nav>
+
+      </header>
+
+      <article class="single row gutters">
+  <time class="published" datetime="2015-01-15">15 January 2015</time>
+  <h2>D3 animated pie chart</h2>
+
+  <link href="../public/css/d3-pie-chart.css" rel="stylesheet" type="text/css">
+<p>Lots of people in the data viz community <a href="https://www.google.com/#q=hate+pie+charts" target="_blank">hate pie charts</a>. Gussied up pie charts – exploded, 3D charts that needlessly complicate presentations – are considered especially heinous. Still, I'll do you one better.</p>
+<p>This is an animated, D3 pie chart that displays several categories of information about a group of students. Rather than make five seperate, static charts, which would present the same information in considerably less time, this one packs it into one and does a song and dance, too.</p>
+<p>Unfortunately, the chart is not optimized for mobile, so I hope you're on a desktop browser right now. Also, grouping colors to indicate subcategories would be an improvement. For example, majors could be grouped by hue into humanities, sciences, etc.</p>
+
+					<div id="viz">
+						<form>
+							<label><input type="radio" name="dataset" id="all" value="all" checked> <span style="font-weight:normal;">All</span></label><br>
+							<label><input type="radio" name="dataset" id="region" value="region"> <span style="font-weight:normal;">Region</span></label><br>
+							<label><input type="radio" name="dataset" id="gender" value="gender"> <span style="font-weight:normal;">Gender</span></label><br>
+							<label><input type="radio" name="dataset" id="hostinstitution" value="hostinstitution"> <span style="font-weight:normal;">Host Institution</span></label><br>
+							<label><input type="radio" name="dataset" id="major" value="major"> <span style="font-weight:normal;">Major</span></label><br>
+							<label><input type="radio" name="dataset" id="country" value="country"> <span style="font-weight:normal;">Country</span></label><br>
+						</form>
+					</div>
+					
+					
+					
+							<script src="../public/js/jquery.js" type="text/javascript">
+					</script><!-- CORE BOOTSTRAP LIBRARY -->
+						<!-- D3--><script src="http://d3js.org/d3.v3.min.js" type="text/javascript">
+					</script><!-- CUSTOM SCRIPT--><script src="../public/js/custom.js" type="text/javascript">
+					</script>
+</article>
+
+
+      <footer>
+        <p>
+          All content <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>. Theme by <a href="https://github.com/aigarsdz" target="_blank">Aigars Dzerviniks</a>.
+        </p>
+      </footer>
+    </div>
+
+    <!-- scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/public/js/jquery.fitvids.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("article").fitVids();
+      });
+    </script>
+  </body>
+</html>
