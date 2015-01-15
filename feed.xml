@@ -6,9 +6,18 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Wed, 14 Jan 2015 16:41:40 -0500</pubDate>
-    <lastBuildDate>Wed, 14 Jan 2015 16:41:40 -0500</lastBuildDate>
+    <pubDate>Wed, 14 Jan 2015 22:38:28 -0500</pubDate>
+    <lastBuildDate>Wed, 14 Jan 2015 22:38:28 -0500</lastBuildDate>
 
+    
+      <item>
+        <title>Juggling</title>
+        <link>/juggling</link>
+        <pubDate>Wed, 14 Jan 2015 00:00:00 -0500</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;p&gt;In the new year, I am learning R via Coursera, resuscitating my Russia with Anki, and memorizing songs for guitar. Wish me luck!&lt;/p&gt;
+</description>
+      </item>
     
       <item>
         <title>Extracting nouns with Python</title>
@@ -696,16 +705,6 @@
 &lt;p&gt;This dual language map shows the distribution of military forces in the Central African Republic. After lots of experimentation with Google Maps API v3, I made this in February 2013 and updated it the following May after Seleka forces captured Bangui. An interactive slider illustrates the spread of the Seleka rebellion. Mousing over names in the legend provides details on each group.&lt;/p&gt;
 &lt;p&gt;Edit, 6 December 2014: Looks like the slider functionality is no longer working on the live map.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://crisisgroup.be/maps/central-african-republic-map/central-african-republic-map.html&quot; target=&quot;_blank&quot;&gt;crisisgroup.be&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
-      </item>
-    
-      <item>
-        <title>Spider Web - The Making and Unmaking of Iran Sanctions</title>
-        <link>/spider-web</link>
-        <pubDate>Mon, 25 Feb 2013 00:00:00 -0500</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;a href=&quot;http://crisisgroup.be/interactives/iran/sanctions/spider-web.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/public/images/spider-web.png&quot;&gt;&lt;/a&gt;
-&lt;p&gt;Built with the d3.js JavaScript library, this project illustrates the findings of the Crisis Group report of the same name. The graphic identifies the major unilateral, multilateral and international sanctions imposed on Iran and breaks each down by year, economic impact, trigger, targets, and reversibility.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://crisisgroup.be/interactives/iran/sanctions/spider-web.html&quot; target=&quot;_blank&quot;&gt;crisisgroup.be&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
       </item>
     
 
