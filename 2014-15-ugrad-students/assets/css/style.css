@@ -25,7 +25,6 @@
  
 form {
   position: absolute;
-  right: -50px;
   top: 10px;
 }
 
@@ -60,10 +59,13 @@ body {
 	font-size: 20px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h6 {
     font-family: 'Open Sans', sans-serif;
     line-height: 40px;
 }
+
+h5 {font-family: 'Open Sans', sans-serif;
+    line-height: 27px;}
 
 h1 {
     padding-top: 30px;
@@ -87,9 +89,13 @@ h5 {
     margin-top: 55px;
 }
 
-a, a:hover {
+a {
     text-decoration: none;
+    color:#99c7ff;
+    
 }
+a:hover{color:#fff;
+text-decoration: none;}
 
 p {
     line-height: 30px;

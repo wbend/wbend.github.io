@@ -660,7 +660,7 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "International Relations",
-        "major": 14,
+        "major": 15,
         "region": null
     },
     {
@@ -669,6 +669,15 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "Mass Communications",
+        "major": 9,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
+        "label": "Education",
         "major": 8,
         "region": null
     },
@@ -695,6 +704,15 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
+        "label": "Business Management",
+        "major": 7,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
         "label": "Political Science",
         "major": 6,
         "region": null
@@ -713,7 +731,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Business Management",
+        "label": "Sociology",
         "major": 6,
         "region": null
     },
@@ -722,16 +740,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Sociology",
-        "major": 5,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Education",
+        "label": "Economics",
         "major": 5,
         "region": null
     },
@@ -749,7 +758,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Economics",
+        "label": "International Business",
         "major": 4,
         "region": null
     },
@@ -794,7 +803,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Education",
+        "label": "Public Relations",
         "major": 3,
         "region": null
     },
@@ -830,6 +839,15 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
+        "label": "Pre-Law",
+        "major": 3,
+        "region": null
+    },
+    {
+        "all": null,
+        "country": null,
+        "gender": null,
+        "hostinstitution": null,
         "label": "Architecture",
         "major": 2,
         "region": null
@@ -839,25 +857,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "International Business",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Pre-Medicine",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Public Relations",
         "major": 2,
         "region": null
     },
@@ -921,24 +921,6 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "Computer Engineering",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Pre-Law",
-        "major": 2,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "International Business",
         "major": 2,
         "region": null
     },
@@ -1037,15 +1019,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Public Relations",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Community Development",
         "major": 1,
         "region": null
@@ -1127,15 +1100,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Mass Communications",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Physics",
         "major": 1,
         "region": null
@@ -1154,25 +1118,7 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Pre-Law",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "French Language and Literature",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "Sociology",
         "major": 1,
         "region": null
     },
@@ -1217,15 +1163,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Economics",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Chemical Technology",
         "major": 1,
         "region": null
@@ -1253,15 +1190,6 @@ var data = [
         "country": null,
         "gender": null,
         "hostinstitution": null,
-        "label": "Business Management",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
         "label": "Global Logistics",
         "major": 1,
         "region": null
@@ -1272,15 +1200,6 @@ var data = [
         "gender": null,
         "hostinstitution": null,
         "label": "Chemical Engineering",
-        "major": 1,
-        "region": null
-    },
-    {
-        "all": null,
-        "country": null,
-        "gender": null,
-        "hostinstitution": null,
-        "label": "International Relations",
         "major": 1,
         "region": null
     },
@@ -1901,7 +1820,7 @@ var path = svg.datum(data).selectAll("path")
 				.attr("y", 20);
 			textBottomBottom.text("")
 		} else if (document.getElementById("major").checked) {
-			textTop.text("74")
+			textTop.text("65")
 				.attr("y", -10);
 			textBottom.text("majors")
 				.attr("y", 20);
@@ -1992,7 +1911,7 @@ function change() {
 		textQuoteLineTwo.text(textQuoteLineTwoContent)
 		textQuoteLineThree.text(textQuoteLineThreeContent)
 	} else if (value == "major") {
-		textTopContent = "74"
+		textTopContent = "65"
 		textBottomContent = "majors"
 		textBottomBottomContent = ""
 		textQuoteLineOneContent = ""
