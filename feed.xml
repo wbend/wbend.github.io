@@ -6,9 +6,20 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Fri, 16 Jan 2015 12:30:18 -0500</pubDate>
-    <lastBuildDate>Fri, 16 Jan 2015 12:30:18 -0500</lastBuildDate>
+    <pubDate>Fri, 30 Jan 2015 12:17:15 -0500</pubDate>
+    <lastBuildDate>Fri, 30 Jan 2015 12:17:15 -0500</lastBuildDate>
 
+    
+      <item>
+        <title>R</title>
+        <link>/R</link>
+        <pubDate>Sun, 18 Jan 2015 00:00:00 -0500</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;p&gt;When I started playing around with JavaScript in the winter of 2012-13, I would print out sheets of code and painstakingly annotate each line with what I thought it was doing. The scripts were so alien, so baffling, that I felt like I had unearthed a new Rosetta Stone and was attempting to decipher it without points of reference. Still, the process by which these lines of gibberish created a map or graphic was so fascinating that I slogged onward, and eventually cracks of light appeared amidst all the incomprehensible symbols. Today, I would never claim to “know” JavaScript or any other language. My capacity to do anything is dependent on access to the global brain that is the Internet. But presented with an unfamiliar script and given enough time, I can puzzle it through, follow its logic, and adapt it to suit my needs. I can pluck and mash functions together and create something new.&lt;/p&gt;
+
+&lt;p&gt;R feels like JavaScript did at the beginning. Perhaps not quite as bewildering - the logic is familar and many concepts are the same as in other languages. Still, when I look at something like &lt;a href=&quot;http://stackoverflow.com/a/23646128/2009043&quot;&gt;this&lt;/a&gt;, it becomes clear how much work lies ahead.&lt;/p&gt;
+</description>
+      </item>
     
       <item>
         <title>D3 animated pie chart</title>
@@ -714,16 +725,6 @@
 &lt;img src=&quot;/public/images/nuclear-steppe/8.jpg&quot;&gt;
 &lt;p&gt;One of several concrete structures, long abandoned, that Soviet scientists built to test blast effects at varying distances from ground zero.&lt;/p&gt;
 </description>
-      </item>
-    
-      <item>
-        <title>Astana</title>
-        <link>/astana</link>
-        <pubDate>Thu, 29 Aug 2013 00:00:00 -0400</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;img src=&quot;/public/images/astana/circus.jpg&quot;&gt;
-&lt;p&gt;In August 2013, I traveled with a small group of media professionals to Kazakhstan as an International Reporting Project fellow. We ended our trip in Astana, Kazakhstan’s Vegas-like capital, with Norman Foster-designed pyramids and space needles coexisting with dilapidated Soviet apartment blocks. The &lt;em&gt;Christian Science Monitor&lt;/em&gt; published some of these photos in a &lt;a href=&quot;http://www.csmonitor.com/Photo-Galleries/In-Pictures/Astana-A-city-built-for-giants&quot; target=&quot;_blank&quot;&gt;slideshow&lt;/a&gt; put together by Ben Arnoldy, another IRP fellow and &lt;em&gt;CSM&lt;/em&gt; editor. For more, head to &lt;a href=&quot;https://www.flickr.com/photos/58075298@N05/sets/72157636513569314/&quot; target=&quot;_target&quot;&gt;Flickr&lt;/a&gt;.&lt;/p&gt;
-&lt;img src=&quot;/public/images/astana/khan-shatyr.jpg&quot;&gt;</description>
       </item>
     
 
