@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Mon, 09 Feb 2015 22:30:19 -0500</pubDate>
-    <lastBuildDate>Mon, 09 Feb 2015 22:30:19 -0500</lastBuildDate>
+    <pubDate>Wed, 18 Feb 2015 11:02:06 -0500</pubDate>
+    <lastBuildDate>Wed, 18 Feb 2015 11:02:06 -0500</lastBuildDate>
 
     
       <item>
@@ -15,9 +15,9 @@
         <link>/R</link>
         <pubDate>Sun, 18 Jan 2015 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
-        <description>&lt;p&gt;When I started playing around with JavaScript in the winter of 2012-13, I would print out sheets of code and painstakingly annotate each line with what I thought it was doing. The scripts were so alien, so baffling, that I felt like I had unearthed a new Rosetta Stone and was attempting to decipher it without points of reference. Still, the process by which these lines of gibberish created a map or graphic was so fascinating that I slogged onward, and eventually cracks of light appeared amidst all the incomprehensible symbols. Today, I would never claim to “know” JavaScript or any other language. My capacity to do anything is dependent on access to the global brain that is the Internet. But presented with an unfamiliar script and given enough time, I can puzzle it through, follow its logic, and adapt it to suit my needs. I can pluck and mash functions together and create something new.&lt;/p&gt;
+        <description>&lt;p&gt;When I started playing with JavaScript in the winter of 2012-13, I would print out sheets of code and painstakingly annotate each line with what I thought it was doing. The scripts were so alien, so baffling, that I felt like I had unearthed a new Rosetta Stone and was attempting to decipher it without points of reference. Still, the process by which these lines of gibberish created a map or graphic was so fascinating that I slogged onward, and eventually cracks of light appeared amidst all the incomprehensible symbols. Today, I would never claim to “know” JavaScript or any other language. My capacity to do anything is dependent on access to the global brain that is the Internet. But presented with an unfamiliar script and given enough time, I can puzzle it through, follow its logic, and adapt it to suit my needs. I can pluck and mash functions together and create something new.&lt;/p&gt;
 
-&lt;p&gt;R feels like JavaScript did at the beginning. Perhaps not quite as bewildering - the logic is familar and many concepts are the same as in other languages. Still, when I look at something like &lt;a href=&quot;http://stackoverflow.com/a/23646128/2009043&quot;&gt;this&lt;/a&gt;, it becomes clear how much work lies ahead.&lt;/p&gt;
+&lt;p&gt;R feels like JavaScript did at the beginning. Perhaps not as bewildering - the logic is familar and many concepts are the same as in other languages. Still, when I look at something like &lt;a href=&quot;http://stackoverflow.com/a/23646128/2009043&quot;&gt;this&lt;/a&gt;, it becomes clear how much work lies ahead.&lt;/p&gt;
 </description>
       </item>
     

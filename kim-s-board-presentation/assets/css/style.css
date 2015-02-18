@@ -1,0 +1,134 @@
+
+/*=============================================================
+    Authour URI: www.binarytheme.com
+    License: Commons Attribution 3.0
+
+    http://creativecommons.org/licenses/by/3.0/
+
+    100% To use For Personal And Commercial Use.
+    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
+   
+    ========================================================  */
+
+
+
+/* ===========================================================
+   GENERAL STYLESHEET BY BYINARY THEME    
+   ============================================================*/
+
+
+
+.legend rect {
+ fill:white;
+ stroke:black;
+ opacity:0.8; }
+ 
+form {
+  position: absolute;
+  top: 10px;
+}
+
+
+
+#viz {
+  font-family: "Perpetua", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  padding:0 0 50px 0;
+  width: 960px;
+}
+
+body {
+    font-family: 'Gill Sans', sans-serif;
+    font-size: 14px;
+    color: #000;
+    line-height: 16px;
+    font-weight: 400;
+}
+
+.textTop{
+	font-size: 48px;
+	font-weight:bold;
+}
+.textBottom{
+	font-size: 16px;
+	font-weight:bold;
+}
+
+.textQuote{
+	font-size: 20px;
+}
+
+h1, h2, h3, h4, h6 {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 40px;
+}
+
+h5 {font-family: 'Open Sans', sans-serif;
+    line-height: 27px;}
+
+h1 {
+    padding-top: 30px;
+    color: #fff;
+    font-weight: 800;
+}
+
+h5 {
+    padding-bottom: 30px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.main-top-margin {
+    margin-top: 120px;
+}
+
+.main-low-margin {
+    margin-top: 55px;
+}
+
+a {
+    text-decoration: none;
+    color:#99c7ff;
+    
+}
+a:hover{color:#fff;
+text-decoration: none;}
+
+p {
+    line-height: 30px;
+    margin-bottom: 23px;
+}
+
+.img-margin-product {
+    margin-top: 30px;
+}
+
+.bottam-pad {
+    padding-bottom: 40px;
+}
+
+.space-bottom {
+    height: 120px;
+}
+
+.space-top {
+    height: 70px;
+}
+
+.main-icon {
+    font-size: 350px;
+    color: rgba(102, 110, 197, 1);
+}
+
+.head-line {
+    font-size: 70px;
+    padding-bottom: 50px;
+    line-height: 65px;
+    font-weight: 900;
+}
+
+
+
