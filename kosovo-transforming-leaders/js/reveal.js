@@ -41,7 +41,7 @@ var Reveal = (function(){
 			mouseWheel: true,
 
 			// Apply a 3D roll to links on hover
-			rollingLinks: true,
+			rollingLinks: false,
 
 			// Transition style (see /css/theme)
 			theme: null,
@@ -1014,17 +1014,23 @@ var Reveal = (function(){
 		}
 	}
 
+	
+
 	function navigateLeft() {
 		// Prioritize hiding fragments
 		if( availableRoutes().left && ( isOverviewActive() || previousFragment() === false ) ) {
 			slide( indexh - 1, 0 );
+			
 		}
+		
 	}
 
 	function navigateRight() {
 		// Prioritize revealing fragments
 		if( availableRoutes().right && ( isOverviewActive() || nextFragment() === false ) ) {
 			slide( indexh + 1, 0 );
+			
+			
 		}
 	}
 
