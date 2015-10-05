@@ -1,3 +1,3 @@
 UGRAD graphic
 =================
-2014-15 UGRAD participants.
+2015-16 UGRAD participants.
