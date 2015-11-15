@@ -56,6 +56,7 @@ var data = [
         "country": null,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": null
     },
     {
@@ -63,6 +64,7 @@ var data = [
         "country": null,
         "degree": null,
         "gender": 155,
+        "host": null,
         "label": "Female"
     },
     {
@@ -70,6 +72,7 @@ var data = [
         "country": null,
         "degree": null,
         "gender": 99,
+        "host": null,
         "label": "Male"
     },
     {
@@ -77,6 +80,7 @@ var data = [
         "country": 11,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Russian Federation"
     },
     {
@@ -84,6 +88,7 @@ var data = [
         "country": 8,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Kazakhstan"
     },
     {
@@ -91,6 +96,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Burma"
     },
     {
@@ -98,6 +104,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "China"
     },
     {
@@ -105,6 +112,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Kyrgyzstan"
     },
     {
@@ -112,6 +120,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Uzbekistan"
     },
     {
@@ -119,6 +128,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Indonesia"
     },
     {
@@ -126,6 +136,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Venezuela"
     },
     {
@@ -133,6 +144,7 @@ var data = [
         "country": 7,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Vietnam"
     },
     {
@@ -140,6 +152,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Haiti"
     },
     {
@@ -147,6 +160,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Honduras"
     },
     {
@@ -154,6 +168,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Nicaragua"
     },
     {
@@ -161,6 +176,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "El Salvador"
     },
     {
@@ -168,6 +184,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Panama"
     },
     {
@@ -175,6 +192,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Philippines"
     },
     {
@@ -182,6 +200,7 @@ var data = [
         "country": 6,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Ukraine"
     },
     {
@@ -189,6 +208,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Algeria"
     },
     {
@@ -196,6 +216,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "India"
     },
     {
@@ -203,6 +224,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Tajikistan"
     },
     {
@@ -210,6 +232,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Cambodia"
     },
     {
@@ -217,6 +240,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Dominican Republic"
     },
     {
@@ -224,6 +248,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Guatemala"
     },
     {
@@ -231,6 +256,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Lebanon"
     },
     {
@@ -238,6 +264,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Malaysia"
     },
     {
@@ -245,6 +272,7 @@ var data = [
         "country": 5,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Saudi Arabia"
     },
     {
@@ -252,6 +280,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Costa Rica"
     },
     {
@@ -259,6 +288,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Egypt"
     },
     {
@@ -266,6 +296,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Korea, Republic of"
     },
     {
@@ -273,6 +304,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Laos"
     },
     {
@@ -280,6 +312,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Tunisia"
     },
     {
@@ -287,6 +320,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Armenia"
     },
     {
@@ -294,6 +328,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Bahrain"
     },
     {
@@ -301,6 +336,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Bangladesh"
     },
     {
@@ -308,6 +344,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Jordan"
     },
     {
@@ -315,6 +352,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Moldova"
     },
     {
@@ -322,6 +360,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Mongolia"
     },
     {
@@ -329,6 +368,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Morocco"
     },
     {
@@ -336,6 +376,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Palestinian Territories (Gaza)"
     },
     {
@@ -343,6 +384,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Thailand"
     },
     {
@@ -350,6 +392,7 @@ var data = [
         "country": 4,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Zimbabwe"
     },
     {
@@ -357,6 +400,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Kenya"
     },
     {
@@ -364,6 +408,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Mozambique"
     },
     {
@@ -371,6 +416,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Pakistan"
     },
     {
@@ -378,6 +424,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Turkmenistan"
     },
     {
@@ -385,6 +432,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Belarus"
     },
     {
@@ -392,6 +440,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Mauritania"
     },
     {
@@ -399,6 +448,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Nepal"
     },
     {
@@ -406,6 +456,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Niger"
     },
     {
@@ -413,6 +464,7 @@ var data = [
         "country": 3,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Paraguay"
     },
     {
@@ -420,13 +472,15 @@ var data = [
         "country": 2,
         "degree": null,
         "gender": null,
-        "label": "Palestinian Territories (West Bank)"
+        "host": null,
+        "label": "Palestinian Territories (WB)"
     },
     {
         "all": null,
         "country": 2,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Azerbaijan"
     },
     {
@@ -434,6 +488,7 @@ var data = [
         "country": 2,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Georgia"
     },
     {
@@ -441,6 +496,7 @@ var data = [
         "country": 2,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Israel"
     },
     {
@@ -448,6 +504,7 @@ var data = [
         "country": 2,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Serbia"
     },
     {
@@ -455,6 +512,7 @@ var data = [
         "country": 1,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Kuwait"
     },
     {
@@ -462,6 +520,7 @@ var data = [
         "country": 1,
         "degree": null,
         "gender": null,
+        "host": null,
         "label": "Oman"
     },
     {
@@ -469,6 +528,7 @@ var data = [
         "country": null,
         "degree": 22,
         "gender": null,
+        "host": null,
         "label": "English"
     },
     {
@@ -476,6 +536,7 @@ var data = [
         "country": null,
         "degree": 10,
         "gender": null,
+        "host": null,
         "label": "Computer Science"
     },
     {
@@ -483,6 +544,7 @@ var data = [
         "country": null,
         "degree": 9,
         "gender": null,
+        "host": null,
         "label": "International Relations"
     },
     {
@@ -490,6 +552,7 @@ var data = [
         "country": null,
         "degree": 8,
         "gender": null,
+        "host": null,
         "label": "Economics"
     },
     {
@@ -497,6 +560,7 @@ var data = [
         "country": null,
         "degree": 7,
         "gender": null,
+        "host": null,
         "label": "Engineering"
     },
     {
@@ -504,6 +568,7 @@ var data = [
         "country": null,
         "degree": 7,
         "gender": null,
+        "host": null,
         "label": "Business Administration"
     },
     {
@@ -511,6 +576,7 @@ var data = [
         "country": null,
         "degree": 7,
         "gender": null,
+        "host": null,
         "label": "Law"
     },
     {
@@ -518,6 +584,7 @@ var data = [
         "country": null,
         "degree": 6,
         "gender": null,
+        "host": null,
         "label": "Chemical Engineering"
     },
     {
@@ -525,6 +592,7 @@ var data = [
         "country": null,
         "degree": 5,
         "gender": null,
+        "host": null,
         "label": "Business"
     },
     {
@@ -532,6 +600,7 @@ var data = [
         "country": null,
         "degree": 5,
         "gender": null,
+        "host": null,
         "label": "Architecture"
     },
     {
@@ -539,6 +608,7 @@ var data = [
         "country": null,
         "degree": 5,
         "gender": null,
+        "host": null,
         "label": "Civil Engineering"
     },
     {
@@ -546,6 +616,7 @@ var data = [
         "country": null,
         "degree": 5,
         "gender": null,
+        "host": null,
         "label": "Foreign Languages"
     },
     {
@@ -553,6 +624,7 @@ var data = [
         "country": null,
         "degree": 4,
         "gender": null,
+        "host": null,
         "label": "Finance"
     },
     {
@@ -560,6 +632,7 @@ var data = [
         "country": null,
         "degree": 4,
         "gender": null,
+        "host": null,
         "label": "English Language and Literature"
     },
     {
@@ -567,6 +640,7 @@ var data = [
         "country": null,
         "degree": 4,
         "gender": null,
+        "host": null,
         "label": "Computer Engineering"
     },
     {
@@ -574,6 +648,7 @@ var data = [
         "country": null,
         "degree": 4,
         "gender": null,
+        "host": null,
         "label": "Sociology"
     },
     {
@@ -581,6 +656,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Accounting"
     },
     {
@@ -588,6 +664,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Mechanical Engineering"
     },
     {
@@ -595,6 +672,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Business Management"
     },
     {
@@ -602,6 +680,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Communications"
     },
     {
@@ -609,6 +688,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "International Studies"
     },
     {
@@ -616,6 +696,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Environmental Engineering"
     },
     {
@@ -623,6 +704,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Psychology"
     },
     {
@@ -630,6 +712,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Biology"
     },
     {
@@ -637,6 +720,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "English Literature"
     },
     {
@@ -644,6 +728,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "International Economics"
     },
     {
@@ -651,6 +736,7 @@ var data = [
         "country": null,
         "degree": 3,
         "gender": null,
+        "host": null,
         "label": "Software Engineering"
     },
     {
@@ -658,6 +744,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Electrical Engineering"
     },
     {
@@ -665,6 +752,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Public Administration"
     },
     {
@@ -672,6 +760,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Medicine and Nursing"
     },
     {
@@ -679,6 +768,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Social Studies"
     },
     {
@@ -686,6 +776,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Mathematics"
     },
     {
@@ -693,6 +784,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Environmental Sciences"
     },
     {
@@ -700,6 +792,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "English Education"
     },
     {
@@ -707,6 +800,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Modern Languages"
     },
     {
@@ -714,6 +808,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "International Law"
     },
     {
@@ -721,6 +816,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Liberal Arts"
     },
     {
@@ -728,6 +824,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Nutrition"
     },
     {
@@ -735,6 +832,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "Food Science"
     },
     {
@@ -742,6 +840,7 @@ var data = [
         "country": null,
         "degree": 2,
         "gender": null,
+        "host": null,
         "label": "International Finance"
     },
     {
@@ -749,6 +848,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Civil Engineering & English"
     },
     {
@@ -756,6 +856,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English/Linguistics"
     },
     {
@@ -763,6 +864,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Administration and Business"
     },
     {
@@ -770,6 +872,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Political Sciences and International Relations"
     },
     {
@@ -777,6 +880,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Industrial Engineering"
     },
     {
@@ -784,6 +888,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Commerce"
     },
     {
@@ -791,6 +896,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Business Information Technology"
     },
     {
@@ -798,6 +904,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Radio, Television and Cinema"
     },
     {
@@ -805,6 +912,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Animal Science"
     },
     {
@@ -812,6 +920,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Teaching English as a Foreign Language"
     },
     {
@@ -819,6 +928,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Education and Languages"
     },
     {
@@ -826,6 +936,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English Linguistics"
     },
     {
@@ -833,6 +944,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Engineering Technology"
     },
     {
@@ -840,6 +952,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English / TESL"
     },
     {
@@ -847,6 +960,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English and Journalism"
     },
     {
@@ -854,6 +968,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Digital Communications"
     },
     {
@@ -861,6 +976,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Finance and Accounting"
     },
     {
@@ -868,6 +984,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Biological Sciences"
     },
     {
@@ -875,6 +992,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Economics and Business"
     },
     {
@@ -882,6 +1000,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Social Sciences"
     },
     {
@@ -889,6 +1008,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Entrepreneurship"
     },
     {
@@ -896,6 +1016,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Journalism"
     },
     {
@@ -903,6 +1024,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Applied Mathematics"
     },
     {
@@ -910,6 +1032,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English Interpretation and Translation"
     },
     {
@@ -917,6 +1040,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Medicine"
     },
     {
@@ -924,6 +1048,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Humanities"
     },
     {
@@ -931,6 +1056,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Law and Political Science"
     },
     {
@@ -938,6 +1064,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Economic and Management Science"
     },
     {
@@ -945,6 +1072,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Business Economics"
     },
     {
@@ -952,6 +1080,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "International Affairs"
     },
     {
@@ -959,6 +1088,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English Language Teaching"
     },
     {
@@ -966,6 +1096,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Logistics and Customs"
     },
     {
@@ -973,6 +1104,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Journalism and Mass Communiction"
     },
     {
@@ -980,6 +1112,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Educational Psychology"
     },
     {
@@ -987,6 +1120,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Marketing and Advertisement"
     },
     {
@@ -994,6 +1128,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Agriculture"
     },
     {
@@ -1001,6 +1136,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Foreign Languages in English Orientation"
     },
     {
@@ -1008,6 +1144,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Languages and Mathematics"
     },
     {
@@ -1015,6 +1152,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Electrical Industrial Engineering"
     },
     {
@@ -1022,6 +1160,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Computer Systems Engineering"
     },
     {
@@ -1029,6 +1168,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Physics & Mathematics"
     },
     {
@@ -1036,6 +1176,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Biosciences"
     },
     {
@@ -1043,6 +1184,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Marketing"
     },
     {
@@ -1050,6 +1192,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Translation Studies"
     },
     {
@@ -1057,6 +1200,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Management"
     },
     {
@@ -1064,6 +1208,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English and French"
     },
     {
@@ -1071,6 +1216,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Mass Media & Journalism"
     },
     {
@@ -1078,6 +1224,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Nursing"
     },
     {
@@ -1085,6 +1232,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Political Science and Diplomacy"
     },
     {
@@ -1092,6 +1240,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Human Rights and International Law"
     },
     {
@@ -1099,6 +1248,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Chemistry"
     },
     {
@@ -1106,6 +1256,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Rural Engineering"
     },
     {
@@ -1113,6 +1264,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Engineering - Product Design"
     },
     {
@@ -1120,6 +1272,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Applied Informatics"
     },
     {
@@ -1127,6 +1280,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "International Journalism"
     },
     {
@@ -1134,6 +1288,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Renewable Energy"
     },
     {
@@ -1141,6 +1296,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Microbiology"
     },
     {
@@ -1148,6 +1304,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "International Development"
     },
     {
@@ -1155,6 +1312,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Early Childhood Bilingual Education"
     },
     {
@@ -1162,6 +1320,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Airport Management"
     },
     {
@@ -1169,6 +1328,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "English/French"
     },
     {
@@ -1176,6 +1336,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Logistics"
     },
     {
@@ -1183,6 +1344,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Tourism Enterprises Management"
     },
     {
@@ -1190,6 +1352,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Agricultural Science"
     },
     {
@@ -1197,6 +1360,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Political and Social Science"
     },
     {
@@ -1204,6 +1368,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Physical Therapy"
     },
     {
@@ -1211,6 +1376,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Linguistics and Translation"
     },
     {
@@ -1218,6 +1384,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Education"
     },
     {
@@ -1225,6 +1392,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Filmmaking"
     },
     {
@@ -1232,6 +1400,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Visual And Digital production"
     },
     {
@@ -1239,6 +1408,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Linguistics and Philology"
     },
     {
@@ -1246,6 +1416,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "International Communications"
     },
     {
@@ -1253,6 +1424,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Tourism"
     },
     {
@@ -1260,6 +1432,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Geology"
     },
     {
@@ -1267,6 +1440,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Business Information Systems"
     },
     {
@@ -1274,6 +1448,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Pharmacy"
     },
     {
@@ -1281,6 +1456,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "International Business"
     },
     {
@@ -1288,6 +1464,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Agribusiness"
     },
     {
@@ -1295,6 +1472,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Biomedical Engineering"
     },
     {
@@ -1302,6 +1480,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Womens & Gender Studies"
     },
     {
@@ -1309,6 +1488,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Journalism & Media Studies"
     },
     {
@@ -1316,6 +1496,7 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Civil and Water Engineering"
     },
     {
@@ -1323,11 +1504,730 @@ var data = [
         "country": null,
         "degree": 1,
         "gender": null,
+        "host": null,
         "label": "Natural Resources Management"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "University of Southern Indiana"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "University of Utah"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "North Dakota State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "University of Arkansas"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "University of Wyoming"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "Wright State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "Saginaw Valley State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "West Virginia University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 5,
+        "label": "Tennessee Tech University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "University of Missouri - Columbia"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Florida Gulf Coast University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Utica College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "West Liberty University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Humboldt State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Augustana University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Lewis-Clark State College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "University of Evansville"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "St. Cloud State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Emporia State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "University of Tennessee, Knoxville"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Cal State Bakersfield"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Minnesota State Mankato"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 4,
+        "label": "Kent State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Maryville College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Millikin University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "U. Wisconsin - Eau Claire"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Fairleigh Dickinson University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Pittsburg State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Carroll College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Illinois State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Ball State"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "American University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Presbyterian College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Mississippi"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Western Washington University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "CSU, San Marcos"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Missouri State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Endicott College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Memphis"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Montclair State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Murray State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Wayne State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Chatham University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Old Dominion University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Wilson College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Montana"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "North Central College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Central Missouri"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Northern Michigan University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Barnard College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Grand Valley State"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "CSU, Monterey Bay"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "East Tennessee State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Marymount University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "Nazareth College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Maine"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 3,
+        "label": "University of Kansas"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "U. Wisconsin - Superior"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "University of New Hampshire"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "University of Minnesota, TC"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "SUNY-Plattsburgh"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "East Tennessee State U."
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Mercyhurst University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Gadsden State"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "The University of Texas at Austin"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Xavier University of Louisiana"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Boston Met College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Mount Mercy University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "St. Catherine University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Indiana U. of Pennsylvania"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Oklahoma State Institute of Tech"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "University of Delaware"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "University of the Incarnate Word"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "SUNY - Cobleskill"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 2,
+        "label": "Depauw University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Univeristy of Wisconsin, Eau Claire"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Indiana Univeristy of Pennsylvania"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "University of Minnesota, Twin - Cities"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "University Of Minnesota - Twin Cities"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Oklahoma State University of Technology"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "U. Wisconsin - Stout"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "California State Univeristy, San Marcos"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Lincoln University of PA"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Snow College"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Missourri State University"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "University of Wisconsin - Eau Claire"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "Lincoln University of Pennsylvania"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "California State Univeristy, Monterey Bay"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "SUNY - Plattsburgh"
+    },
+    {
+        "all": null,
+        "country": null,
+        "degree": null,
+        "gender": null,
+        "host": 1,
+        "label": "University of Wisconsin - Stout"
     }
-]
-
-;
+];
 
 var total = d3.sum(data, function(d) {
 	return d3.sum(d3.values(d));
@@ -1455,6 +2355,14 @@ var path = svg.datum(data).selectAll("path")
 		textBottomBottom.text("")
 			.attr("y", 35);
 	}
+	else if (document.getElementById("host").checked) {
+			textTop.text(d3.select(this).datum().data.host)
+				.attr("y", -10);
+			textBottom.text(d3.select(this).datum().data.label)
+				.attr("y", 20);
+			textBottomBottom.text("")
+				.attr("y", 35);
+		}
 })
 	.on("mouseout", function(d) {
 		d3.select(this).transition()
@@ -1484,6 +2392,13 @@ var path = svg.datum(data).selectAll("path")
 				.attr("y", 20);
 			textBottomBottom.text("")
 		} 
+		else if (document.getElementById("host").checked) {
+					textTop.text("90")
+						.attr("y", -10);
+					textBottom.text("host institutions")
+						.attr("y", 20);
+					textBottomBottom.text("")
+				} 
 	});
 
 
@@ -1588,7 +2503,21 @@ function change() {
 		textQuoteLineOne.text(textQuoteLineOneContent)
 		textQuoteLineTwo.text(textQuoteLineTwoContent)
 		textQuoteLineThree.text(textQuoteLineThreeContent)
-	};
+	}
+	else if (value == "host") {
+			textTopContent = "90"
+			textBottomBottomContent = "host institutions"
+			textBottomContent = ""
+			textQuoteLineOneContent = ""
+			textQuoteLineTwoContent = ""
+			textQuoteLineThreeContent = ""
+			textTop.text(textTopContent)
+			textBottom.text(textBottomContent)
+			textBottomBottom.text(textBottomBottomContent)
+			textQuoteLineOne.text(textQuoteLineOneContent)
+			textQuoteLineTwo.text(textQuoteLineTwoContent)
+			textQuoteLineThree.text(textQuoteLineThreeContent)
+		};
 }
 
 // Store the displayed angles in _current.
