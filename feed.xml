@@ -6,12 +6,22 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Tue, 17 May 2016 16:28:32 -0400</pubDate>
-    <lastBuildDate>Tue, 17 May 2016 16:28:32 -0400</lastBuildDate>
+    <pubDate>Tue, 17 May 2016 17:26:33 -0400</pubDate>
+    <lastBuildDate>Tue, 17 May 2016 17:26:33 -0400</lastBuildDate>
 
     
       <item>
-        <title>Kosovo newborn</title>
+        <title>Tethered Narratives</title>
+        <link>/tethered-narratives</link>
+        <pubDate>Tue, 17 May 2016 00:00:00 -0400</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;a href=&quot;http://tetherednarratives.com/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;../public/images/tethered-narratives.jpg&quot;&gt;&lt;/a&gt;
+&lt;p&gt;Toward the end of 2015, I made &lt;a href=&quot;http://benjamindalton.com/public/interactives/world-learning-annual-report-2015/&quot; target=&quot;_blank&quot;&gt;a prototype digital annual report&lt;/a&gt; for World Learning, based on the design of the print version/PDF that had already been assembled. The idea wasn&#39;t to replace the original, but to experiment and see what might be possible in the future. Other than a few stubborn bugs (misaligned images here and there), I was pleased with the result.&lt;/p&gt;
+&lt;p&gt;This spring, Alison offered me the chance to create a web version of the literary journal she was creating with her Literature of Immigration students at Stony Brook University. At first, I planned to use the annual report as a template, but switched to a WordPress theme at Alison’s suggestion. Her recommendation was the right call, since &lt;a href=&quot;http://tetherednarratives.com/&quot; target=&quot;_blank&quot;&gt;the finished product&lt;/a&gt; turned out nicely. I made only slight modifications to the SimpleMag theme, which handled the heavy lifting and freed me to focus on design and presentation. I set up the site on a DigitalOcean droplet, then transferred it to a permanent DigitalOcean account that Stony Brook controls. As long as a client is comfortable using DigitalOcean as their host, this seems like an easy way to deliver a project.&lt;/p&gt;</description>
+      </item>
+    
+      <item>
+        <title>Kosovo Newborn</title>
         <link>/kosovo-newborn</link>
         <pubDate>Tue, 21 Apr 2015 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
@@ -21,17 +31,6 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
 &lt;p&gt;I used reveal.js for the slide effect. With this much video, loading speed is a concern. The development branch of reveal.js supports lazy loading media assets. The current production branch does not. By the time I realized this, I had modified the latter too much to switch.&lt;/p&gt;
 
 &lt;p&gt;Over the next few weeks, I will be working on a similar project using someone else&amp;#39;s footage from Mexico. If I have the time, the next one will be IE-compatible. Also, each video slide will play its own audio when selected, rather than a single track of Prishtina-footballer-cum-Gregorian chanting.&lt;/p&gt;
-</description>
-      </item>
-    
-      <item>
-        <title>R</title>
-        <link>/R</link>
-        <pubDate>Sun, 18 Jan 2015 00:00:00 -0500</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;p&gt;When I started playing with JavaScript in the winter of 2012-13, I would print out sheets of code and painstakingly annotate each line with what I thought it was doing. The scripts were so alien, so baffling, that I felt like I had unearthed a new Rosetta Stone and was attempting to decipher it without points of reference. Still, the process by which these lines of gibberish created a map or graphic was so fascinating that I slogged onward, and eventually cracks of light appeared amidst all the incomprehensible symbols. Today, I would never claim to “know” JavaScript or any other language. My capacity to do anything is dependent on access to the global brain that is the Internet. But presented with an unfamiliar script and given enough time, I can puzzle it through, follow its logic, and adapt it to suit my needs. I can pluck and mash functions together and create something new.&lt;/p&gt;
-
-&lt;p&gt;R feels like JavaScript did at the beginning. Perhaps not as bewildering - the logic is familar and many concepts are the same as in other languages. Still, when I look at something like &lt;a href=&quot;http://stackoverflow.com/a/23646128/2009043&quot;&gt;this&lt;/a&gt;, it becomes clear how much work lies ahead.&lt;/p&gt;
 </description>
       </item>
     
@@ -66,12 +65,13 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
       </item>
     
       <item>
-        <title>Juggling</title>
-        <link>/juggling</link>
-        <pubDate>Wed, 14 Jan 2015 00:00:00 -0500</pubDate>
+        <title>Development + Tech</title>
+        <link>/development-plus-tech</link>
+        <pubDate>Thu, 20 Nov 2014 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
-        <description>&lt;p&gt;In the new year, I am learning R via Coursera, resuscitating my Russia with Anki, and memorizing songs for guitar. Wish me luck!&lt;/p&gt;
-</description>
+        <description>&lt;iframe width=&quot;853&quot; height=&quot;480&quot; src=&quot;https://www.youtube.com/embed/h3-vsLhaa5U&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+
+&lt;p&gt;I edited this World Learning conference video using footage from two different hired shooters.&lt;/p&gt;</description>
       </item>
     
       <item>
@@ -694,7 +694,7 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
       </item>
     
       <item>
-        <title>On the frontlines</title>
+        <title>On the Frontlines</title>
         <link>/on-the-frontlines</link>
         <pubDate>Wed, 07 May 2014 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
@@ -706,7 +706,7 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
       </item>
     
       <item>
-        <title>Turkey's Syrian quagmire</title>
+        <title>Turkey's Syrian Quagmire</title>
         <link>/turkeys-syrian-quagmire</link>
         <pubDate>Wed, 30 Apr 2014 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
