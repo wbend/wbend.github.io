@@ -1,0 +1,76 @@
+html {
+height:100%;
+width:100%;
+overflow: hidden;
+}
+
+body {
+height:100%;
+width:100%;
+}
+
+
+#map {
+height:100%;
+width:100%;
+display: block;
+position: absolute;
+left:0px;
+top:0px;
+}
+
+.ui-datepicker-calendar {
+    display: none;
+    }
+    
+#datepicker {
+position: absolute;
+bottom: 10px;
+}
+
+.ui-btn{
+width:60px;
+}
+
+
+
+
+.info {
+    font: 13px Verdana, Helvetica, sans-serif;
+   	line-height:150%;
+   	position: absolute;
+   	height:90%;
+}
+.info h1 {
+     font-family: Verdana, Georgia, sans-serif;
+	 line-height:25%;
+}
+
+.info h4 {
+     font-family: Verdana, Georgia, sans-serif;
+	 line-height:100%;
+}
+
+.legend-title {
+      text-align: left;
+      letter-spacing:-0.5px;
+	  color: #000000;
+      font-family: Verdana;
+      font-weight: bold;
+      font-size: 90%;
+      }
+  
+      
+
+      
+    .my-legend a {
+      color: #777;
+      }
+    .my-legend {
+    padding: 4px;
+	color: #ffffff;
+    }
+	
+	
+	
+	
