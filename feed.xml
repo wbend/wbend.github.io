@@ -6,9 +6,18 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Wed, 08 Jun 2016 18:21:13 -0400</pubDate>
-    <lastBuildDate>Wed, 08 Jun 2016 18:21:13 -0400</lastBuildDate>
+    <pubDate>Tue, 02 Aug 2016 17:48:16 -0400</pubDate>
+    <lastBuildDate>Tue, 02 Aug 2016 17:48:16 -0400</lastBuildDate>
 
+    
+      <item>
+        <title>The Malawi Scholarship Program</title>
+        <link>/the-malawi-scholarship-program</link>
+        <pubDate>Tue, 28 Jun 2016 00:00:00 -0400</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/XCRICEDDhR0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;p&gt;My colleague Kathryn Schoenberger and I traveled to Malawi in April 2016 to document the work of the Malawi Scholarship Program, a USAID-funded and World Learning-run program that trains health care workers throughout Malawi in everything from community midwifery to nutritional science to traditional nursing. This video tells the story of the program in four profiles.&lt;/p&gt;</description>
+      </item>
     
       <item>
         <title>Tethered Narratives</title>
@@ -714,17 +723,6 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
 
 &lt;p&gt;Didem Collinsworth, Crisis Group&#39;s Turkey and Cyprus Analyst, and Noah Bonsey, Senior Syria Analyst, report from the Turkey-Syrian border. Didem discusses the terrible conditions many Syrian refugees find in Turkey, despite a massive humanitarian response by the Turkish government, while Noah analyzes the fighting and atrocities that have driven so many residents from Aleppo and surrounding territory.&lt;/p&gt;
 &lt;p&gt;Filmmaker &lt;a href=&quot;http://www.getstorywise.com/&quot; target=&quot;_blank&quot;&gt;Dan Evans&lt;/a&gt; and I traveled to the region in February 2014 as part of the &lt;a href=&quot;/on-the-frontlines&quot;&gt;On the Frontlines&lt;/a&gt; shoot. Dan captured all footage, while I handled audio and logistics. The piece was edited by me and &lt;a href=&quot;http://www.corinne-chin.com/&quot; target=&quot;_blank&quot;&gt;Corinne Chin&lt;/a&gt;.&lt;/p&gt;</description>
-      </item>
-    
-      <item>
-        <title>CrisisWatch</title>
-        <link>/crisiswatch</link>
-        <pubDate>Wed, 01 Jan 2014 00:00:00 -0500</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;a href=&quot;/public/interactives/crisiswatch&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/public/images/crisiswatch.png&quot;&gt;&lt;/a&gt;
-&lt;p&gt;This project maps Crisis Group’s CrisisWatch publication, which provides succinct updates on some 70 global conflicts on the first of each month. A jQuery datepicker allows users to view the last 12 months of CrisisWatch data. I made this primarily with leaflet.js, and the underlying map is from Mapbox. There is also a mobile version that relies on jQuery Mobile.&lt;/p&gt;
-&lt;p&gt;Edit, 17 May 2016: Crisis Group appears to have retired the CrisisWatch map. &lt;a href=&quot;/public/interactives/crisiswatch&quot; target=&quot;_blank&quot;&gt;An archived version is available here.&lt;/a&gt;&lt;/p&gt;
-</description>
       </item>
     
 
