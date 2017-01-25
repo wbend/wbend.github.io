@@ -1,0 +1,568 @@
+
+class BubbleChart
+  constructor: (data) ->
+    @data = data
+    @width = 1100
+    @height = 600
+
+    @tooltip = CustomTooltip("sanctions_tooltip", 240)
+
+    @center = {x: @width / 2, y: @height / 2}
+    @year_centers = {
+      "1979": {x: 151, y: @height / 2},
+      "1980": {x: 173, y: @height / 2},
+      "1981": {x: 195, y: @height / 2},
+      "1982": {x: 217, y: @height / 2},
+      "1983": {x: 239, y: @height / 2},
+      "1984": {x: 261, y: @height / 2},
+      "1985": {x: 283, y: @height / 2},
+      "1986": {x: 305, y: @height / 2},
+      "1987": {x: 327, y: @height / 2},
+      "1988": {x: 349, y: @height / 2},
+      "1989": {x: 371, y: @height / 2},
+      "1990": {x: 393, y: @height / 2},
+      "1991": {x: 415, y: @height / 2},
+      "1992": {x: 437, y: @height / 2},
+      "1993": {x: 459, y: @height / 2},
+      "1994": {x: 481, y: @height / 2},
+      "1995": {x: 503, y: @height / 2},
+      "1996": {x: 525, y: @height / 2},
+      "1997": {x: 547, y: @height / 2},
+      "1998": {x: 569, y: @height / 2},
+      "1999": {x: 591, y: @height / 2},
+      "2000": {x: 613, y: @height / 2},
+      "2001": {x: 635, y: @height / 2},
+      "2002": {x: 657, y: @height / 2},
+      "2003": {x: 679, y: @height / 2},
+      "2004": {x: 701, y: @height / 2},
+      "2005": {x: 723, y: @height / 2},
+      "2006": {x: 745, y: @height / 2},
+      "2007": {x: 767, y: @height / 2},
+      "2008": {x: 789, y: @height / 2},
+      "2009": {x: 811, y: @height / 2},
+      "2010": {x: 833, y: @height / 2},
+      "2011": {x: 855, y: @height / 2},
+      "2012": {x: 877, y: @height / 2},
+      "2013": {x: 1028, y: @height / 2}
+    }
+    @actor_centers = {
+      "1": {x: 200, y: @height / 2},
+      "2": {x: 433.3333333333, y: @height / 2},
+      "3": {x: 666.6666666666, y: @height / 2},
+      "4": {x: 900, y: @height / 2}
+    }
+    @impact_centers = {
+      "Low": {x: @width / 4, y: @height / 2},
+      "High": {x: 3 * @width / 4, y: @height / 2},
+      "Not Applicable": {x: 2000, y: @height / 3}
+    }
+    @trigger_centers = {
+      "1": {x: @width / 2, y: @height / 6},
+      "2": {x: @width / 6, y: @height / 2},
+      "3": {x: 5 * @width / 6, y: @height / 2},
+      "4": {x: @width / 2, y: 5 * @height / 6},
+      "5": {x: @width / 3, y: 2 * @height / 3},
+      "6": {x: @width / 2, y: @height / 3.25},
+      "7": {x: @width / 3, y: @height / 3},
+      "8": {x: @width / 2, y: @height / 2},
+      "9": {x: @width / 3, y: @height / 2}
+    }
+    @target_centers = {
+      "1": {x: 195, y: 5 * @height / 6},
+      "2": {x: 217, y: 5 * @height / 6},
+      "3": {x: 239, y: 5 * @height / 6},
+      "4": {x: 261, y: 5 * @height / 6},
+      "5": {x: 283, y: 5 * @height / 6},
+      "6": {x: 305, y: 5 * @height / 6},
+      "7": {x: 327, y: 5 * @height / 6},
+      "8": {x: 349, y: 5 * @height / 6},
+      "9": {x: 371, y: 5 * @height / 6},
+      "10": {x: 393, y: 5 * @height / 6},
+      "11": {x: 415, y: 5 * @height / 6},
+      "12": {x: 437, y: 5 * @height / 6},
+      "13": {x: 459, y: 5 * @height / 6},
+      "14": {x: 481, y: 5 * @height / 6},
+      "15": {x: 503, y: 5 * @height / 6},
+      "16": {x: 525, y: 5 * @height / 6},
+      "17": {x: 547, y: 5 * @height / 6},
+      "18": {x: 569, y: 5 * @height / 6},
+      "19": {x: 591, y: 5 * @height / 6},
+      "20": {x: 613, y: 5 * @height / 6},
+      "21": {x: 635, y: 5 * @height / 6},
+      "22": {x: 657, y: 5 * @height / 6},
+      "23": {x: 679, y: 5 * @height / 6},
+      "24": {x: 701, y: 5 * @height / 6},
+      "25": {x: 723, y: 5 * @height / 6},
+      "26": {x: 745, y: 5 * @height / 6},
+      "27": {x: 767, y: 5 * @height / 6},
+      "28": {x: 789, y: 5 * @height / 6},
+      "29": {x: 811, y: 5 * @height / 6},
+      "30": {x: 833, y: 5 * @height / 6},
+      "31": {x: 855, y: 5 * @height / 6},
+      "32": {x: 877, y: 5 * @height / 6},
+      "33": {x: 899, y: 5 * @height / 6},
+      "34": {x: 921, y: 5 * @height / 6},
+      "35": {x: 943, y: 5 * @height / 6},
+      "36": {x: 965, y: 5 * @height / 6}
+    }
+    @repeal_centers = {
+      "1": {x: 195, y: @height / 2},
+      "2": {x: 410, y: @height / 2},
+      "3": {x: 670, y: @height / 2},
+      "4": {x: 850, y: @height / 2},
+      "5": {x: 2000, y: @height / 2}
+    }
+
+    # used when setting up force and
+    # moving around nodes
+    @layout_gravity = -0.01
+    @damper = 0.1
+
+    # these will be set in create_nodes and create_vis
+    @vis = null
+    @nodes = []
+    @force = null
+    @circles = null
+
+    @fill_color = d3.scale.ordinal()
+      .domain(["low", "medium", "high", "light"])
+      .range(["#002B5C", "#FEC013", "#FEEFC4", "#BFDDFE"])
+
+    # use the max total_amount in the data as the max in the scale's domain
+    max_amount = d3.max(@data, (d) -> parseInt(d.total_amount))
+    @radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([32, 32])
+    
+    this.create_nodes()
+    this.create_vis()
+
+  # create node objects from original data
+  # that will serve as the data behind each
+  # bubble in the vis, then add each node
+  # to @nodes to be used later
+  create_nodes: () =>
+    @data.forEach (d) =>
+      node = {
+        id: d.id
+        radius: @radius_scale(parseInt(d.total_amount))
+        value: d.description
+        name: d.sanction_title
+        org: d.organization
+        status: d.status
+        actor: d.actor
+        trigger: d.trigger
+        repeal: d.repeal
+        target: d.target
+        group: d.group
+        year: d.start_year
+        impact: d.impact
+        x: Math.random() * 900
+        y: Math.random() * 800
+      }
+      @nodes.push node
+
+    @nodes.sort (a,b) -> b.value - a.value
+
+
+  # create svg at #vis and then 
+  # create circle representation for each node
+  create_vis: () =>
+    @vis = d3.select("#vis").append("svg")
+      .attr("width", @width)
+      .attr("height", @height)
+      .attr("id", "svg_vis")
+
+    @circles = @vis.selectAll("circle")
+      .data(@nodes, (d) -> d.id)
+
+    # used because we need 'this' in the 
+    # mouse callbacks
+    that = this
+
+    # radius will be set to 0 initially.
+    # see transition below
+    @circles.enter().append("circle")
+      .attr("r", 0)
+      .attr("fill", (d) => @fill_color(d.group))
+      .attr("stroke-width", 2)
+      .attr("stroke", (d) => d3.rgb(@fill_color(d.group)).darker())
+      .attr("id", (d) -> "bubble_#{d.id}")
+      .on("mouseover", (d,i) -> that.show_details(d,i,this))
+      .on("mouseout", (d,i) -> that.hide_details(d,i,this))
+
+    # Fancy transition to make bubbles appear, ending with the
+    # correct radius
+    @circles.transition().duration(2000).attr("r", (d) -> d.radius)
+
+
+  # Charge function that is called for each node.
+  # Charge is proportional to the diameter of the
+  # circle (which is stored in the radius attribute
+  # of the circle's associated data.
+  # This is done to allow for accurate collision 
+  # detection with nodes of different sizes.
+  # Charge is negative because we want nodes to 
+  # repel.
+  # Dividing by 8 scales down the charge to be
+  # appropriate for the visualization dimensions.
+  charge: (d) ->
+    -Math.pow(d.radius, 2.0) / 8
+
+  # Starts up the force layout with
+  # the default values
+  start: () =>
+    @force = d3.layout.force()
+      .nodes(@nodes)
+      .size([@width, @height])
+
+  # Sets up force layout to display
+  # all nodes in one circle.
+  display_group_all: () =>
+    @circles.transition().duration(2000).attr("r", 32)
+    @force.gravity(@layout_gravity)
+      .charge(this.charge)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_center(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+  # Moves all circles towards the @center
+  # of the visualization
+  move_towards_center: (alpha) =>
+    (d) =>
+      d.x = d.x + (@center.x - d.x) * (@damper + 0.02) * alpha
+      d.y = d.y + (@center.y - d.y) * (@damper + 0.02) * alpha
+
+  # sets the display of bubbles to be separated
+  # into each year. Does this by calling move_towards_year
+  display_by_year: () =>
+    @circles.transition().duration(2000).attr("r", 25)
+    @force.gravity(@layout_gravity)
+      .charge(-50)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_year(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_years()
+    this.hide_actor()
+    this.hide_impact()
+    this.hide_trigger()
+    this.hide_repeal()
+    this.hide_target()
+
+  # move all circles to their associated @year_centers 
+  move_towards_year: (alpha) =>
+    (d) =>
+      target = @year_centers[d.year]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display year titles
+  display_years: () =>
+    years_x = {"1979": 50, "2012": 1000}
+    years_data = d3.keys(years_x)
+    years = @vis.selectAll(".years")
+      .data(years_data)
+
+    years.enter().append("text")
+      .attr("class", "years")
+      .attr("x", (d) => years_x[d] )
+      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide year titles
+  hide_years: () =>
+    years = @vis.selectAll(".years").remove() 
+
+# sets the display of bubbles to be separated
+  # into each impact center. Does this by calling move_towards_impact
+  display_by_impact: () =>
+    @circles.transition().duration(2000).attr("r", 32)
+    @force.gravity(@layout_gravity)
+      .charge(this.charge)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_impact(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_impact()
+    this.hide_actor()
+    this.hide_target()
+    this.hide_years()
+    this.hide_trigger()
+    this.hide_repeal()
+
+  # move all circles to their associated @impact_centers 
+  move_towards_impact: (alpha) =>
+    (d) =>
+      target = @impact_centers[d.impact]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display impact titles
+  display_impact: () =>
+    impact_x = {"Low": 225, "High": 875}
+    impact_data = d3.keys(impact_x)
+    impact = @vis.selectAll(".impact")
+      .data(impact_data)
+      
+    impact.enter().append("text")
+      .attr("class", "impact")
+      .attr("x", (d) => impact_x[d] )
+      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide impact titles
+  hide_impact: () =>
+    impact = @vis.selectAll(".impact").remove()
+    
+     # sets the display of bubbles to be separated
+  # into each year. Does this by calling move_towards_trigger
+  display_by_trigger: () =>
+    @circles.transition().duration(2000).attr("r", 15)
+    @force.gravity(@layout_gravity)
+      .charge(-30)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_trigger(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_trigger()
+    this.hide_actor()
+    this.hide_target()
+    this.hide_impact()
+    this.hide_years()
+    this.hide_repeal()
+
+  # move all circles to their associated @trigger_centers 
+  move_towards_trigger: (alpha) =>
+    (d) =>
+      target = @trigger_centers[d.trigger]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display trigger titles
+  display_trigger: () =>
+    trigger_x = {"Nonproliferation": 697, "Other": 650, "Human Rights": 965, "Terrorism": 135}
+    trigger_y = {"Nonproliferation": 70, "Other": 535, "Human Rights": 260, "Terrorism": 260}
+    trigger_data = d3.keys(trigger_x, trigger_y)
+    trigger = @vis.selectAll(".trigger")
+      .data(trigger_data)
+
+    trigger.enter().append("text")
+      .attr("class", "trigger")
+      .attr("x", (d) => trigger_x[d] )
+      .attr("y", (d) => trigger_y[d])
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide trigger titles
+  hide_trigger: () =>
+    trigger = @vis.selectAll(".trigger").remove()
+    
+  # sets the display of bubbles to be separated
+  # into each target. Does this by calling move_towards_target
+  display_by_target: () =>
+    @circles.transition().duration(2000).attr("r", 10)
+    @force.gravity(@layout_gravity)
+      .charge(0)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_target(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_target()
+    this.hide_actor()
+    this.hide_impact()
+    this.hide_trigger()
+    this.hide_repeal()
+    this.hide_years()
+	
+
+  # move all circles to their associated @target_centers 
+  move_towards_target: (alpha) =>
+    (d) =>
+      target = @target_centers[d.target]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display target titles
+  display_target: () =>
+    target_x = {"Arms": 75, "Nuclear/Missile": 75, "Financial": 75, "Energy": 75, "Travel Bans": 75, "Asset Freeze": 75, "Trade Ban": 75, "Other": 75}
+    target_y = {"Arms": 500, "Nuclear/Missile": 475, "Financial": 450, "Energy": 425, "Travel Bans": 400, "Asset Freeze": 375, "Trade Ban": 350, "Other": 325}
+    target_data = d3.keys(target_x, target_y)
+    target = @vis.selectAll(".target")
+      .data(target_data)
+
+    target.enter().append("text")
+      .attr("class", "target")
+      .attr("x", (d) => target_x[d] )
+      .attr("y", (d) => target_y[d])
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide target titles
+  hide_target: () =>
+    target = @vis.selectAll(".target").remove() 
+    
+    
+    # sets the display of bubbles to be separated
+  # into each repeal group. Does this by calling move_towards_repeal
+  display_by_repeal: () =>
+    @circles.transition().duration(2000).attr("r", 32)
+    @force.gravity(@layout_gravity)
+      .charge(this.charge)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_repeal(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_repeal()
+    this.hide_actor()
+    this.hide_target()
+    this.hide_trigger()
+    this.hide_impact()
+    this.hide_years()
+    
+    
+
+  # move all circles to their associated @repeal_centers 
+  move_towards_repeal: (alpha) =>
+    (d) =>
+      target = @repeal_centers[d.repeal]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display repeal titles
+  display_repeal: () =>
+    repeal_x = {"The executive branch can unilaterally": 140, "amend or repeal the measure": 140, "Multilateral consensus is required for": 395, "modifying or repealing the measure": 395, "Amending or repealing sanctions": 650, "adopted by UN Security Council": 650, "resolutions require a new resolution": 650, "Requires legislative action,": 905, "often including specific criteria": 905, "for termination": 905}
+    repeal_y = {"The executive branch can unilaterally": 40, "amend or repeal the measure": 60, "Multilateral consensus is required for": 40, "modifying or repealing the measure": 60, "Amending or repealing sanctions": 40, "adopted by UN Security Council": 60, "resolutions require a new resolution": 80, "Requires legislative action,": 40, "often including specific criteria": 60, "for termination": 80}
+    repeal_data = d3.keys(repeal_x, repeal_y)
+    repeal = @vis.selectAll(".repeal")
+      .data(repeal_data)
+
+    repeal.enter().append("text")
+      .attr("class", "repeal")
+      .attr("x", (d) => repeal_x[d] )
+      .attr("y", (d) => repeal_y[d])
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide repeal titles
+  hide_repeal: () =>
+    repeal = @vis.selectAll(".repeal").remove()
+    
+    # sets the display of bubbles to be separated
+  # into each actor. Does this by calling move_towards_actor
+  display_by_actor: () =>
+    @circles.transition().duration(2000).attr("r", 32)
+    @force.gravity(@layout_gravity)
+      .charge(this.charge)
+      .friction(0.9)
+      .on "tick", (e) =>
+        @circles.each(this.move_towards_actor(e.alpha))
+          .attr("cx", (d) -> d.x)
+          .attr("cy", (d) -> d.y)
+    @force.start()
+
+    this.display_actor()
+    this.hide_repeal()
+    this.hide_target()
+    this.hide_impact()
+    this.hide_trigger()
+    this.hide_years()
+    
+    
+  # move all circles to their associated @actor_centers 
+  move_towards_actor: (alpha) =>
+    (d) =>
+      target = @actor_centers[d.actor]
+      d.x = d.x + (target.x - d.x) * (@damper + 0.02) * alpha * 1.1
+      d.y = d.y + (target.y - d.y) * (@damper + 0.02) * alpha * 1.1
+
+  # Method to display actor titles
+  display_actor: () =>
+    actor_x = {"U.S. Executive Order": 125, "U.S. Congressional Legislation": 420, "European Union": 710, "United Nations": 975}
+    actor_data = d3.keys(actor_x)
+    actor = @vis.selectAll(".actor")
+      .data(actor_data)
+
+    actor.enter().append("text")
+      .attr("class", "actor")
+      .attr("x", (d) => actor_x[d] )
+      .attr("y", 40)
+      .attr("text-anchor", "middle")
+      .text((d) -> d)
+
+  # Method to hide actor titles
+  hide_actor: () =>
+    actor = @vis.selectAll(".actor").remove()
+
+
+  show_details: (data, i, element) =>
+    d3.select(element).attr("stroke", "black")
+    content = "<span class=\"name\">Title:</span><span class=\"value\"> #{data.name}</span><br/>"
+    content +="<span class=\"name\">Description:</span><span class=\"value\"> #{data.value}</span><br/>"
+    content +="<span class=\"name\">Year:</span><span class=\"value\"> #{data.year}</span><br />"
+    content +="<span class=\"name\">Status:</span><span class=\"value\"> #{data.status}</span><br />" 
+    content +="<span class=\"name\">Economic Impact:</span><span class=\"value\"> #{data.impact}</span>"
+    @tooltip.showTooltip(content,d3.event)
+
+
+  hide_details: (data, i, element) =>
+    d3.select(element).attr("stroke", (d) => d3.rgb(@fill_color(d.group)).darker())
+    @tooltip.hideTooltip()
+
+
+root = exports ? this
+
+$ ->
+  chart = null
+
+  render_vis = (csv) ->
+    chart = new BubbleChart csv
+    chart.start()
+    root.display_actor()
+  root.display_all = () =>
+    chart.display_group_all()
+  root.display_year = () =>
+    chart.display_by_year()
+  root.display_impact = () =>
+    chart.display_by_impact()
+  root.display_trigger = () =>
+    chart.display_by_trigger()
+  root.display_target = () =>
+    chart.display_by_target()  
+  root.display_repeal = () =>
+    chart.display_by_repeal()    
+  root.display_actor = () =>
+    chart.display_by_actor()    
+  root.toggle_view = (view_type) =>
+    if view_type == 'year'
+      root.display_year()
+    else if view_type == 'impact'
+      root.display_impact()
+    else if view_type == 'trigger'
+      root.display_trigger()
+    else if view_type == 'target'
+      root.display_target()   
+    else if view_type == 'repeal'
+      root.display_repeal()    
+    else
+      root.display_actor()
+
+  d3.csv "data/sanctions.csv", render_vis
