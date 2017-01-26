@@ -6,8 +6,8 @@
     <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Wed, 25 Jan 2017 16:26:25 -0500</pubDate>
-    <lastBuildDate>Wed, 25 Jan 2017 16:26:25 -0500</lastBuildDate>
+    <pubDate>Thu, 26 Jan 2017 00:07:37 -0500</pubDate>
+    <lastBuildDate>Thu, 26 Jan 2017 00:07:37 -0500</lastBuildDate>
 
     
       <item>
@@ -125,8 +125,8 @@
         <link>/kosovo-newborn</link>
         <pubDate>Tue, 21 Apr 2015 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
-        <description>&lt;p&gt;&lt;img src=&quot;/public/images/kosovo-newborn.jpg&quot; alt=&quot;The University of Prishtina campus&quot;&gt;
-In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of filming. In April, I attended Bocoup&amp;#39;s OpenVis Conference in Boston and got (re)inspired to play around with HTML5 background video. Combine those two influences, and &lt;a href=&quot;http://blogs.worldlearning.org/kosovo-newborn/&quot;&gt;this&lt;/a&gt; is the result. &lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;/public/interactives/kosovo-newborn/&quot;&gt;&lt;img src=&quot;/public/images/kosovo-newborn.jpg&quot; alt=&quot;The University of Prishtina campus&quot;&gt;&lt;/a&gt;
+In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of filming. In April, I attended Bocoup&amp;#39;s OpenVis Conference in Boston and got (re)inspired to play around with HTML5 background video. Combine those two influences, and &lt;a href=&quot;/public/interactives/kosovo-newborn/&quot;&gt;this&lt;/a&gt; is the result. &lt;/p&gt;
 
 &lt;p&gt;I used reveal.js for the slide effect. With this much video, loading speed is a concern. The development branch of reveal.js supports lazy loading media assets. The current production branch does not. By the time I realized this, I had modified the latter too much to switch.&lt;/p&gt;
 
