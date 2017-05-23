@@ -96,7 +96,7 @@
 <p>"Natural language" here means language encountered in the wild, language as humans use it day-to-day - language that from a computer's point of view is unruly, messy, and illogical. Python's NLTK module gives programmers the tools to parse and interpret natural language as data, to draw insights from raw text.</p>
 <p>My assignment was this: given a large chunk of raw text, extract only the nouns, both common and proper.</p>	
 
-<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">nltk</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">nltk</span>
 <span class="n">essays</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;text here&quot;&quot;&quot;</span>
 <span class="n">tokens</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">essays</span><span class="p">)</span>
 <span class="n">tagged</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
@@ -108,7 +108,7 @@
 
 <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;output.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
 <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">joined</span><span class="p">)</span>
-<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></div>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></code></pre></figure>
 <p>Import the Natural Language Toolkit module. Tokenize the raw text and then tag each token with a part-of-speech tag (e.g., noun, verb, adjective, etc.). Identify each token that's tagged as a noun or a proper noun. Make everything lowercase, and then join the noun tokens into a string, separated by spaces. Finally, write the result into a new file called output.txt.</p>
 <p>Simple as this is, it took a long time to get working because the terminal kept throwing errors related to the text encoding. I'm still unclear on the details, but in short the version of Python that comes packaged on Macs, 2.7.x, requires explicit handling of Unicode text, which is why there's a random "u" in front of the """text here""" string. Python 3+, the version under active development, handles Unicode text by default. (Every explanation of the difference that I've read online runs to the thousands of words, so this paragraph is likely simplified to the point of uselessness.)</p>
 <p>I'm excited to explore more of NLTK's capabilities. Next up might be a vocabulary frequency distribution.</p>

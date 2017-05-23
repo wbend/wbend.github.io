@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ben Dalton</title>
-    <link></link>
-    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     <description>Personal site for Ben Dalton.</description>
     <language>en-us</language>
-    <pubDate>Mon, 27 Feb 2017 14:56:42 -0500</pubDate>
-    <lastBuildDate>Mon, 27 Feb 2017 14:56:42 -0500</lastBuildDate>
+    <pubDate>Tue, 23 May 2017 16:58:40 -0400</pubDate>
+    <lastBuildDate>Tue, 23 May 2017 16:58:40 -0400</lastBuildDate>
 
     
       <item>
         <title>The Experiment in Spain</title>
-        <link>/experiment-in-spain</link>
+        <link>http://localhost:4000/experiment-in-spain</link>
         <pubDate>Thu, 23 Feb 2017 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/NCh3SzePOlo&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
@@ -21,7 +21,7 @@
     
       <item>
         <title>Alexander Dugin is not Rasputin—he’s another tool in the Kremlin toolbox</title>
-        <link>/alexander-dugin</link>
+        <link>http://localhost:4000/alexander-dugin</link>
         <pubDate>Fri, 17 Feb 2017 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;p&gt;&lt;em&gt;This piece originally appeared on the &lt;a href=&quot;http://nyta.us/2017/02/17/alexander-dugin-is-not-rasputin-hes-another-tool-in-the-kremlin-toolbox/&quot; target=&quot;_blank&quot;&gt;New York Transatlantic&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -33,35 +33,14 @@
 &lt;p&gt;Yet, for all Dugin seems to keep a thumb on the pulse of Kremlin policymaking, it would be a mistake to view him as the architect of Putin’s revanchist, nationalist Russia. &lt;a href=&quot;http://jordanrussiacenter.org/news/american-fascism-lessons-russia/&quot;&gt;Unlike certain other would-be authoritarians&lt;/a&gt;, Putin coopts and controls his ideologues, alternately sponsoring and abandoning them according to the needs of the moment. While the Kremlin has lately cast itself as conservative defender of “Western Civilization,” its tactics at home and abroad are opportunistic, cynical and ideologically agnostic. Instead, what never wavers is its commitment to maintaining the current, highly profitable regime, with Putin at the top.&lt;/p&gt;
 &lt;p&gt;While alleged Russian intervention on behalf of Donald Trump’s “outsider” campaign has generated headlines, the Kremlin has extended support to leftwing critics of the Washington establishment, too. &lt;a href=&quot;http://www.thedailybeast.com/articles/2017/01/13/how-putin-played-the-far-left.html&quot;&gt;As journalist Casey Michel has reported&lt;/a&gt;, Moscow courted Green Party candidate Jill Stein at the 2015 gala also attended by ousted Trump National Security Adviser Michael Flynn. Russia’s English-language broadcaster RT goes out of its way to air dissenting voices, including lefty activists and commentators who rarely if ever appear on CNN, MSNBC or Fox. As a rule, if you’ve got something critical to say about the US-backed “globalist” order, then RT would be glad to offer you a platform.&lt;br /&gt;
 &lt;/p&gt;
-&lt;p&gt;This ideological opportunism mirrors how Putin’s government has long sought to coopt its domestic opposition. In the ‘aughts, citing the lack of a “&lt;a href=&quot;https://www.theguardian.com/world/2006/aug/17/russia.tomparfitt&quot;&gt;major alternative party&lt;/a&gt;,” the Kremlin merged several small parties into a single, government-approved opposition. British writer Peter Pomerantsev has written how, for years, the Kremlin would sponsor both humans rights and nationalist groups, modern art exhibits and Orthodox demonstrations. After mass street protests rattled the regime in 2011–12, the Kremlin shifted toward more overt repression, but still harnesses the power of far-right nationalist groups that might otherwise prove a threat to the ruling elite. Moreover, these nationalist narratives help to legitimate the regime, which is where Dugin comes in.&lt;/p&gt;
+&lt;p&gt;This ideological opportunism mirrors how Putin’s government has long sought to coopt its domestic opposition. In the ‘aughts, citing the lack of a “&lt;a href=&quot;https://www.theguardian.com/world/2006/aug/17/russia.tomparfitt&quot;&gt;major alternative party&lt;/a&gt;,” the Kremlin merged several small parties into a single, government-approved opposition. British writer Peter Pomerantsev has written how, for years, the Kremlin would sponsor both human rights and nationalist groups, modern art exhibits and Orthodox demonstrations. After mass street protests rattled the regime in 2011–12, the Kremlin shifted toward more overt repression, but still harnesses the power of far-right nationalist groups that might otherwise prove a threat to the ruling elite. Moreover, these nationalist narratives help to legitimate the regime, which is where Dugin comes in.&lt;/p&gt;
 &lt;p&gt;Dugin’s own seesawing fortune reflects the Kremlin’s essential ambivalence toward his kind. Dugin’s star rises whenever relations between Russia and the West deteriorate and falls during periods of rapprochement. For example, he enjoyed his own talk show on Russian Radio until the Obama-era “reset” in U.S.–Russia relations, when he was fired. In 2014, Moscow State University removed him from his post as head of the sociology department, a move Dugin attributed to his “&lt;a href=&quot;https://warisboring.com/putins-mad-philosopher-sacked-from-top-post-38c6d14b3a2#.3dbhnkwoy&quot;&gt;hard-line support for the separatists in Ukraine&lt;/a&gt;.” At the time, the Kremlin was seen to be shifting away from outright annexation of Ukraine’s separatist territories.&lt;/p&gt;
 &lt;p&gt;Far from “&lt;a href=&quot;https://www.foreignaffairs.com/articles/russia-fsu/2014-03-31/putins-brain&quot;&gt;Putin’s brain&lt;/a&gt;” or “&lt;a href=&quot;http://www.thedailybeast.com/articles/2014/04/02/alexander-dugin-the-crazy-ideologue-of-the-new-russian-empire.html&quot;&gt;the crazy ideologue of the new Russian empire&lt;/a&gt;,” Dugin is just another tool in the Kremlin’s ideological toolbox. He and other ultranationalists undoubtedly have influence—but only as much as the Kremlin permits them. In the end, Putin’s coterie has no ideology other than its own preservation and enrichment. Looking to Dugin’s brand of blood and soil nationalism to predict Moscow’s next move would be a mistake.&lt;/p&gt;</description>
       </item>
     
       <item>
-        <title>Crony Capitalism? How About Crony Socialism?</title>
-        <link>/crony-socialism</link>
-        <pubDate>Thu, 02 Feb 2017 00:00:00 -0500</pubDate>
-        <author>Ben Dalton</author>
-        <description>&lt;p&gt;&lt;em&gt;This piece originally appeared on the &lt;a href=&quot;http://nyta.us/2017/02/02/crony-capitalism-how-about-crony-socialism/&quot; target=&quot;_blank&quot;&gt;New York Transatlantic&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;By Ben Dalton&lt;/p&gt;
-&lt;p&gt;A common story that Americans tell themselves about the collapse of the Soviet Union goes like this: upon entering office, Ronald Reagan boosted US military spending, forcing the USSR to spend more, too. In time, Soviet budget deficits compounded other economic mismanagement and culminated in the Union’s disintegration in late 1991. At some point, Reagan also urged Soviet General Secretary Mikhail Gorbachev to remove a symbolic wall, and Gorbachev, perhaps stirred by the president’s soaring rhetoric, complied. &lt;/p&gt;
-&lt;p&gt;Another explanation—and one with more evidence behind it—holds that the USSR was a victim of the late ‘80s oil glut. Falling oil and gas prices gutted Soviet exports, crippling the economy and leading to collapse.&lt;/p&gt;
-
-&lt;p&gt;In his new book, &lt;a href=&quot;https://www.amazon.com/Struggle-Save-Soviet-Economy-Gorbachev/dp/1469630176&quot;&gt;&lt;i&gt;The Struggle to Save the Soviet Economy: Mikhail Gorbachev and the Collapse of the USSR&lt;/i&gt;&lt;/a&gt;, Chris Miller argues that neither account gets the Soviet economic crisis right. Neither Reagan nor oil, but domestic politics and powerful interest groups brought down the Soviet Union, Miller said during &lt;a href=&quot;http://harriman.columbia.edu/event/book-talk-struggle-save-soviet-economy-mikhail-gorbachev-and-collapse-ussr-chris-miller&quot;&gt;a talk&lt;/a&gt; at Columbia University’s Harriman Institute on Wednesday, Feb. 1. Miller is associate director of the Brady-Johnson Program in Grand Strategy at Yale.&lt;/p&gt;
-&lt;p&gt;By the mid-80s, the Soviet economy was stagnant but not in crisis, Miller said. Growth had slowed, but budget deficits were small. Gorbachev sought to kickstart the economy by implementing a series of market reforms, many borrowed from China, which with its high growth and familiar institutions offered the Soviets an attractive model. These reforms came to be known as &lt;i&gt;perestroika&lt;/i&gt;, or “restructuring.”&lt;br /&gt;
-&lt;/p&gt;
-&lt;p&gt;Among other liberalizing measures, China’s Deng Xiaoping had permitted firms to sell surplus production and, with “household-responsibility” agriculture, essentially de-collectivized the farms. The result was booming GDP growth throughout the 1980s, which Gorbachev wanted to replicate. Moreover, since the Chinese Communist Party had modeled many state institutions on the USSR of the 1950s, Deng’s reforms seemed like a good fit.&lt;/p&gt;
-&lt;p&gt;Unlike Deng, however, Gorbachev encountered stiff resistance from Party insiders. The Soviet economy was dominated by massive, state-owned military, energy and agricultural complexes—this last representing “the triumph of socialism in the countryside.” High-level officials in the Politburo and other Soviet institutions condemned Gorbachev’s reforms for opening the door to capitalism, but then followed their critiques with appeals for more funding for pet industries. Again and again, Miller found in the notes of Politburo meetings this ideological opposition paired with requests for money.&lt;/p&gt;
-&lt;p&gt;According to Miller, Gorbachev was only able to proceed with &lt;i&gt;perestroika&lt;/i&gt; by striking a bargain. In exchange for Chinese-style reforms, he agreed to invest in industries on whose behalf top officials had been lobbying. Soviet agricultural subsidies, already huge, grew even larger. Surplus goods piled up in warehouses. And the country’s budget deficit began to balloon.&lt;/p&gt;
-&lt;p&gt;After international loans dried up, Gorbachev financed the deficit by printing money. At the same time, he refused to increase prices for fear of provoking mass unrest and alienating his remaining bases of support. Production ground to a halt as firms received ever less valuable rubles for their goods. By 1991, the USSR’s deficit was 30 percent of GDP and its economy was near paralysis. When Yeltsin agreed with the leaders of Ukraine and Belarus to dissolve the Union, Gorbachev was powerless to stop it.&lt;/p&gt;
-&lt;p&gt;Miller acknowledged that Reagan’s arms buildup and the late-80s oil shock may have destabilized the USSR. But he argued that neither was sufficient on its own to cause Soviet collapse. He pointed to export earnings, comprised almost entirely of oil and gas sales, which dropped from approximately eight to five percent of GDP between 1985 and 1990. While significant, that decline was not decisive.&lt;/p&gt;
-&lt;p&gt;In short, according to Miller, Gorbachev was weak, while the Soviet Union’s interest groups were strong. In fact, Gorbachev may have pushed democratization as a means of eroding the strength of the interests opposing his reforms. If so, political liberalization took place too slowly to grant Gorbachev the power he needed to override those interests and close the deficit. Where Stalin had made the system work through terror—killing or shuffling top brass before they could become entrenched and therefore threats—Gorbachev was forced to navigate a landscape of powerful opponents. In other words, it was crony socialism, not hostile capitalism, that made sustainable reform of the Soviet Union impossible.&lt;/p&gt;</description>
-      </item>
-    
-      <item>
         <title>World Learning Celebrates the 2016 Advancing Leaders Fellows</title>
-        <link>/world-learning-celebrates-the-2016-advancing-leaders-fellows</link>
+        <link>http://localhost:4000/world-learning-celebrates-the-2016-advancing-leaders-fellows</link>
         <pubDate>Thu, 19 Jan 2017 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/WWSdwzMj4wc&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
@@ -70,7 +49,7 @@
     
       <item>
         <title>With Surging Membership, DSA Braces for President Trump</title>
-        <link>/with-surging-membership-dsa-braces-for-president-trump</link>
+        <link>http://localhost:4000/with-surging-membership-dsa-braces-for-president-trump</link>
         <pubDate>Mon, 12 Dec 2016 00:00:00 -0500</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;p&gt;&lt;em&gt;This piece originally appeared on &lt;a href=&quot;http://www.dsausa.org/_with_surging_membership_dsa_braces_for_president_trump&quot; target=&quot;_blank&quot;&gt;dsausa.org&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -112,7 +91,7 @@
     
       <item>
         <title>Forced Fashion</title>
-        <link>/forced-fashion</link>
+        <link>http://localhost:4000/forced-fashion</link>
         <pubDate>Wed, 02 Nov 2016 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;p&gt;&lt;em&gt;This piece originally appeared on &lt;a href=&quot;http://thediplomat.com/2016/11/forced-fashion-made-in-the-usa-with-uzbek-cotton/&quot; target=&quot;_blank&quot;&gt;The Diplomat&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
@@ -141,7 +120,7 @@
     
       <item>
         <title>The Malawi Scholarship Program</title>
-        <link>/the-malawi-scholarship-program</link>
+        <link>http://localhost:4000/the-malawi-scholarship-program</link>
         <pubDate>Tue, 28 Jun 2016 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/XCRICEDDhR0&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
@@ -150,7 +129,7 @@
     
       <item>
         <title>Mandela Washington Fellows Alumni TIES - Nairobi, Kenya</title>
-        <link>/mandela-washington-fellows-alumni-ties</link>
+        <link>http://localhost:4000/mandela-washington-fellows-alumni-ties</link>
         <pubDate>Sun, 22 May 2016 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/aXyyB2mKWRs&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
@@ -161,17 +140,17 @@
     
       <item>
         <title>Tethered Narratives</title>
-        <link>/tethered-narratives</link>
+        <link>http://localhost:4000/tethered-narratives</link>
         <pubDate>Tue, 17 May 2016 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;a href=&quot;http://tetherednarratives.com/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;../public/images/tethered-narratives.jpg&quot;&gt;&lt;/a&gt;
-&lt;p&gt;Toward the end of 2015, I made &lt;a href=&quot;http://benjamindalton.com/public/interactives/world-learning-annual-report-2015/&quot; target=&quot;_blank&quot;&gt;a prototype digital annual report&lt;/a&gt; for World Learning, based on the design of the print version/PDF that had already been assembled. The idea wasn&#39;t to replace the original, but to experiment and see what might be possible in the future. Other than a few stubborn bugs (misaligned images here and there), I was happy with the result.&lt;/p&gt;
+&lt;p&gt;Toward the end of 2015, I made &lt;a href=&quot;http://benjamindalton.com/public/interactives/world-learning-annual-report-2015/&quot; target=&quot;_blank&quot;&gt;a prototype digital annual report&lt;/a&gt; for World Learning, based on the design of the print version/PDF that had already been assembled. The idea wasn't to replace the original, but to experiment and see what might be possible in the future. Other than a few stubborn bugs (misaligned images here and there), I was happy with the result.&lt;/p&gt;
 &lt;p&gt;This spring, Alison offered me the chance to make a web version of the literary journal she was creating with her Literature of Immigration students at Stony Brook University. At first, I planned to use the annual report as a template, but switched to a WordPress theme at Alison’s suggestion. Her recommendation was the right call, since &lt;a href=&quot;http://tetherednarratives.com/&quot; target=&quot;_blank&quot;&gt;the finished product&lt;/a&gt; turned out nicely. I made only slight modifications to the SimpleMag theme, which handled the heavy lifting and freed me to focus on design and presentation. I set up the site on a DigitalOcean droplet, then transferred it to a permanent DigitalOcean account that Stony Brook controls. As long as a client is comfortable using DigitalOcean as their host, this seems like an easy way to deliver a project.&lt;/p&gt;</description>
       </item>
     
       <item>
         <title>Kosovo Newborn</title>
-        <link>/kosovo-newborn</link>
+        <link>http://localhost:4000/kosovo-newborn</link>
         <pubDate>Tue, 21 Apr 2015 00:00:00 -0400</pubDate>
         <author>Ben Dalton</author>
         <description>&lt;p&gt;&lt;a href=&quot;/public/interactives/kosovo-newborn/&quot;&gt;&lt;img src=&quot;/public/images/kosovo-newborn.jpg&quot; alt=&quot;The University of Prishtina campus&quot;&gt;&lt;/a&gt;
@@ -181,6 +160,36 @@ In March, I traveled to World Learning&amp;#39;s Kosovo office for a few days of
 
 &lt;p&gt;Over the next few weeks, I will be working on a similar project using someone else&amp;#39;s footage from Mexico. If I have the time, the next one will be IE-compatible. Also, each video slide will play its own audio when selected, rather than a single track of Prishtina-footballer-cum-Gregorian chanting.&lt;/p&gt;
 </description>
+      </item>
+    
+      <item>
+        <title>D3 animated pie chart</title>
+        <link>http://localhost:4000/d3-animated-pie-chart</link>
+        <pubDate>Thu, 15 Jan 2015 00:00:00 -0500</pubDate>
+        <author>Ben Dalton</author>
+        <description>&lt;link href=&quot;../public/css/d3-pie-chart.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+&lt;p&gt;Lots of people in the data viz community &lt;a href=&quot;https://www.google.com/#q=hate+pie+charts&quot; target=&quot;_blank&quot;&gt;hate pie charts&lt;/a&gt;. Gussied up pie charts – exploded, 3D charts that needlessly complicate presentations – are considered especially heinous. Still, I'll do you one better.&lt;/p&gt;
+&lt;p&gt;This is an animated, D3 pie chart that displays several categories of information about a group of students. Rather than make five separate, static charts, which would present the same information in considerably less time, this one packs it into one and does a song and dance, too.&lt;/p&gt;
+&lt;p&gt;Unfortunately, the chart is not optimized for mobile, so I hope you're on a desktop browser right now. Also, grouping colors to indicate subcategories would be an improvement. For example, majors could be grouped by hue into humanities, sciences, etc.&lt;/p&gt;
+
+					&lt;div id=&quot;viz&quot;&gt;
+						&lt;form&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;all&quot; value=&quot;all&quot; checked&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;All&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;region&quot; value=&quot;region&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Region&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;gender&quot; value=&quot;gender&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Gender&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;hostinstitution&quot; value=&quot;hostinstitution&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Host Institution&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;major&quot; value=&quot;major&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Major&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+							&lt;label&gt;&lt;input type=&quot;radio&quot; name=&quot;dataset&quot; id=&quot;country&quot; value=&quot;country&quot;&gt; &lt;span style=&quot;font-weight:normal;&quot;&gt;Country&lt;/span&gt;&lt;/label&gt;&lt;br&gt;
+						&lt;/form&gt;
+					&lt;/div&gt;
+					
+					
+					
+							&lt;script src=&quot;../public/js/jquery.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;&lt;!-- CORE BOOTSTRAP LIBRARY --&gt;
+						&lt;!-- D3--&gt;&lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;&lt;!-- CUSTOM SCRIPT--&gt;&lt;script src=&quot;../public/js/custom.js&quot; type=&quot;text/javascript&quot;&gt;
+					&lt;/script&gt;</description>
       </item>
     
 
