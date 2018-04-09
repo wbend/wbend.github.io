@@ -490,7 +490,7 @@ var groupedOverlays = {
   },
   "Reference": {
     "Experimenters' States": boroughs,
-    "Subway Lines": subwayLines
+    "SIT Study Abroad States": subwayLines
   }
 };
 
