@@ -1,4 +1,4 @@
-var map, featureList, boroughSearch = [], theaterSearch = [], museumSearch = [];
+var map, featureList, boroughSearch = [], eilschoolsSearch = [], museumSearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -24,7 +24,7 @@ $("#about-btn").click(function() {
 });
 
 $("#full-extent-btn").click(function() {
-  map.fitBounds(boroughs.getBounds());
+  map.fitBounds(eilstates.getBounds());
   $(".navbar-collapse.in").collapse("hide");
   return false;
 });
@@ -91,8 +91,8 @@ function sidebarClick(id) {
 function syncSidebar() {
   /* Empty sidebar features */
   $("#feature-list tbody").empty();
-  /* Loop through theaters layer and add only features which are in the map bounds */
-  theaters.eachLayer(function (layer) {
+  /* Loop through eilschools layer and add only features which are in the map bounds */
+  eilschools.eachLayer(function (layer) {
     if (map.hasLayer(eilschoolsLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
         $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/university.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
@@ -144,13 +144,13 @@ var highlightStyle = {
 
 
 function getColor(d) {
-    return d > 500 ? '#800026' :
-           d > 200  ? '#BD0026' :
-           d > 100  ? '#E31A1C' :
-           d > 50  ? '#FC4E2A' :
-           d > 20   ? '#FD8D3C' :
-           d > 10   ? '#FEB24C' :
-           d > 0   ? '#FED976' :
+    return d > 500 ? '#57a023' :
+           d > 200  ? '#57a023' :
+           d > 100  ? '#66bc29' :
+           d > 50  ? '#76d334' :
+           d > 20   ? '#89d950' :
+           d > 10   ? '#9cdf6c' :
+           d > 0   ? '#afe588' :
                       '#d5d5d5';
 }
 
@@ -159,11 +159,12 @@ function getColor(d) {
 var customOptions =
         {
 		closeButton: false,
+			autoPan: false,
         className: "custom"
         };
 
 
-var boroughs = L.geoJson(null, {
+var eilstates = L.geoJson(null, {
   style: function (feature) {
     return {
 	fillColor: getColor(feature.properties.density),
@@ -191,8 +192,8 @@ var boroughs = L.geoJson(null, {
 		        dashArray: '',
 		        fillOpacity: 0.7
 		    });
-			layer.bindPopup(content,customOptions);
-			this.openPopup();
+			/*layer.bindPopup(content,customOptions);
+			this.openPopup();*/
 			
 
 		    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -203,7 +204,7 @@ var boroughs = L.geoJson(null, {
 
           },
         mouseout: function (e) {
-		    boroughs.resetStyle(e.target);
+		    eilstates.resetStyle(e.target);
 			
 			
 		   
@@ -212,9 +213,9 @@ var boroughs = L.geoJson(null, {
           },
         click: function (e) {
 			  map.fitBounds(e.target.getBounds());
-             /* $("#hover-title").html(feature.properties.name);
+              $("#hover-title").html(feature.properties.name);
               $("#hover-info").html(content);
-              $("#hoverModal").modal("show"); */
+              $("#hoverModal").modal("show"); 
 
           }
       });
@@ -226,71 +227,93 @@ var boroughs = L.geoJson(null, {
     });
   }
 });
-$.getJSON("data/boroughs.geojson", function (data) {
-  boroughs.addData(data);
+$.getJSON("data/eil-states.geojson", function (data) {
+  eilstates.addData(data);
 });
 
-//Create a color dictionary based off of subway route_id
-var subwayColors = {"1":"#ff3135", "2":"#ff3135", "3":"ff3135", "4":"#009b2e",
-    "5":"#009b2e", "6":"#009b2e", "7":"#ce06cb", "A":"#fd9a00", "C":"#fd9a00",
-    "E":"#fd9a00", "SI":"#fd9a00","H":"#fd9a00", "Air":"#ffff00", "B":"#ffff00",
-    "D":"#ffff00", "F":"#ffff00", "M":"#ffff00", "G":"#9ace00", "FS":"#6e6e6e",
-    "GS":"#6e6e6e", "J":"#976900", "Z":"#976900", "L":"#969696", "N":"#ffff00",
-    "Q":"#ffff00", "R":"#ffff00" };
 
-var subwayLines = L.geoJson(null, {
+var sitstates = L.geoJson(null, {
   style: function (feature) {
-      return {
-        color: subwayColors[feature.properties.route_id],
-        weight: 3,
-        opacity: 1
-      };
+    return {
+	fillColor: getColor(feature.properties.density),
+      color: "white",
+      fillOpacity: 0.7,
+      opacity: 1,
+		weight: 2,
+		dashArray: 4
+    };
   },
   onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Division</th><td>" + feature.properties.Division + "</td></tr>" + "<tr><th>Line</th><td>" + feature.properties.Line + "</td></tr>" + "<table>";
+	  var content
+	  if (feature.properties.density === 1) {
+	     content = feature.properties.density + " SIT Study Abroad student came from " + feature.properties.name + " between 2013 and 2017."
+	  } else { 
+	     content = feature.properties.density + " SIT Study Abroad students came from " + feature.properties.name + " between 2013 and 2017."
+	  };
       layer.on({
-        click: function (e) {
-          $("#feature-title").html(feature.properties.Line);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
+        mouseover: function (e) {
+		    var layer = e.target;
+			
+		    layer.setStyle({
+		        weight: 5,
+		        color: '#666',
+		        dashArray: '',
+		        fillOpacity: 0.7
+		    });
+			/*layer.bindPopup(content,customOptions);
+			this.openPopup();*/
+			
 
-        }
+		    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		        layer.bringToFront();
+		    }
+			
+
+
+          },
+        mouseout: function (e) {
+		    sitstates.resetStyle(e.target);
+			
+			
+		   
+
+
+          },
+        click: function (e) {
+			  map.fitBounds(e.target.getBounds());
+              $("#hover-title").html(feature.properties.name);
+              $("#hover-info").html(content);
+              $("#hoverModal").modal("show");
+
+          }
       });
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          weight: 3,
-          color: "#00FFFF",
-          opacity: 1
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        subwayLines.resetStyle(e.target);
-      }
+	boroughSearch.push({
+      name: layer.feature.properties.BoroName,
+      source: "Boroughs",
+      id: L.stamp(layer),
+      bounds: layer.getBounds()
     });
   }
 });
-$.getJSON("data/subways.geojson", function (data) {
-  subwayLines.addData(data);
+$.getJSON("data/sit-states.geojson", function (data) {
+  sitstates.addData(data);
 });
+
+
+
+
 
 /* Single marker cluster layer to hold all clusters */
 var markerClusters = new L.MarkerClusterGroup({
   spiderfyOnMaxZoom: true,
   showCoverageOnHover: false,
   zoomToBoundsOnClick: true,
-  disableClusteringAtZoom: 16
+	disableClusteringAtZoom: 7
 });
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove theaters to markerClusters layer */
+/* Empty layer placeholder to add to layer control for listening when to add/remove eilschools to markerClusters layer */
 var eilschoolsLayer = L.geoJson(null);
-var theaters = L.geoJson(null, {
+var eilschools = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
@@ -315,10 +338,10 @@ var theaters = L.geoJson(null, {
         }
       });
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/university.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      theaterSearch.push({
+      eilschoolsSearch.push({
         name: layer.feature.properties.NAME,
         address: layer.feature.properties.ADDRESS1,
-        source: "Theaters",
+        source: "EILSchools",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
         lng: layer.feature.geometry.coordinates[0]
@@ -326,8 +349,8 @@ var theaters = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/DOITT_THEATER_01_13SEPT2010.geojson", function (data) {
-  theaters.addData(data);
+$.getJSON("data/eil-sending-schools.geojson", function (data) {
+  eilschools.addData(data);
   map.addLayer(eilschoolsLayer);
 });
 
@@ -376,7 +399,7 @@ $.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
 map = L.map("map", {
   zoom: 4,
   center: [49.8283, -108.5795],
-  layers: [cartoLight, boroughs, markerClusters, highlight],
+  layers: [cartoLight, eilstates, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
 });
@@ -384,7 +407,7 @@ map = L.map("map", {
 /* Layer control listeners that allow for a single markerClusters layer */
 map.on("overlayadd", function(e) {
   if (e.layer === eilschoolsLayer) {
-    markerClusters.addLayer(theaters);
+    markerClusters.addLayer(eilschools);
     syncSidebar();
   }
   if (e.layer === museumLayer) {
@@ -395,7 +418,7 @@ map.on("overlayadd", function(e) {
 
 map.on("overlayremove", function(e) {
   if (e.layer === eilschoolsLayer) {
-    markerClusters.removeLayer(theaters);
+    markerClusters.removeLayer(eilschools);
     syncSidebar();
   }
   if (e.layer === museumLayer) {
@@ -430,7 +453,7 @@ var attributionControl = L.control({
 });
 attributionControl.onAdd = function (map) {
   var div = L.DomUtil.create("div", "leaflet-control-attribution");
-  div.innerHTML = "<span class='hidden-xs'>Developed by <a href='http://bryanmcbride.com'>bryanmcbride.com</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
+  div.innerHTML = "<span class='hidden-xs'>Developed by <a href='https://twitter.com/wbend' target='_blank'>Ben Dalton</a> | </span><a href='#' onclick='$(\"#attributionModal\").modal(\"show\"); return false;'>Attribution</a>";
   return div;
 };
 map.addControl(attributionControl);
@@ -484,13 +507,13 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
-  "Points of Interest": {
-    "<img src='assets/img/university.png' width='24' height='28'>&nbsp;EIL Sending Schools": eilschoolsLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;SIT Sending Schools": museumLayer
+  "Sending Schools": {
+    "<img src='assets/img/university.png' width='24' height='28'>&nbsp;Experiment in International Living": eilschoolsLayer,
+    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;SIT Study Abroad": museumLayer
   },
-  "Reference": {
-    "Experimenters' States": boroughs,
-    "SIT Study Abroad States": subwayLines
+  "States of Origin": {
+    "Experiment in International Living": eilstates,
+	"SIT Study Abroad": sitstates
   }
 };
 
@@ -518,12 +541,12 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
 $(document).one("ajaxStop", function () {
   $("#loading").hide();
   sizeLayerControl();
-  /* Fit map to boroughs bounds */
-  /* map.fitBounds(boroughs.getBounds()); */
+  /* Fit map to eilstates bounds */
+  /* map.fitBounds(eilstates.getBounds()); */
   /* featureList = new List("features", {valueNames: ["feature-name"]}); */
   /* featureList.sort("feature-name", {order:"asc"}); */
 
-  var boroughsBH = new Bloodhound({
+  var eilstatesBH = new Bloodhound({
     name: "Boroughs",
     datumTokenizer: function (d) {
       return Bloodhound.tokenizers.whitespace(d.name);
@@ -533,13 +556,13 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
-  var theatersBH = new Bloodhound({
-    name: "Theaters",
+  var eilschoolsBH = new Bloodhound({
+    name: "EILSchools",
     datumTokenizer: function (d) {
       return Bloodhound.tokenizers.whitespace(d.name);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: theaterSearch,
+    local: eilschoolsSearch,
     limit: 10
   });
 
@@ -583,8 +606,8 @@ $(document).one("ajaxStop", function () {
     },
     limit: 10
   });
-  boroughsBH.initialize();
-  theatersBH.initialize();
+  eilstatesBH.initialize();
+  eilschoolsBH.initialize();
   museumsBH.initialize();
   geonamesBH.initialize();
 
@@ -596,16 +619,16 @@ $(document).one("ajaxStop", function () {
   }, {
     name: "Boroughs",
     displayKey: "name",
-    source: boroughsBH.ttAdapter(),
+    source: eilstatesBH.ttAdapter(),
     templates: {
       header: "<h4 class='typeahead-header'>Boroughs</h4>"
     }
   }, {
-    name: "Theaters",
+    name: "EILSchools",
     displayKey: "name",
-    source: theatersBH.ttAdapter(),
+    source: eilschoolsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/university.png' width='24' height='28'>&nbsp;Theaters</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/university.png' width='24' height='28'>&nbsp;EILSchools</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -627,7 +650,7 @@ $(document).one("ajaxStop", function () {
     if (datum.source === "Boroughs") {
       map.fitBounds(datum.bounds);
     }
-    if (datum.source === "Theaters") {
+    if (datum.source === "EILSchools") {
       if (!map.hasLayer(eilschoolsLayer)) {
         map.addLayer(eilschoolsLayer);
       }
