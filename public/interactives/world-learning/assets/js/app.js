@@ -1,4 +1,4 @@
-var map, featureList, boroughSearch = [], eilschoolsSearch = [], museumSearch = [];
+var map, featureList, eilschoolsSearch = [], sitsaschoolSearch = [];
 
 $(window).resize(function() {
   sizeLayerControl();
@@ -95,15 +95,15 @@ function syncSidebar() {
   eilschools.eachLayer(function (layer) {
     if (map.hasLayer(eilschoolsLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/university.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/eil-school.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
-  /* Loop through museums layer and add only features which are in the map bounds */
-  museums.eachLayer(function (layer) {
-    if (map.hasLayer(museumLayer)) {
+  /* Loop through sitsaschools layer and add only features which are in the map bounds */
+  sitsaschools.eachLayer(function (layer) {
+    if (map.hasLayer(sitsaschoolLayer)) {
       if (map.getBounds().contains(layer.getLatLng())) {
-        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+        $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/sit-sa-school.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       }
     }
   });
@@ -119,7 +119,7 @@ function syncSidebar() {
 /* Basemap Layers */
 var cartoLight = L.tileLayer("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
   maxZoom: 19,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions">CartoDB</a>'
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors, &copy; <a href="https://cartodb.com/attributions" target="_blank">CartoDB</a>'
 });
 var usgsImagery = L.layerGroup([L.tileLayer("http://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}", {
   maxZoom: 15,
@@ -205,11 +205,6 @@ var eilstates = L.geoJson(null, {
           },
         mouseout: function (e) {
 		    eilstates.resetStyle(e.target);
-			
-			
-		   
-
-
           },
         click: function (e) {
 			  map.fitBounds(e.target.getBounds());
@@ -219,12 +214,6 @@ var eilstates = L.geoJson(null, {
 
           }
       });
-	boroughSearch.push({
-      name: layer.feature.properties.BoroName,
-      source: "Boroughs",
-      id: L.stamp(layer),
-      bounds: layer.getBounds()
-    });
   }
 });
 $.getJSON("data/eil-states.geojson", function (data) {
@@ -287,16 +276,71 @@ var sitstates = L.geoJson(null, {
 
           }
       });
-	boroughSearch.push({
-      name: layer.feature.properties.BoroName,
-      source: "Boroughs",
-      id: L.stamp(layer),
-      bounds: layer.getBounds()
-    });
   }
 });
-$.getJSON("data/sit-states.geojson", function (data) {
+$.getJSON("data/sit-sa-states.geojson", function (data) {
   sitstates.addData(data);
+});
+
+var sitgistates = L.geoJson(null, {
+  style: function (feature) {
+    return {
+	fillColor: getColor(feature.properties.density),
+      color: "white",
+      fillOpacity: 0.7,
+      opacity: 1,
+		weight: 2,
+		dashArray: 4
+    };
+  },
+  onEachFeature: function (feature, layer) {
+	  var content
+	  if (feature.properties.density === 1) {
+	     content = feature.properties.density + " SIT Graduate Institute student came from " + feature.properties.name + " between 2013 and 2017."
+	  } else { 
+	     content = feature.properties.density + " SIT Graduate Institute students came from " + feature.properties.name + " between 2013 and 2017."
+	  };
+      layer.on({
+        mouseover: function (e) {
+		    var layer = e.target;
+			
+		    layer.setStyle({
+		        weight: 5,
+		        color: '#666',
+		        dashArray: '',
+		        fillOpacity: 0.7
+		    });
+			/*layer.bindPopup(content,customOptions);
+			this.openPopup();*/
+			
+
+		    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+		        layer.bringToFront();
+		    }
+			
+
+
+          },
+        mouseout: function (e) {
+		    sitgistates.resetStyle(e.target);
+			
+			
+		   
+
+
+          },
+        click: function (e) {
+			  map.fitBounds(e.target.getBounds());
+              $("#hover-title").html(feature.properties.name);
+              $("#hover-info").html(content);
+              $("#hoverModal").modal("show");
+
+          }
+      });
+  }
+});
+$.getJSON("data/sit-gi-states.geojson", function (data) {
+  sitgistates.addData(data);
 });
 
 
@@ -317,7 +361,7 @@ var eilschools = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/university.png",
+        iconUrl: "assets/img/eil-school.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
@@ -328,7 +372,7 @@ var eilschools = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Phone</th><td>" + feature.properties.TEL + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADDRESS1 + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.URL + "' target='_blank'>" + feature.properties.URL + "</a></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Number of students</th><td>" + "could theoretically add this" + "</td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -337,7 +381,7 @@ var eilschools = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/university.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/eil-school.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
       eilschoolsSearch.push({
         name: layer.feature.properties.NAME,
         address: layer.feature.properties.ADDRESS1,
@@ -354,13 +398,13 @@ $.getJSON("data/eil-sending-schools.geojson", function (data) {
   map.addLayer(eilschoolsLayer);
 });
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove museums to markerClusters layer */
-var museumLayer = L.geoJson(null);
-var museums = L.geoJson(null, {
+/* Empty layer placeholder to add to layer control for listening when to add/remove sitsaschools to markerClusters layer */
+var sitsaschoolLayer = L.geoJson(null);
+var sitsaschools = L.geoJson(null, {
   pointToLayer: function (feature, latlng) {
     return L.marker(latlng, {
       icon: L.icon({
-        iconUrl: "assets/img/museum.png",
+        iconUrl: "assets/img/sit-sa-school.png",
         iconSize: [24, 28],
         iconAnchor: [12, 28],
         popupAnchor: [0, -25]
@@ -371,7 +415,7 @@ var museums = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties) {
-      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Phone</th><td>" + feature.properties.TEL + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.ADRESS1 + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.URL + "' target='_blank'>" + feature.properties.URL + "</a></td></tr>" + "<table>";
+      var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Number of students</th><td>" + "could theoretically add this" + "</td></tr>" + "<table>";
       layer.on({
         click: function (e) {
           $("#feature-title").html(feature.properties.NAME);
@@ -380,11 +424,11 @@ var museums = L.geoJson(null, {
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/museum.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-      museumSearch.push({
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="assets/img/sit-sa-school.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      sitsaschoolSearch.push({
         name: layer.feature.properties.NAME,
         address: layer.feature.properties.ADRESS1,
-        source: "Museums",
+        source: "SITSASchools",
         id: L.stamp(layer),
         lat: layer.feature.geometry.coordinates[1],
         lng: layer.feature.geometry.coordinates[0]
@@ -393,12 +437,16 @@ var museums = L.geoJson(null, {
   }
 });
 $.getJSON("data/sit-sa-sending-schools.geojson", function (data) {
-  museums.addData(data);
+  sitsaschools.addData(data);
 });
+
+var corner1 = L.latLng(5.499550, -167.276413),
+corner2 = L.latLng(83.162102, -20.233040);
 
 map = L.map("map", {
   zoom: 4,
-  center: [49.8283, -108.5795],
+  maxBounds: L.latLngBounds(corner1, corner2),
+  center: [45.8283, -104.5795],
   layers: [cartoLight, eilstates, markerClusters, highlight],
   zoomControl: false,
   attributionControl: false
@@ -410,8 +458,8 @@ map.on("overlayadd", function(e) {
     markerClusters.addLayer(eilschools);
     syncSidebar();
   }
-  if (e.layer === museumLayer) {
-    markerClusters.addLayer(museums);
+  if (e.layer === sitsaschoolLayer) {
+    markerClusters.addLayer(sitsaschools);
     syncSidebar();
   }
 });
@@ -421,8 +469,8 @@ map.on("overlayremove", function(e) {
     markerClusters.removeLayer(eilschools);
     syncSidebar();
   }
-  if (e.layer === museumLayer) {
-    markerClusters.removeLayer(museums);
+  if (e.layer === sitsaschoolLayer) {
+    markerClusters.removeLayer(sitsaschools);
     syncSidebar();
   }
 });
@@ -502,19 +550,23 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-  "Street Map": cartoLight,
-  "Aerial Imagery": usgsImagery
+  /*"Street Map": cartoLight,
+  "Aerial Imagery": usgsImagery*/
+    "Experiment in International Living": eilstates,
+	"SIT Study Abroad": sitstates,
+	"SIT Graduate Institute": sitgistates
 };
 
 var groupedOverlays = {
   "Sending Schools": {
-    "<img src='assets/img/university.png' width='24' height='28'>&nbsp;Experiment in International Living": eilschoolsLayer,
-    "<img src='assets/img/museum.png' width='24' height='28'>&nbsp;SIT Study Abroad": museumLayer
-  },
+    "<img src='assets/img/eil-school.png' width='24' height='28'>&nbsp;Experiment in International Living": eilschoolsLayer,
+    "<img src='assets/img/sit-sa-school.png' width='24' height='28'>&nbsp;SIT Study Abroad": sitsaschoolLayer
+  }/* ,
   "States of Origin": {
     "Experiment in International Living": eilstates,
-	"SIT Study Abroad": sitstates
-  }
+	"SIT Study Abroad": sitstates,
+	"SIT Graduate Institute": sitgistates
+  }*/
 };
 
 var layerControl = L.control.groupedLayers(baseLayers, groupedOverlays, {
@@ -546,16 +598,6 @@ $(document).one("ajaxStop", function () {
   /* featureList = new List("features", {valueNames: ["feature-name"]}); */
   /* featureList.sort("feature-name", {order:"asc"}); */
 
-  var eilstatesBH = new Bloodhound({
-    name: "Boroughs",
-    datumTokenizer: function (d) {
-      return Bloodhound.tokenizers.whitespace(d.name);
-    },
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: boroughSearch,
-    limit: 10
-  });
-
   var eilschoolsBH = new Bloodhound({
     name: "EILSchools",
     datumTokenizer: function (d) {
@@ -566,13 +608,13 @@ $(document).one("ajaxStop", function () {
     limit: 10
   });
 
-  var museumsBH = new Bloodhound({
-    name: "Museums",
+  var sitsaschoolsBH = new Bloodhound({
+    name: "SITSASchools",
     datumTokenizer: function (d) {
       return Bloodhound.tokenizers.whitespace(d.name);
     },
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: museumSearch,
+    local: sitsaschoolSearch,
     limit: 10
   });
 
@@ -606,9 +648,8 @@ $(document).one("ajaxStop", function () {
     },
     limit: 10
   });
-  eilstatesBH.initialize();
   eilschoolsBH.initialize();
-  museumsBH.initialize();
+  sitsaschoolsBH.initialize();
   geonamesBH.initialize();
 
   /* instantiate the typeahead UI */
@@ -616,27 +657,21 @@ $(document).one("ajaxStop", function () {
     minLength: 3,
     highlight: true,
     hint: false
-  }, {
-    name: "Boroughs",
-    displayKey: "name",
-    source: eilstatesBH.ttAdapter(),
-    templates: {
-      header: "<h4 class='typeahead-header'>Boroughs</h4>"
-    }
-  }, {
+  }, 
+   {
     name: "EILSchools",
     displayKey: "name",
     source: eilschoolsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/university.png' width='24' height='28'>&nbsp;EILSchools</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/eil-school.png' width='24' height='28'>&nbsp;Experiment Schools</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
-    name: "Museums",
+    name: "SITSASchools",
     displayKey: "name",
-    source: museumsBH.ttAdapter(),
+    source: sitsaschoolsBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/museum.png' width='24' height='28'>&nbsp;Museums</h4>",
+      header: "<h4 class='typeahead-header'><img src='assets/img/sit-sa-school.png' width='24' height='28'>&nbsp;SIT Study Abroad Schools</h4>",
       suggestion: Handlebars.compile(["{{name}}<br>&nbsp;<small>{{address}}</small>"].join(""))
     }
   }, {
@@ -644,10 +679,10 @@ $(document).one("ajaxStop", function () {
     displayKey: "name",
     source: geonamesBH.ttAdapter(),
     templates: {
-      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;GeoNames</h4>"
+      header: "<h4 class='typeahead-header'><img src='assets/img/globe.png' width='25' height='25'>&nbsp;Locations</h4>"
     }
   }).on("typeahead:selected", function (obj, datum) {
-    if (datum.source === "Boroughs") {
+    if (datum.source === "eilstates") {
       map.fitBounds(datum.bounds);
     }
     if (datum.source === "EILSchools") {
@@ -659,9 +694,9 @@ $(document).one("ajaxStop", function () {
         map._layers[datum.id].fire("click");
       }
     }
-    if (datum.source === "Museums") {
-      if (!map.hasLayer(museumLayer)) {
-        map.addLayer(museumLayer);
+    if (datum.source === "SITSASchools") {
+      if (!map.hasLayer(sitsaschoolLayer)) {
+        map.addLayer(sitsaschoolLayer);
       }
       map.setView([datum.lat, datum.lng], 17);
       if (map._layers[datum.id]) {

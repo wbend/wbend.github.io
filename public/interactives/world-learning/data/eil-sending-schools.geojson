@@ -935,16 +935,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -79.4007609,43.7661156 ]
-    },
-    "properties": {
-    "NAME":"Bayview Adult School"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -73.8234853,40.5865189 ]
     },
     "properties": {
@@ -1289,16 +1279,6 @@
     },
     "properties": {
     "NAME":"Blair High School"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -79.437146,43.6592415 ]
-    },
-    "properties": {
-    "NAME":"Bloor Collegiate Institute"
     }
   },
   {
@@ -3725,16 +3705,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -82.661026,46.376033 ]
-    },
-    "properties": {
-    "NAME":"Elliot Lake Secondary School"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -95.6356794,37.0376275 ]
     },
     "properties": {
@@ -3819,16 +3789,6 @@
     },
     "properties": {
     "NAME":"Episcopal School of Los Angeles"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -123.1249865,49.2398336 ]
-    },
-    "properties": {
-    "NAME":"Eric Hamber Secondary School"
     }
   },
   {
@@ -10539,16 +10499,6 @@
     },
     "properties": {
     "NAME":"Seneca Valley Sr High School"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -123.1503622,49.3452812 ]
-    },
-    "properties": {
-    "NAME":"Sentinel Secondary School"
     }
   },
   {

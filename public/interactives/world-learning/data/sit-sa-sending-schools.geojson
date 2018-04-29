@@ -4675,16 +4675,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -80.5448576,43.4722854 ]
-    },
-    "properties": {
-    "NAME":"University of Waterloo"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -73.2442058,43.5167448 ]
     },
     "properties": {
@@ -4705,16 +4695,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -80.2268613,43.5320995 ]
-    },
-    "properties": {
-    "NAME":"University of Guelph"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -70.2756936,43.6622484 ]
     },
     "properties": {
@@ -4729,16 +4709,6 @@
     },
     "properties": {
     "NAME":"Dartmouth College"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -79.5018684,43.7734535 ]
-    },
-    "properties": {
-    "NAME":"York University-Canada"
     }
   },
   {
@@ -5065,16 +5035,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -75.6831329,45.4231064 ]
-    },
-    "properties": {
-    "NAME":"University of Ottawa"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -122.6688633,45.4517422 ]
     },
     "properties": {
@@ -5329,16 +5289,6 @@
     },
     "properties": {
     "NAME":"Western Washington University"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -123.2459938,49.2606052 ]
-    },
-    "properties": {
-    "NAME":"University of British Columbia"
     }
   },
   {
