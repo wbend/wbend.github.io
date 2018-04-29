@@ -392,7 +392,7 @@ var museums = L.geoJson(null, {
     }
   }
 });
-$.getJSON("data/DOITT_MUSEUM_01_13SEPT2010.geojson", function (data) {
+$.getJSON("data/sit-sa-sending-schools.geojson", function (data) {
   museums.addData(data);
 });
 

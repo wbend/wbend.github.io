@@ -3835,16 +3835,6 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -66.5884348,18.2189685 ]
-    },
-    "properties": {
-    "NAME":"Escuela Sup Josefina Leon Zaya"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -73.9421359,40.792727 ]
     },
     "properties": {
