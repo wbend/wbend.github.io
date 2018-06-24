@@ -8,7 +8,7 @@
        "coordinates":  [ -73.9338214,40.7992278 ]
     },
     "properties": {
-    "NAME":"1199 School Social Change"
+    "NAME":"1199 School for Social Change"
     }
   },
   {
@@ -28,17 +28,7 @@
        "coordinates":  [ -74.0852622,40.70949 ]
     },
     "properties": {
-    "NAME":"A Harry Moore Laboratory Sch"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -106.6352092,35.0967203 ]
-    },
-    "properties": {
-    "NAME":"A L B a Community School"
+    "NAME":"A Harry Moore Laboratory School"
     }
   },
   {
@@ -128,7 +118,7 @@
        "coordinates":  [ -121.2438988,44.082812 ]
     },
     "properties": {
-    "NAME":"Academy At Sisters the"
+    "NAME":"Academy At Sisters"
     }
   },
   {
@@ -258,7 +248,7 @@
        "coordinates":  [ -75.3497631,43.4780714 ]
     },
     "properties": {
-    "NAME":"Adirondack Central High Sch"
+    "NAME":"Adirondack Central High School"
     }
   },
   {
@@ -418,7 +408,7 @@
        "coordinates":  [ -86.7582072,33.5137614 ]
     },
     "properties": {
-    "NAME":"Altamont School the"
+    "NAME":"Altamont School"
     }
   },
   {
@@ -558,7 +548,7 @@
        "coordinates":  [ -112.0696903,33.4644058 ]
     },
     "properties": {
-    "NAME":"Arizona Sch for the Arts"
+    "NAME":"Arizona School for the Arts"
     }
   },
   {
@@ -758,7 +748,7 @@
        "coordinates":  [ -80.0785809,40.5323187 ]
     },
     "properties": {
-    "NAME":"Avonworth Jr-Sr High School"
+    "NAME":"Avonworth Junior-Senior High School"
     }
   },
   {
@@ -798,7 +788,7 @@
        "coordinates":  [ -76.644101,39.3468784 ]
     },
     "properties": {
-    "NAME":"Baltimore Polytechnic Inst"
+    "NAME":"Baltimore Polytechnic Institute"
     }
   },
   {
@@ -868,7 +858,7 @@
        "coordinates":  [ -73.985909,40.7418485 ]
     },
     "properties": {
-    "NAME":"Baruch College Campus Hs"
+    "NAME":"Baruch College Campus High School"
     }
   },
   {
@@ -908,7 +898,7 @@
        "coordinates":  [ -74.0025474,40.7433679 ]
     },
     "properties": {
-    "NAME":"Bayard Rustin Hs Humanities"
+    "NAME":"Bayard Rustin High School Humanities"
     }
   },
   {
@@ -929,6 +919,16 @@
     },
     "properties": {
     "NAME":"Bayside High School"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -79.4007609,43.7661156 ]
+    },
+    "properties": {
+    "NAME":"Bayview Adult School"
     }
   },
   {
@@ -1038,7 +1038,7 @@
        "coordinates":  [ -72.4433009,43.1189057 ]
     },
     "properties": {
-    "NAME":"Bellows Falls Union High Sch"
+    "NAME":"Bellows Falls Union High School"
     }
   },
   {
@@ -1078,7 +1078,7 @@
        "coordinates":  [ -77.0240037,38.923686 ]
     },
     "properties": {
-    "NAME":"Benjamin Banneker Academic H S"
+    "NAME":"Benjamin Banneker Academic High School"
     }
   },
   {
@@ -1218,7 +1218,7 @@
        "coordinates":  [ -77.161057,38.894547 ]
     },
     "properties": {
-    "NAME":"Bishop Denis J Oconnell High S"
+    "NAME":"Bishop Denis J Oconnell High School"
     }
   },
   {
@@ -1258,7 +1258,7 @@
        "coordinates":  [ -117.278323,32.841252 ]
     },
     "properties": {
-    "NAME":"Bishop's School the"
+    "NAME":"Bishop's School"
     }
   },
   {
@@ -1279,6 +1279,16 @@
     },
     "properties": {
     "NAME":"Blair High School"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -79.437146,43.6592415 ]
+    },
+    "properties": {
+    "NAME":"Bloor Collegiate Institute"
     }
   },
   {
@@ -1318,7 +1328,7 @@
        "coordinates":  [ -95.9708218,36.1887559 ]
     },
     "properties": {
-    "NAME":"Booker T Washington High Sch"
+    "NAME":"Booker T Washington High School"
     }
   },
   {
@@ -1328,7 +1338,7 @@
        "coordinates":  [ -80.2041517,25.7861013 ]
     },
     "properties": {
-    "NAME":"Booker T Washington Sr High Sc"
+    "NAME":"Booker T Washington Senior High School"
     }
   },
   {
@@ -1348,7 +1358,7 @@
        "coordinates":  [ -71.0884448,42.3311167 ]
     },
     "properties": {
-    "NAME":"Boston Central Adult Eve Sch"
+    "NAME":"Boston Central Adult Eve School"
     }
   },
   {
@@ -1398,7 +1408,7 @@
        "coordinates":  [ -122.5665711,37.9645255 ]
     },
     "properties": {
-    "NAME":"Branson School the"
+    "NAME":"Branson School"
     }
   },
   {
@@ -1468,7 +1478,7 @@
        "coordinates":  [ -74.8448531,40.1083642 ]
     },
     "properties": {
-    "NAME":"Bristol Jr-Sr High School"
+    "NAME":"Bristol Junior-Senior High School"
     }
   },
   {
@@ -1538,7 +1548,7 @@
        "coordinates":  [ -73.9031094,40.8434287 ]
     },
     "properties": {
-    "NAME":"Bronx Leadership Acad High Sch"
+    "NAME":"Bronx Leadership Acad High School"
     }
   },
   {
@@ -1558,7 +1568,7 @@
        "coordinates":  [ -73.9190153,40.827493 ]
     },
     "properties": {
-    "NAME":"Bronx Sch Law Govmt & Justice"
+    "NAME":"Bronx School Law Govmt & Justice"
     }
   },
   {
@@ -1728,7 +1738,7 @@
        "coordinates":  [ -118.4432601,34.1405181 ]
     },
     "properties": {
-    "NAME":"Buckley School the"
+    "NAME":"Buckley School"
     }
   },
   {
@@ -1788,7 +1798,7 @@
        "coordinates":  [ -93.7198092,32.4973044 ]
     },
     "properties": {
-    "NAME":"Caddo Parish Magnet High Sch"
+    "NAME":"Caddo Parish Magnet High School"
     }
   },
   {
@@ -1818,7 +1828,7 @@
        "coordinates":  [ -71.1116098,42.3744044 ]
     },
     "properties": {
-    "NAME":"Cambridge Rindge and Latin Sch"
+    "NAME":"Cambridge Rindge and Latin School"
     }
   },
   {
@@ -1888,7 +1898,7 @@
        "coordinates":  [ -97.4325817,38.3810941 ]
     },
     "properties": {
-    "NAME":"Canton Jr-Sr High School"
+    "NAME":"Canton Junior-Senior High School"
     }
   },
   {
@@ -2148,7 +2158,7 @@
        "coordinates":  [ -71.2355223,42.3865963 ]
     },
     "properties": {
-    "NAME":"Chapel Hill-Chauncy Hall Sch"
+    "NAME":"Chapel Hill-Chauncy Hall School"
     }
   },
   {
@@ -2168,7 +2178,7 @@
        "coordinates":  [ -122.1677125,47.4542117 ]
     },
     "properties": {
-    "NAME":"Charles a Lindbergh High Sch"
+    "NAME":"Charles a Lindbergh High School"
     }
   },
   {
@@ -2198,7 +2208,7 @@
        "coordinates":  [ -77.1271236,39.0542337 ]
     },
     "properties": {
-    "NAME":"Charles E Smith Jewish Day Sch"
+    "NAME":"Charles E Smith Jewish Day School"
     }
   },
   {
@@ -2218,7 +2228,7 @@
        "coordinates":  [ -76.6522811,42.5369191 ]
     },
     "properties": {
-    "NAME":"Charles O Dickerson High Sch"
+    "NAME":"Charles O Dickerson High School"
     }
   },
   {
@@ -2228,7 +2238,7 @@
        "coordinates":  [ -80.3226757,26.0206649 ]
     },
     "properties": {
-    "NAME":"Charles W Flanagan High Sch"
+    "NAME":"Charles W Flanagan High School"
     }
   },
   {
@@ -2408,7 +2418,7 @@
        "coordinates":  [ -73.8602433,40.8603116 ]
     },
     "properties": {
-    "NAME":"Christopher Columbus High Sch"
+    "NAME":"Christopher Columbus High School"
     }
   },
   {
@@ -2428,7 +2438,7 @@
        "coordinates":  [ -74.210664,40.764012 ]
     },
     "properties": {
-    "NAME":"Cicely Tyson Sch Perf/Fine Art"
+    "NAME":"Cicely Tyson School Perf/Fine Art"
     }
   },
   {
@@ -2535,20 +2545,10 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
-       "coordinates":  [ -107.6092091,39.5502777 ]
-    },
-    "properties": {
-    "NAME":"COAL RIDGE HIGH SCHOOL"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
        "coordinates":  [ -73.99077,40.6848686 ]
     },
     "properties": {
-    "NAME":"Cobbe Hill Sch American Std"
+    "NAME":"Cobbe Hill School American Std"
     }
   },
   {
@@ -2558,7 +2558,7 @@
        "coordinates":  [ -80.630486,28.3184733 ]
     },
     "properties": {
-    "NAME":"Cocoa Beach Jr/Sr High School"
+    "NAME":"Cocoa Beach Junior/Senior High School"
     }
   },
   {
@@ -2628,7 +2628,7 @@
        "coordinates":  [ -92.3366548,38.901335 ]
     },
     "properties": {
-    "NAME":"Columbia-Rock Bridge Sr High S"
+    "NAME":"Columbia-Rock Bridge Senior High S"
     }
   },
   {
@@ -2668,7 +2668,7 @@
        "coordinates":  [ -88.012247,41.8053082 ]
     },
     "properties": {
-    "NAME":"Community Hs Dist 99 North Hs"
+    "NAME":"Community High School Dist 99 North High School"
     }
   },
   {
@@ -2778,7 +2778,7 @@
        "coordinates":  [ -122.433828,37.794442 ]
     },
     "properties": {
-    "NAME":"Convent of the Sacred Heart Hs"
+    "NAME":"Convent of the Sacred Heart High School"
     }
   },
   {
@@ -2788,7 +2788,7 @@
        "coordinates":  [ -80.263209,25.7337719 ]
     },
     "properties": {
-    "NAME":"Coral Gables Sr High School"
+    "NAME":"Coral Gables Senior High School"
     }
   },
   {
@@ -2858,7 +2858,7 @@
        "coordinates":  [ -75.3454491,40.0136949 ]
     },
     "properties": {
-    "NAME":"Country Day Sch Sacred Heart"
+    "NAME":"Country Day School Sacred Heart"
     }
   },
   {
@@ -3008,7 +3008,7 @@
        "coordinates":  [ -87.72167,41.8022427 ]
     },
     "properties": {
-    "NAME":"Curie Metropolitan High Sch"
+    "NAME":"Curie Metropolitan High School"
     }
   },
   {
@@ -3258,7 +3258,7 @@
        "coordinates":  [ -80.1907166,25.8140153 ]
     },
     "properties": {
-    "NAME":"Design & Architecture Sr High"
+    "NAME":"Design & Architecture Senior High"
     }
   },
   {
@@ -3308,7 +3308,7 @@
        "coordinates":  [ -71.3248669,42.218241 ]
     },
     "properties": {
-    "NAME":"Dover-Sherborn Regl High Sch"
+    "NAME":"Dover-Sherborn Regl High School"
     }
   },
   {
@@ -3318,7 +3318,7 @@
        "coordinates":  [ -122.4423446,37.7876396 ]
     },
     "properties": {
-    "NAME":"Drew College Preparatory Sch"
+    "NAME":"Coal Ridge High School"
     }
   },
   {
@@ -3348,7 +3348,7 @@
        "coordinates":  [ -85.7582583,38.2223769 ]
     },
     "properties": {
-    "NAME":"Dupont Manual Magnet High Sch"
+    "NAME":"Dupont Manual Magnet High School"
     }
   },
   {
@@ -3388,7 +3388,7 @@
        "coordinates":  [ -73.968128,40.787495 ]
     },
     "properties": {
-    "NAME":"Dwight School the"
+    "NAME":"Dwight School"
     }
   },
   {
@@ -3498,7 +3498,7 @@
        "coordinates":  [ -73.982502,40.7293824 ]
     },
     "properties": {
-    "NAME":"East Side Community High Sch"
+    "NAME":"East Side Community High School"
     }
   },
   {
@@ -3508,7 +3508,7 @@
        "coordinates":  [ -75.1850019,41.0053971 ]
     },
     "properties": {
-    "NAME":"East Stroudsburg Area High Sch"
+    "NAME":"East Stroudsburg Area High School"
     }
   },
   {
@@ -3705,6 +3705,16 @@
     "type": "Feature",
     "geometry": {
        "type": "Point",
+       "coordinates":  [ -82.661026,46.376033 ]
+    },
+    "properties": {
+    "NAME":"Elliot Lake Secondary School"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
        "coordinates":  [ -95.6356794,37.0376275 ]
     },
     "properties": {
@@ -3718,7 +3728,7 @@
        "coordinates":  [ -73.7182979,40.6968991 ]
     },
     "properties": {
-    "NAME":"Elmont Memorial Jr-Sr High Sch"
+    "NAME":"Elmont Memorial Junior-Senior High School"
     }
   },
   {
@@ -3789,6 +3799,26 @@
     },
     "properties": {
     "NAME":"Episcopal School of Los Angeles"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -123.1249865,49.2398336 ]
+    },
+    "properties": {
+    "NAME":"Eric Hamber Secondary School"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -66.5884348,18.2189685 ]
+    },
+    "properties": {
+    "NAME":"Escuela Sup Josefina Leon Zaya"
     }
   },
   {
@@ -3868,7 +3898,7 @@
        "coordinates":  [ -87.7024817,41.7228282 ]
     },
     "properties": {
-    "NAME":"Evergreen Park Cmty High Sch"
+    "NAME":"Evergreen Park Cmty High School"
     }
   },
   {
@@ -3948,7 +3978,7 @@
        "coordinates":  [ -73.8856007,40.8310801 ]
     },
     "properties": {
-    "NAME":"Fannie Lou Hamer Freedom Hs"
+    "NAME":"Fannie Lou Hamer Freedom High School"
     }
   },
   {
@@ -3978,7 +4008,7 @@
        "coordinates":  [ -77.0884406,38.9211717 ]
     },
     "properties": {
-    "NAME":"Field School the"
+    "NAME":"Field School"
     }
   },
   {
@@ -4048,7 +4078,7 @@
        "coordinates":  [ -85.5756242,42.9861831 ]
     },
     "properties": {
-    "NAME":"Forest Hills Northern High Sch"
+    "NAME":"Forest Hills Northern High School"
     }
   },
   {
@@ -4108,7 +4138,7 @@
        "coordinates":  [ -73.6781998,41.1916105 ]
     },
     "properties": {
-    "NAME":"Fox Ln High School"
+    "NAME":"Fox Lane High School"
     }
   },
   {
@@ -4198,7 +4228,7 @@
        "coordinates":  [ -122.4217506,37.7753407 ]
     },
     "properties": {
-    "NAME":"French American Internatnl Sch"
+    "NAME":"French American Internatnl School"
     }
   },
   {
@@ -4208,7 +4238,7 @@
        "coordinates":  [ -73.750593,40.927018 ]
     },
     "properties": {
-    "NAME":"French American Sch of Ny"
+    "NAME":"French American School of Ny"
     }
   },
   {
@@ -4398,7 +4428,7 @@
        "coordinates":  [ -73.943838,40.658665 ]
     },
     "properties": {
-    "NAME":"George Wood Wingate High Sch"
+    "NAME":"George Wood Wingate High School"
     }
   },
   {
@@ -4418,7 +4448,7 @@
        "coordinates":  [ -77.0693278,38.9094271 ]
     },
     "properties": {
-    "NAME":"Georgetown Visitation Prep Sch"
+    "NAME":"Georgetown Visitation Prep School"
     }
   },
   {
@@ -4558,7 +4588,7 @@
        "coordinates":  [ -71.6948676,42.2108784 ]
     },
     "properties": {
-    "NAME":"Grafton Memorial Sr High Sch"
+    "NAME":"Grafton Memorial Senior High School"
     }
   },
   {
@@ -4618,7 +4648,7 @@
        "coordinates":  [ -79.3768165,40.2789706 ]
     },
     "properties": {
-    "NAME":"Greater Latrobe Sr High School"
+    "NAME":"Greater Latrobe Senior High School"
     }
   },
   {
@@ -4638,7 +4668,7 @@
        "coordinates":  [ -72.582036,43.253131 ]
     },
     "properties": {
-    "NAME":"Green Mountain Union High Sch"
+    "NAME":"Green Mountain Union High School"
     }
   },
   {
@@ -4698,7 +4728,7 @@
        "coordinates":  [ -97.7192064,30.3127523 ]
     },
     "properties": {
-    "NAME":"Griffin School the"
+    "NAME":"Griffin School"
     }
   },
   {
@@ -4708,7 +4738,7 @@
        "coordinates":  [ -82.9024146,42.3908404 ]
     },
     "properties": {
-    "NAME":"Grosse Pointe South High Sch"
+    "NAME":"Grosse Pointe South High School"
     }
   },
   {
@@ -4728,7 +4758,7 @@
        "coordinates":  [ -71.540555,42.650938 ]
     },
     "properties": {
-    "NAME":"Groton-Dunstable Regl High Sch"
+    "NAME":"Groton-Dunstable Regl High School"
     }
   },
   {
@@ -4738,7 +4768,7 @@
        "coordinates":  [ -82.8853549,39.8800922 ]
     },
     "properties": {
-    "NAME":"Groveport-Madison Sr High Sch"
+    "NAME":"Groveport-Madison Senior High School"
     }
   },
   {
@@ -4798,7 +4828,7 @@
        "coordinates":  [ -75.0264294,39.9019489 ]
     },
     "properties": {
-    "NAME":"Haddonfield Memorial High Sch"
+    "NAME":"Haddonfield Memorial High School"
     }
   },
   {
@@ -4918,7 +4948,7 @@
        "coordinates":  [ -75.3167449,40.0422008 ]
     },
     "properties": {
-    "NAME":"Harriton High Sch Lower Merion"
+    "NAME":"Harriton High School Lower Merion"
     }
   },
   {
@@ -5068,7 +5098,7 @@
        "coordinates":  [ -122.1334165,37.40252 ]
     },
     "properties": {
-    "NAME":"Henry M Gunn Sr High School"
+    "NAME":"Henry M Gunn Senior High School"
     }
   },
   {
@@ -5148,7 +5178,7 @@
        "coordinates":  [ -74.0123296,40.7092906 ]
     },
     "properties": {
-    "NAME":"High Sch for Economics/Finance"
+    "NAME":"High School for Economics/Finance"
     }
   },
   {
@@ -5158,7 +5188,7 @@
        "coordinates":  [ -73.9828421,40.7325413 ]
     },
     "properties": {
-    "NAME":"High Sch for Health Professn"
+    "NAME":"High School for Health Professn"
     }
   },
   {
@@ -5168,7 +5198,7 @@
        "coordinates":  [ -74.0233013,40.6368371 ]
     },
     "properties": {
-    "NAME":"High Sch of Telecomm Arts Tech"
+    "NAME":"High School of Telecomm Arts Tech"
     }
   },
   {
@@ -5338,7 +5368,7 @@
        "coordinates":  [ -96.82718,32.907513 ]
     },
     "properties": {
-    "NAME":"Hockaday School the"
+    "NAME":"Hockaday School"
     }
   },
   {
@@ -5378,7 +5408,7 @@
        "coordinates":  [ -84.4150343,33.9079409 ]
     },
     "properties": {
-    "NAME":"Holy Innocents Episcopal Sch"
+    "NAME":"Holy Innocents Episcopal School"
     }
   },
   {
@@ -5428,7 +5458,7 @@
        "coordinates":  [ -74.804935,40.3279011 ]
     },
     "properties": {
-    "NAME":"Hopewell Valley Cntrl High Sch"
+    "NAME":"Hopewell Valley Cntrl High School"
     }
   },
   {
@@ -5458,7 +5488,7 @@
        "coordinates":  [ -75.1507073,39.9237914 ]
     },
     "properties": {
-    "NAME":"Horace Howard Furness High Sch"
+    "NAME":"Horace Howard Furness High School"
     }
   },
   {
@@ -5518,7 +5548,7 @@
        "coordinates":  [ -73.9260333,40.8558937 ]
     },
     "properties": {
-    "NAME":"Hs for Law & Public Service"
+    "NAME":"High School for Law & Public Service"
     }
   },
   {
@@ -5568,7 +5598,7 @@
        "coordinates":  [ -78.8787834,42.8917699 ]
     },
     "properties": {
-    "NAME":"Hutchinson Cntrl Tech High Sch"
+    "NAME":"Hutchinson Cntrl Tech High School"
     }
   },
   {
@@ -5638,7 +5668,7 @@
        "coordinates":  [ -79.1504183,40.6326204 ]
     },
     "properties": {
-    "NAME":"Indiana Area Sr High School"
+    "NAME":"Indiana Area Senior High School"
     }
   },
   {
@@ -5778,7 +5808,7 @@
        "coordinates":  [ -75.1657115,39.9634209 ]
     },
     "properties": {
-    "NAME":"J R Masterman Lab & Dem Sch"
+    "NAME":"J R Masterman Lab & Dem School"
     }
   },
   {
@@ -5828,7 +5858,7 @@
        "coordinates":  [ -77.3048881,38.8171111 ]
     },
     "properties": {
-    "NAME":"James W Robinson Jr Sec School"
+    "NAME":"James W Robinson Junior Sec School"
     }
   },
   {
@@ -5838,7 +5868,7 @@
        "coordinates":  [ -86.667588,33.5420397 ]
     },
     "properties": {
-    "NAME":"Jefferson County Intl Bacc Sch"
+    "NAME":"Jefferson County Intl Bacc School"
     }
   },
   {
@@ -5868,7 +5898,7 @@
        "coordinates":  [ -87.8722571,42.7162174 ]
     },
     "properties": {
-    "NAME":"Jerome I Case Sr High School"
+    "NAME":"Jerome I Case Senior High School"
     }
   },
   {
@@ -5908,7 +5938,7 @@
        "coordinates":  [ -68.7685524,44.8053282 ]
     },
     "properties": {
-    "NAME":"John Bapst Memorial High Sch"
+    "NAME":"John Bapst Memorial High School"
     }
   },
   {
@@ -5948,7 +5978,7 @@
        "coordinates":  [ -93.2768815,44.8279271 ]
     },
     "properties": {
-    "NAME":"John F Kennedy Sr High School"
+    "NAME":"John F Kennedy Senior High School"
     }
   },
   {
@@ -5968,7 +5998,7 @@
        "coordinates":  [ -118.1356748,34.1972499 ]
     },
     "properties": {
-    "NAME":"John Marshall Fundamental Sch"
+    "NAME":"John Marshall Fundamental School"
     }
   },
   {
@@ -6078,7 +6108,7 @@
        "coordinates":  [ -76.494114,38.931424 ]
     },
     "properties": {
-    "NAME":"Key School the"
+    "NAME":"Key School"
     }
   },
   {
@@ -6228,7 +6258,7 @@
        "coordinates":  [ -90.3972686,38.6394437 ]
     },
     "properties": {
-    "NAME":"Ladue Horton Watkins High Sch"
+    "NAME":"Ladue Horton Watkins High School"
     }
   },
   {
@@ -6238,7 +6268,7 @@
        "coordinates":  [ -73.9851211,40.7741856 ]
     },
     "properties": {
-    "NAME":"Laguardia High Sch Music Art"
+    "NAME":"Laguardia High School Music Art"
     }
   },
   {
@@ -6488,7 +6518,7 @@
        "coordinates":  [ -72.6670936,43.0465917 ]
     },
     "properties": {
-    "NAME":"Leland & Gray Union High Sch"
+    "NAME":"Leland & Gray Union High School"
     }
   },
   {
@@ -6508,7 +6538,7 @@
        "coordinates":  [ -74.0141229,40.7059138 ]
     },
     "properties": {
-    "NAME":"LEMAN MANHATTAN PREPARATORY SCHOOL"
+    "NAME":"Léman Manhattan Preparatory School"
     }
   },
   {
@@ -6538,7 +6568,7 @@
        "coordinates":  [ -77.1116574,41.5590291 ]
     },
     "properties": {
-    "NAME":"Liberty Jr-Sr High School"
+    "NAME":"Liberty Junior-Senior High School"
     }
   },
   {
@@ -6578,7 +6608,7 @@
        "coordinates":  [ -98.1366162,39.0433107 ]
     },
     "properties": {
-    "NAME":"Lincoln East Jr-Sr High School"
+    "NAME":"Lincoln East Junior-Senior High School"
     }
   },
   {
@@ -6718,7 +6748,7 @@
        "coordinates":  [ -118.167093,34.0692558 ]
     },
     "properties": {
-    "NAME":"Los Angeles Co High Sch Arts"
+    "NAME":"Los Angeles County High School Arts"
     }
   },
   {
@@ -6848,7 +6878,7 @@
        "coordinates":  [ -87.858613,42.0383334 ]
     },
     "properties": {
-    "NAME":"Maine Township High Sch East"
+    "NAME":"Maine Township High School East"
     }
   },
   {
@@ -7098,7 +7128,7 @@
        "coordinates":  [ -70.9757922,42.6271399 ]
     },
     "properties": {
-    "NAME":"Masconomet Regional High Sch"
+    "NAME":"Masconomet Regional High School"
     }
   },
   {
@@ -7138,7 +7168,7 @@
        "coordinates":  [ -73.8704246,41.0109462 ]
     },
     "properties": {
-    "NAME":"Masters School the"
+    "NAME":"Masters School"
     }
   },
   {
@@ -7168,7 +7198,7 @@
        "coordinates":  [ -80.3256619,25.8682258 ]
     },
     "properties": {
-    "NAME":"MATER ACADEMY CHARTER MIDDLE HIGH SCHOOL"
+    "NAME":"Mater Academy Charter Middle/ High School"
     }
   },
   {
@@ -7188,7 +7218,7 @@
        "coordinates":  [ -118.211977,34.0375152 ]
     },
     "properties": {
-    "NAME":"Math, Science, and Technology Magnet Academy at Roosevelt HS"
+    "NAME":"Math, Science, and Technology Magnet Academy at Roosevelt High School"
     }
   },
   {
@@ -7408,7 +7438,7 @@
        "coordinates":  [ -80.225048,25.810277 ]
     },
     "properties": {
-    "NAME":"Miami Jackson Sr High School"
+    "NAME":"Miami Jackson Senior High School"
     }
   },
   {
@@ -7438,7 +7468,7 @@
        "coordinates":  [ -80.2945841,25.8307862 ]
     },
     "properties": {
-    "NAME":"Miami Springs Sr High School"
+    "NAME":"Miami Springs Senior High School"
     }
   },
   {
@@ -7448,7 +7478,7 @@
        "coordinates":  [ -95.4085531,29.7052605 ]
     },
     "properties": {
-    "NAME":"MICHAEL E DEBAKEY HIGH SCHOOL OF THE HEALTH PROFESSIONALS"
+    "NAME":"Michael E. DeBakey High School for Health Professions"
     }
   },
   {
@@ -7538,7 +7568,7 @@
        "coordinates":  [ -73.9523773,40.632833 ]
     },
     "properties": {
-    "NAME":"Midwood Hs At Brooklyn College"
+    "NAME":"Midwood High School At Brooklyn College"
     }
   },
   {
@@ -7808,7 +7838,7 @@
        "coordinates":  [ -73.0939654,44.1354759 ]
     },
     "properties": {
-    "NAME":"Mount Abraham Union High Sch"
+    "NAME":"Mount Abraham Union High School"
     }
   },
   {
@@ -7858,7 +7888,7 @@
        "coordinates":  [ -68.301117,44.372216 ]
     },
     "properties": {
-    "NAME":"Mount Desert Island High Sch"
+    "NAME":"Mount Desert Island High School"
     }
   },
   {
@@ -7868,7 +7898,7 @@
        "coordinates":  [ -73.2411739,42.6714363 ]
     },
     "properties": {
-    "NAME":"Mount Greylock Regl High Sch"
+    "NAME":"Mount Greylock Regl High School"
     }
   },
   {
@@ -7898,7 +7928,7 @@
        "coordinates":  [ -79.526317,40.174496 ]
     },
     "properties": {
-    "NAME":"Mount Pleasant Area High Sch"
+    "NAME":"Mount Pleasant Area High School"
     }
   },
   {
@@ -8058,7 +8088,7 @@
        "coordinates":  [ -78.6514713,35.7892144 ]
     },
     "properties": {
-    "NAME":"Needham B Broughton High Sch"
+    "NAME":"Needham B Broughton High School"
     }
   },
   {
@@ -8348,7 +8378,7 @@
        "coordinates":  [ -87.8531382,42.3278616 ]
     },
     "properties": {
-    "NAME":"North Chicago Community Hs"
+    "NAME":"North Chicago Community High School"
     }
   },
   {
@@ -8368,7 +8398,7 @@
        "coordinates":  [ -80.184148,25.8969252 ]
     },
     "properties": {
-    "NAME":"North Miami Sr High School"
+    "NAME":"North Miami Senior High School"
     }
   },
   {
@@ -8428,7 +8458,7 @@
        "coordinates":  [ -77.892535,35.998602 ]
     },
     "properties": {
-    "NAME":"Northern Nash Senior Hs"
+    "NAME":"Northern Nash Senior High School"
     }
   },
   {
@@ -8658,7 +8688,7 @@
        "coordinates":  [ -112.070567,34.43199 ]
     },
     "properties": {
-    "NAME":"Orme School the"
+    "NAME":"Orme School"
     }
   },
   {
@@ -8688,7 +8718,7 @@
        "coordinates":  [ -73.8510605,40.8502155 ]
     },
     "properties": {
-    "NAME":"Our Saviour Lutheran High Sch"
+    "NAME":"Our Saviour Lutheran High School"
     }
   },
   {
@@ -8748,7 +8778,7 @@
        "coordinates":  [ -80.6545166,26.825882 ]
     },
     "properties": {
-    "NAME":"Pahokee Middle-Senior High Sch"
+    "NAME":"Pahokee Middle-Senior High School"
     }
   },
   {
@@ -9008,7 +9038,7 @@
        "coordinates":  [ -122.406455,37.72159 ]
     },
     "properties": {
-    "NAME":"Phillip & Sala Burton Acad Hs"
+    "NAME":"Phillip & Sala Burton Acad High School"
     }
   },
   {
@@ -9158,7 +9188,7 @@
        "coordinates":  [ -77.5237182,43.088733 ]
     },
     "properties": {
-    "NAME":"Pittsford Sutherland High Sch"
+    "NAME":"Pittsford Sutherland High School"
     }
   },
   {
@@ -9178,7 +9208,7 @@
        "coordinates":  [ -96.8136069,33.043707 ]
     },
     "properties": {
-    "NAME":"Plano West Sr High School"
+    "NAME":"Plano West Senior High School"
     }
   },
   {
@@ -9198,7 +9228,7 @@
        "coordinates":  [ -74.0246459,40.6120977 ]
     },
     "properties": {
-    "NAME":"Poly Prep Country Day Sch"
+    "NAME":"Poly Prep Country Day School"
     }
   },
   {
@@ -9368,7 +9398,7 @@
        "coordinates":  [ -72.1149375,42.4006089 ]
     },
     "properties": {
-    "NAME":"Quabbin Regl Jr-Sr High School"
+    "NAME":"Quabbin Regl Junior-Senior High School"
     }
   },
   {
@@ -9378,7 +9408,7 @@
        "coordinates":  [ -80.2032612,40.5610919 ]
     },
     "properties": {
-    "NAME":"Quaker Valley Sr High School"
+    "NAME":"Quaker Valley Senior High School"
     }
   },
   {
@@ -9418,7 +9448,7 @@
        "coordinates":  [ -74.0792492,40.6429204 ]
     },
     "properties": {
-    "NAME":"Ralph McKee Voc-Tech High Sch"
+    "NAME":"Ralph McKee Voc-Tech High School"
     }
   },
   {
@@ -9498,7 +9528,7 @@
        "coordinates":  [ -73.8851717,40.7499835 ]
     },
     "properties": {
-    "NAME":"Renaissance Charter School the"
+    "NAME":"Renaissance Charter School"
     }
   },
   {
@@ -9548,7 +9578,7 @@
        "coordinates":  [ -74.0129291,40.7054431 ]
     },
     "properties": {
-    "NAME":"Richard R Green Hs of Teaching"
+    "NAME":"Richard R Green High School of Teaching"
     }
   },
   {
@@ -9558,7 +9588,7 @@
        "coordinates":  [ -87.6832054,41.8768759 ]
     },
     "properties": {
-    "NAME":"Richard T Crane Medical Preparatory HS"
+    "NAME":"Richard T Crane Medical Preparatory High School"
     }
   },
   {
@@ -9638,7 +9668,7 @@
        "coordinates":  [ -73.8113253,40.7253501 ]
     },
     "properties": {
-    "NAME":"Robert F Kennedy Community Hs"
+    "NAME":"Robert F Kennedy Community High School"
     }
   },
   {
@@ -9648,7 +9678,7 @@
        "coordinates":  [ -73.9369395,40.7414438 ]
     },
     "properties": {
-    "NAME":"Robert F Wagner Jr Institute"
+    "NAME":"Robert F Wagner Junior Institute"
     }
   },
   {
@@ -9698,7 +9728,7 @@
        "coordinates":  [ -83.2535767,42.5925416 ]
     },
     "properties": {
-    "NAME":"Roeper School the"
+    "NAME":"Roeper School"
     }
   },
   {
@@ -9808,7 +9838,7 @@
        "coordinates":  [ -73.6811614,40.9895299 ]
     },
     "properties": {
-    "NAME":"Rye Country Day Sch-Upper Sch"
+    "NAME":"Rye Country Day School-Upper School"
     }
   },
   {
@@ -10038,7 +10068,7 @@
        "coordinates":  [ -75.1645705,39.9730285 ]
     },
     "properties": {
-    "NAME":"Saint Josephs Preparatory Sch"
+    "NAME":"Saint Josephs Preparatory School"
     }
   },
   {
@@ -10058,7 +10088,7 @@
        "coordinates":  [ -117.6507716,33.5041925 ]
     },
     "properties": {
-    "NAME":"Saint Margarets Episcopal Sch"
+    "NAME":"Saint Margarets Episcopal School"
     }
   },
   {
@@ -10078,7 +10108,7 @@
        "coordinates":  [ -118.3453606,33.9687126 ]
     },
     "properties": {
-    "NAME":"Saint Marys Academy High Sch"
+    "NAME":"Saint Marys Academy High School"
     }
   },
   {
@@ -10108,7 +10138,7 @@
        "coordinates":  [ -122.2018305,38.0866127 ]
     },
     "properties": {
-    "NAME":"Saint Patrick-Saint Vincent Hs"
+    "NAME":"Saint Patrick-Saint Vincent High School"
     }
   },
   {
@@ -10148,7 +10178,7 @@
        "coordinates":  [ -73.9646894,40.7658366 ]
     },
     "properties": {
-    "NAME":"Saint Vincent Ferrer High Sch"
+    "NAME":"Saint Vincent Ferrer High School"
     }
   },
   {
@@ -10168,7 +10198,7 @@
        "coordinates":  [ -81.6151531,30.2498939 ]
     },
     "properties": {
-    "NAME":"Samuel W Wolfson Sr Hs 165"
+    "NAME":"Samuel W Wolfson Senior High School 165"
     }
   },
   {
@@ -10248,7 +10278,7 @@
        "coordinates":  [ -78.646573,35.861061 ]
     },
     "properties": {
-    "NAME":"Sanderson High Sch Wakefield"
+    "NAME":"Sanderson High School Wakefield"
     }
   },
   {
@@ -10498,7 +10528,17 @@
        "coordinates":  [ -80.107065,40.808801 ]
     },
     "properties": {
-    "NAME":"Seneca Valley Sr High School"
+    "NAME":"Seneca Valley Senior High School"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -123.1503622,49.3452812 ]
+    },
+    "properties": {
+    "NAME":"Sentinel Secondary School"
     }
   },
   {
@@ -10538,7 +10578,7 @@
        "coordinates":  [ -76.5604601,39.0774095 ]
     },
     "properties": {
-    "NAME":"Severna Park Senior High Sch"
+    "NAME":"Severna Park Senior High School"
     }
   },
   {
@@ -10568,7 +10608,7 @@
        "coordinates":  [ -82.2720636,34.8433252 ]
     },
     "properties": {
-    "NAME":"Shannon Forest Christian Sch"
+    "NAME":"Shannon Forest Christian School"
     }
   },
   {
@@ -10628,7 +10668,7 @@
        "coordinates":  [ -105.2849486,40.0544075 ]
     },
     "properties": {
-    "NAME":"Shining Mountain Waldorf Sch"
+    "NAME":"Shining Mountain Waldorf School"
     }
   },
   {
@@ -10778,7 +10818,7 @@
        "coordinates":  [ -122.4261976,37.6478152 ]
     },
     "properties": {
-    "NAME":"South San Francisco High Sch"
+    "NAME":"South San Francisco High School"
     }
   },
   {
@@ -10958,7 +10998,7 @@
        "coordinates":  [ -92.847362,45.029077 ]
     },
     "properties": {
-    "NAME":"Stillwater Area Senior Hs"
+    "NAME":"Stillwater Area Senior High School"
     }
   },
   {
@@ -11388,7 +11428,7 @@
        "coordinates":  [ -83.9656734,30.8734982 ]
     },
     "properties": {
-    "NAME":"Thomas County Central High Sch"
+    "NAME":"Thomas County Central High School"
     }
   },
   {
@@ -11398,7 +11438,7 @@
        "coordinates":  [ -73.7983076,40.7162714 ]
     },
     "properties": {
-    "NAME":"Thomas Edison Vo-Tech Hgh Sch"
+    "NAME":"Thomas Edison Vo-Tech Hgh School"
     }
   },
   {
@@ -11488,7 +11528,7 @@
        "coordinates":  [ -73.821365,40.7349867 ]
     },
     "properties": {
-    "NAME":"Townsend Harris Hs/Queens Coll"
+    "NAME":"Townsend Harris High School/Queens Coll"
     }
   },
   {
@@ -11618,7 +11658,7 @@
        "coordinates":  [ -73.973541,40.736358 ]
     },
     "properties": {
-    "NAME":"United Nations Internatl Sch"
+    "NAME":"United Nations Internatl School"
     }
   },
   {
@@ -11728,7 +11768,7 @@
        "coordinates":  [ -74.0205672,40.6907422 ]
     },
     "properties": {
-    "NAME":"Urban Assembly New York Harbor Hs"
+    "NAME":"Urban Assembly New York Harbor High School"
     }
   },
   {
@@ -12168,7 +12208,7 @@
        "coordinates":  [ -71.0167182,42.0196584 ]
     },
     "properties": {
-    "NAME":"West Bridgewater Middle/Sr Hs"
+    "NAME":"West Bridgewater Middle/Senior High School"
     }
   },
   {
@@ -12318,7 +12358,7 @@
        "coordinates":  [ -81.022387,34.9789894 ]
     },
     "properties": {
-    "NAME":"Westminster/Catawba Chrstn Sch"
+    "NAME":"Westminster/Catawba Chrstn School"
     }
   },
   {
@@ -12328,7 +12368,7 @@
        "coordinates":  [ -78.9787441,40.3177881 ]
     },
     "properties": {
-    "NAME":"Westmont Hilltop Sr High Sch"
+    "NAME":"Westmont Hilltop Senior High School"
     }
   },
   {
@@ -12468,7 +12508,7 @@
        "coordinates":  [ -80.229093,25.8668259 ]
     },
     "properties": {
-    "NAME":"William H Turner Tech Arts Hs"
+    "NAME":"William H Turner Tech Arts High School"
     }
   },
   {
@@ -12498,7 +12538,7 @@
        "coordinates":  [ -118.5331038,34.4853987 ]
     },
     "properties": {
-    "NAME":"William S Hart Union High Sch"
+    "NAME":"William S Hart Union High School"
     }
   },
   {
@@ -12518,7 +12558,7 @@
        "coordinates":  [ -75.1430791,39.9682035 ]
     },
     "properties": {
-    "NAME":"William W Bodine Hs Int Affair"
+    "NAME":"William W Bodine High School Int Affair"
     }
   },
   {
@@ -12578,7 +12618,7 @@
        "coordinates":  [ -96.9890483,33.0279139 ]
     },
     "properties": {
-    "NAME":"WINFREE ACADEMY CHARTER SCHOOL-LEWISVILLE"
+    "NAME":"Winfree Academy Charter School-Lewisville"
     }
   },
   {
@@ -12658,7 +12698,7 @@
        "coordinates":  [ -77.077492,38.9499299 ]
     },
     "properties": {
-    "NAME":"Woodrow Wilson Sr High School"
+    "NAME":"Woodrow Wilson Senior High School"
     }
   },
   {
@@ -12858,7 +12898,7 @@
        "coordinates":  [ -87.8669118,42.455996 ]
     },
     "properties": {
-    "NAME":"Zion-Benton Township High Sch"
+    "NAME":"Zion-Benton Township High School"
     }
   }
 ]
