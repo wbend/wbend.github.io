@@ -1,0 +1,511 @@
+:root {
+  --main-bg-color: #fff;
+  --main-text-color: #333;
+  --main-border-color: rgba(0,0,0,0.2);
+  --hover-bg-color: #f4f4f4;
+  --logo-bg-color: #fff;
+  --exception-bg-color: #8b0000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  padding-top: 50px;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+}
+
+#logo-image {
+  position: absolute;
+  height: 150px;
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: var(--logo-bg-color);
+  opacity: 0.75;
+  z-index: 1000;
+}
+
+#exception1, #exception3 {
+  position: absolute;
+  height: 40px;
+  background-color: var(--exception-bg-color);
+  bottom: 10px;
+  margin-left: 10px;
+  opacity: 0.75;
+  z-index: 1000;
+  border: 1px solid black;
+}
+
+#exception2 {
+  position: absolute;
+  height: 40px;
+  bottom: 10px;
+  margin-left: 10px;
+  opacity: 0.75;
+  z-index: 1000;
+  border: 1px solid black;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+}
+
+#sidebar {
+  display: block;
+  width: 250px;
+  height: 100%;
+  max-width: 100%;
+  float: left;
+}
+
+#map {
+  width: auto;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#loading {
+  position: absolute;
+  width: 220px;
+  height: 19px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -110px;
+  z-index: 20001;
+}
+
+#features {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#sidebar-hide-btn {
+  margin-top: -2px;
+}
+
+#aboutTabsContent {
+  padding-top: 10px;
+}
+
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+  background: #e93434;
+  color: #ffffff;
+}
+
+.progress-bar-full {
+  width: 100%;
+}
+
+.white {
+  color: #FFFFFF;
+}
+
+.panel-heading, .panel-body {
+  width: 250px;
+}
+
+.feature-row {
+  cursor: pointer;
+  width: 250px;
+}
+
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar-table {
+  flex: 1;
+  overflow: auto;
+}
+
+.leaflet-control-layers {
+  overflow: auto;
+}
+
+.leaflet-control-layers label {
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.leaflet-control-layers-list input[type="radio"], 
+.leaflet-control-layers-list input[type="checkbox"] {
+  margin: 2px;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.navbar .navbar-brand {
+  font-weight: bold;
+  font-size: 25px;
+  color: #FFFFFF;
+}
+
+.navbar-collapse.in {
+  overflow-y: hidden;
+}
+
+.navbar-header .navbar-icon-container {
+  margin-right: 15px;
+}
+
+.navbar-header .navbar-icon {
+  line-height: 50px;
+  height: 50px;
+}
+
+.navbar-header a.navbar-icon {
+  margin-left: 25px;
+}
+
+.typeahead {
+  background-color: var(--main-bg-color);
+}
+
+.tt-dropdown-menu {
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--main-border-color);
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
+  padding: 4px 0;
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.tt-suggestion {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 10px;
+}
+
+.tt-suggestion.tt-cursor {
+  background-color: #0097CF;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.tt-suggestion p {
+  margin: 0;
+}
+
+.tt-suggestion + .tt-suggestion {
+  border-top: 1px solid #ccc;
+}
+
+.typeahead-header {
+  margin: 0 5px 5px 5px;
+  padding: 3px 0;
+  border-bottom: 2px solid #333;
+}
+
+.has-feedback .form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+  background: white;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.legend h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+
+.select-all-button:hover, .deselect-all-button:hover {
+  background-color: var(--hover-bg-color);
+}
+
+.layer-control-custom-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+
+
+.leaflet-marker-icon {
+  filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.8))
+          drop-shadow(0 0 1px rgba(255, 255, 255, 0.8))
+          drop-shadow(0 0 1px rgba(255, 255, 255, 0.8));
+}
+
+.marker-cluster {
+  background-clip: padding-box;
+  border-radius: 20px;
+}
+
+.marker-cluster div {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  text-align: center;
+  border-radius: 15px;
+  font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #fff;
+  line-height: 30px;
+}
+
+.marker-cluster-small {
+  background-color: rgba(181, 226, 140, 0.6);
+  width: 40px !important;
+  height: 40px !important;
+  margin-left: -20px !important;
+  margin-top: -20px !important;
+}
+
+.marker-cluster-small div {
+  background-color: rgba(110, 204, 57, 0.6);
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.marker-cluster-medium {
+  background-color: rgba(241, 211, 87, 0.6);
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: -25px !important;
+  margin-top: -25px !important;
+}
+
+.marker-cluster-medium div {
+  background-color: rgba(240, 194, 12, 0.6);
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.marker-cluster-large {
+  background-color: rgba(253, 156, 115, 0.6);
+  width: 60px !important;
+  height: 60px !important;
+  margin-left: -30px !important;
+  margin-top: -30px !important;
+}
+
+.marker-cluster-large div {
+  background-color: rgba(241, 128, 23, 0.6);
+  width: 50px;
+  height: 50px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+/* New styles for "coming soon" layers */
+.leaflet-control-layers label.coming-soon {
+  color: #999;
+  font-style: italic;
+}
+
+.leaflet-control-layers label.coming-soon input {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 992px) {
+  .navbar .navbar-brand {
+    font-size: 18px;
+  }
+  
+  #logo-image {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #sidebar {
+    display: none;
+  }
+  
+  .url-break {
+    word-break: break-all;
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  .dropdown-menu a i {
+    color: #FFFFFF;
+  }
+}
+
+/* Print Handling */
+@media print {
+  .navbar {
+    display: none !important;
+  }
+  .leaflet-control-container {
+    display: none !important;
+  }
+}
+
+.leaflet-control-layers {
+  max-width: 300px !important;
+  width: auto !important;
+}
+
+.layer-control-selection-buttons,
+.layer-control-suggest-button {
+  margin-top: 10px;
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.select-all-button,
+.deselect-all-button,
+.suggest-locations-button {
+  width: auto;
+  min-width: 120px;
+  max-width: 200px;
+  margin: 2px 0;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select-all-button,
+.deselect-all-button {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+
+.suggest-locations-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  white-space: normal; /* Allows text to wrap */
+  height: auto; /* Allows the height to adjust based on content */
+  min-height: 40px; /* Ensures a minimum height */
+  line-height: 1.2; /* Adjusts line spacing for readability */
+  padding: 8px 12px; /* Padding for top/bottom and left/right */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.suggest-locations-button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .select-all-button,
+  .deselect-all-button,
+  .suggest-locations-button {
+    min-width: 100px;
+    font-size: 11px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .select-all-button,
+  .deselect-all-button,
+  .suggest-locations-button {
+    min-width: 80px;
+    font-size: 10px;
+  }
+}
+
+/* Existing styles remain the same */
+
+/* Center layer control on smaller screens */
+@media screen and (max-width: 750px) {
+  .leaflet-control-layers {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 50px !important;
+    z-index: 1000 !important; /* Ensure it's above other map elements */
+  }
+
+  .leaflet-control-layers-expanded {
+    max-width: 90% !important;
+    width: 300px !important;
+  }
+
+  /* Style for the collapsed control */
+  .leaflet-control-layers-toggle {
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Adjust the map container to accommodate the centered layer control */
+  .leaflet-container {
+    padding-top: 40px; /* Adjust this value based on your layout */
+  }
+}
+
+/* Optional: Add smooth transition for the centering effect */
+.leaflet-control-layers {
+  transition: left 0.3s ease-in-out, transform 0.3s ease-in-out, top 0.3s ease-in-out;
+}
+
+.layer-control-custom-buttons .suggest-locations-button:hover {
+  background-color: #45a049;
+}
+
+/* Ensure all buttons in the layer control have consistent base styling */
+.layer-control-custom-buttons button {
+  width: 90%;
+  margin: 5px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+#viewTajikistanAnalysis {
+  margin-top: 10px;
+}

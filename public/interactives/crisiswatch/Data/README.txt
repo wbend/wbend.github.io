@@ -1,1 +1,0 @@
-To limit the size of the application, only the last 12 months of data should live in archive.js. Move older months into old_archive.txt.
