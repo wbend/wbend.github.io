@@ -191,8 +191,10 @@
                 recipeDisplay.innerHTML = `
                     <h2>${recipe['Recipe Name']}</h2>
                     ${marked.parse(markdown)}
-                    <button id="email-btn" onclick="sendToBen()">Send to Ben!</button>
+                    <button id="email-btn">Send to Ben!</button>
                 `;
+                // Add event listener to the newly created button
+                document.getElementById('email-btn').addEventListener('click', sendToBen);
             } catch (error) {
                 recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
             }
