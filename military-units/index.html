@@ -68,43 +68,9 @@
     <link rel="apple-touch-icon" sizes="152x152" href="assets/img/apple-touch-icon-152x152.png">
     <link rel="icon" sizes="196x196" href="assets/img/favicon-196x196.png">
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
-
-    <style>
-      #password-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 9999;
-      }
-      
-      #password-overlay .modal-dialog {
-        margin-top: 150px;
-      }
-      </style>
-
   </head>
 
   <body>
-    <div id="password-overlay" class="modal fade in" style="display: block; background: rgba(0,0,0,0.9);">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Authentication Required</h4>
-          </div>
-          <div class="modal-body">
-            <form id="password-form" onsubmit="return checkPassword(event)">
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" required>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -219,46 +185,5 @@
         });
       });
     </script>
-    <script>
-      // Basic password protection
-      function checkPassword(e) {
-        e.preventDefault();
-        const password = document.getElementById('password').value;
-        // You should change this password
-        if (password === 'oxussecure') {
-          document.getElementById('password-overlay').style.display = 'none';
-          // Store in session storage so refresh doesn't ask for password again
-          sessionStorage.setItem('authenticated', 'true');
-        } else {
-          alert('Incorrect password');
-        }
-        return false;
-      }
-      
-      // Check if already authenticated
-      document.addEventListener('DOMContentLoaded', function() {
-        if (sessionStorage.getItem('authenticated') === 'true') {
-          document.getElementById('password-overlay').style.display = 'none';
-        }
-      });
-      
-      // Prevent right-click
-      document.addEventListener('contextmenu', function(e) {
-        e.preventDefault();
-      });
-      
-      // Prevent F12 and other debug shortcuts
-      document.addEventListener('keydown', function(e) {
-        if (
-          e.key === 'F12' || 
-          (e.ctrlKey && e.shiftKey && e.key === 'I') ||
-          (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-          (e.ctrlKey && e.shiftKey && e.key === 'C') ||
-          (e.ctrlKey && e.key === 'U')
-        ) {
-          e.preventDefault();
-        }
-      });
-      </script>
   </body>
 </html>
