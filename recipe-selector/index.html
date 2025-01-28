@@ -58,11 +58,29 @@
             background-color: #218838;
         }
         .email-btn {
-            background-color: #dc3545;
-            margin-top: 20px;
+            background-color: #f39c12; /* A golden yellow color */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
         }
         .email-btn:hover {
-            background-color: #c82333;
+            background-color: #e67e22; /* A darker shade of orange */
+            transform: scale(1.05); /* Slightly enlarges the button */
+        }
+        .email-btn:active {
+            background-color: #d35400; /* A deeper shade of orange for active state */
+            transform: scale(0.98); /* Slight shrink on click */
+        }
+        .email-btn:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(241, 196, 15, 0.7); /* Gold glow when focused */
         }
         .button-group {
             display: grid;
@@ -114,7 +132,18 @@
             );
             
             const mailtoLink = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
-            window.location.href = mailtoLink;
+
+            try {
+                // Try redirecting to the mailto link
+                window.location.href = mailtoLink;
+                
+                // If mailto does not work (timing issue), alert the user
+                setTimeout(() => {
+                    alert("It seems your email client didn't open. Please try manually sending the email.");
+                }, 1000);
+            } catch (error) {
+                alert("Error: Could not open your email client.");
+            }
         }
 
         // Load and parse CSV
@@ -195,12 +224,7 @@
                 const emailBtn = recipeDisplay.querySelector('.email-btn');
                 emailBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const subject = encodeURIComponent(`Recipe: ${recipe['Recipe Name']}`);
-                    const body = encodeURIComponent(
-                        `Hello, my love. This looks tasty.\n\n` +
-                        `${markdown}`
-                    );
-                    location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+                    sendToBen(recipe, markdown);
                 });
                 
             } catch (error) {
