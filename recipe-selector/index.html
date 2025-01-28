@@ -185,15 +185,23 @@
                 const response = await fetch(`recipes/${recipe['File Name']}`);
                 const markdown = await response.text();
                 
-                // Create the recipe display content
+                // Create the recipe display content with button as a link
                 recipeDisplay.innerHTML = `
                     ${marked.parse(markdown)}
-                    <button class="email-btn">Send to Ben!</button>
+                    <a href="#" class="email-btn" style="text-decoration: none; display: inline-block;">Send to Ben!</a>
                 `;
                 
                 // Add event listener to the email button
                 const emailBtn = recipeDisplay.querySelector('.email-btn');
-                emailBtn.addEventListener('click', () => sendToBen(recipe, markdown));
+                emailBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const subject = encodeURIComponent(`Recipe: ${recipe['Recipe Name']}`);
+                    const body = encodeURIComponent(
+                        `Hello, my love. This looks tasty.\n\n` +
+                        `${markdown}`
+                    );
+                    location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+                });
                 
             } catch (error) {
                 recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
