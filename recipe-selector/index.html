@@ -113,7 +113,8 @@
                 `${recipeText}`
             );
             
-            window.open(`mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`, '_blank');
+            const mailtoLink = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
         }
 
         // Load and parse CSV
