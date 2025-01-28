@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 600px) {
+            .controls {
+                grid-template-columns: 1fr;
+            }
+        }
+        select, button {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #surprise-btn {
+            background-color: #28a745;
+        }
+        #surprise-btn:hover {
+            background-color: #218838;
+        }
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        #recipe-display {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Finder</h1>
+        <div class="controls">
+            <select id="cuisine-select">
+                <option value="">Select Cuisine</option>
+            </select>
+            <select id="ingredient-select">
+                <option value="">Select Core Ingredient</option>
+            </select>
+        </div>
+        <div class="button-group">
+            <button id="find-btn" disabled>Find Recipe</button>
+            <button id="surprise-btn">Surprise Me!</button>
+        </div>
+        <div id="recipe-display"></div>
+    </div>
+
+    <script>
+        let recipes = [];
+        const cuisineSelect = document.getElementById('cuisine-select');
+        const ingredientSelect = document.getElementById('ingredient-select');
+        const findBtn = document.getElementById('find-btn');
+        const surpriseBtn = document.getElementById('surprise-btn');
+        const recipeDisplay = document.getElementById('recipe-display');
+
+        // Load and parse CSV
+        fetch('recipes.csv')
+            .then(response => response.text())
+            .then(data => {
+                recipes = Papa.parse(data, { header: true }).data;
+                
+                // Get unique cuisines and ingredients
+                const cuisines = [...new Set(recipes.map(recipe => recipe.Cuisine))];
+                const ingredients = [...new Set(recipes.map(recipe => recipe['Core Ingredient']))];
+                
+                // Populate dropdowns
+                cuisines.forEach(cuisine => {
+                    const option = document.createElement('option');
+                    option.value = cuisine;
+                    option.textContent = cuisine;
+                    cuisineSelect.appendChild(option);
+                });
+                
+                ingredients.forEach(ingredient => {
+                    const option = document.createElement('option');
+                    option.value = ingredient;
+                    option.textContent = ingredient;
+                    ingredientSelect.appendChild(option);
+                });
+            });
+
+        // Enable/disable find button based on selections
+        function updateFindButton() {
+            findBtn.disabled = !cuisineSelect.value && !ingredientSelect.value;
+        }
+        
+        cuisineSelect.addEventListener('change', updateFindButton);
+        ingredientSelect.addEventListener('change', updateFindButton);
+
+        // Load and display recipe
+        async function displayRecipe(recipe) {
+            try {
+                const response = await fetch(`recipes/${recipe['File Name']}`);
+                const markdown = await response.text();
+                recipeDisplay.innerHTML = `
+                    <h2>${recipe['Recipe Name']}</h2>
+                    ${marked.parse(markdown)}
+                `;
+            } catch (error) {
+                recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
+            }
+        }
+
+        // Find recipe based on selections
+        findBtn.addEventListener('click', () => {
+            let matchingRecipes = recipes;
+            
+            if (cuisineSelect.value) {
+                matchingRecipes = matchingRecipes.filter(recipe => 
+                    recipe.Cuisine === cuisineSelect.value
+                );
+            }
+            
+            if (ingredientSelect.value) {
+                matchingRecipes = matchingRecipes.filter(recipe => 
+                    recipe['Core Ingredient'] === ingredientSelect.value
+                );
+            }
+            
+            if (matchingRecipes.length > 0) {
+                const randomRecipe = matchingRecipes[
+                    Math.floor(Math.random() * matchingRecipes.length)
+                ];
+                displayRecipe(randomRecipe);
+            } else {
+                recipeDisplay.innerHTML = '<p>No matching recipes found.</p>';
+            }
+        });
+
+        // Surprise me button
+        surpriseBtn.addEventListener('click', () => {
+            const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
+            cuisineSelect.value = '';
+            ingredientSelect.value = '';
+            updateFindButton();
+            displayRecipe(randomRecipe);
+        });
+    </script>
+</body>
+</html>
