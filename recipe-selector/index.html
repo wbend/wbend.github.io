@@ -106,17 +106,18 @@
         const recipeDisplay = document.getElementById('recipe-display');
 
         // Send email function
-        function sendToBen(recipe) {
+        function sendToBen(recipe, recipeText) {
             const subject = encodeURIComponent(`Recipe: ${recipe['Recipe Name']}`);
             const body = encodeURIComponent(
                 `Check out this recipe I found!\n\n` +
                 `Recipe: ${recipe['Recipe Name']}\n` +
                 `Cuisine: ${recipe['Cuisine']}\n` +
                 `Core Ingredient: ${recipe['Core Ingredient']}\n\n` +
+                `${recipeText}\n\n` +
                 `View it at: ${window.location.href}`
             );
             
-            window.location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+            window.open(`mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`, '_blank');
         }
 
         // Load and parse CSV
@@ -196,7 +197,7 @@
                 
                 // Add event listener to the email button
                 const emailBtn = recipeDisplay.querySelector('.email-btn');
-                emailBtn.addEventListener('click', () => sendToBen(recipe));
+                emailBtn.addEventListener('click', () => sendToBen(recipe, markdown));
                 
             } catch (error) {
                 recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
