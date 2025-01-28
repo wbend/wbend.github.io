@@ -57,11 +57,11 @@
         #surprise-btn:hover {
             background-color: #218838;
         }
-        #email-btn {
+        .email-btn {
             background-color: #dc3545;
             margin-top: 20px;
         }
-        #email-btn:hover {
+        .email-btn:hover {
             background-color: #c82333;
         }
         .button-group {
@@ -104,6 +104,20 @@
         const findBtn = document.getElementById('find-btn');
         const surpriseBtn = document.getElementById('surprise-btn');
         const recipeDisplay = document.getElementById('recipe-display');
+
+        // Send email function
+        function sendToBen(recipe) {
+            const subject = encodeURIComponent(`Recipe: ${recipe['Recipe Name']}`);
+            const body = encodeURIComponent(
+                `Check out this recipe I found!\n\n` +
+                `Recipe: ${recipe['Recipe Name']}\n` +
+                `Cuisine: ${recipe['Cuisine']}\n` +
+                `Core Ingredient: ${recipe['Core Ingredient']}\n\n` +
+                `View it at: ${window.location.href}`
+            );
+            
+            window.location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+        }
 
         // Load and parse CSV
         fetch('recipes.csv')
@@ -161,22 +175,6 @@
         function updateFindButton() {
             findBtn.disabled = !cuisineSelect.value && !ingredientSelect.value;
         }
-
-        // Send email function
-        function sendToBen() {
-            if (!currentRecipe) return;
-            
-            const subject = encodeURIComponent(`Recipe: ${currentRecipe['Recipe Name']}`);
-            const body = encodeURIComponent(
-                `Check out this recipe I found!\n\n` +
-                `Recipe: ${currentRecipe['Recipe Name']}\n` +
-                `Cuisine: ${currentRecipe['Cuisine']}\n` +
-                `Core Ingredient: ${currentRecipe['Core Ingredient']}\n\n` +
-                `View it at: ${window.location.href}`
-            );
-            
-            window.location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
-        }
         
         // Add event listeners
         cuisineSelect.addEventListener('change', updateIngredientOptions);
@@ -188,13 +186,18 @@
             try {
                 const response = await fetch(`recipes/${recipe['File Name']}`);
                 const markdown = await response.text();
+                
+                // Create the recipe display content
                 recipeDisplay.innerHTML = `
                     <h2>${recipe['Recipe Name']}</h2>
                     ${marked.parse(markdown)}
-                    <button id="email-btn">Send to Ben!</button>
+                    <button class="email-btn">Send to Ben!</button>
                 `;
-                // Add event listener to the newly created button
-                document.getElementById('email-btn').addEventListener('click', sendToBen);
+                
+                // Add event listener to the email button
+                const emailBtn = recipeDisplay.querySelector('.email-btn');
+                emailBtn.addEventListener('click', () => sendToBen(recipe));
+                
             } catch (error) {
                 recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
             }
