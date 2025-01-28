@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Finder</title>
+    <title>Erika's Gotta Eat!</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
     <style>
@@ -57,6 +57,13 @@
         #surprise-btn:hover {
             background-color: #218838;
         }
+        #email-btn {
+            background-color: #dc3545;
+            margin-top: 20px;
+        }
+        #email-btn:hover {
+            background-color: #c82333;
+        }
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -73,7 +80,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Recipe Finder</h1>
+        <h1>Erika's Gotta Eat!</h1>
         <div class="controls">
             <select id="cuisine-select">
                 <option value="">Select Cuisine</option>
@@ -91,6 +98,7 @@
 
     <script>
         let recipes = [];
+        let currentRecipe = null;
         const cuisineSelect = document.getElementById('cuisine-select');
         const ingredientSelect = document.getElementById('ingredient-select');
         const findBtn = document.getElementById('find-btn');
@@ -153,6 +161,22 @@
         function updateFindButton() {
             findBtn.disabled = !cuisineSelect.value && !ingredientSelect.value;
         }
+
+        // Send email function
+        function sendToBen() {
+            if (!currentRecipe) return;
+            
+            const subject = encodeURIComponent(`Recipe: ${currentRecipe['Recipe Name']}`);
+            const body = encodeURIComponent(
+                `Check out this recipe I found!\n\n` +
+                `Recipe: ${currentRecipe['Recipe Name']}\n` +
+                `Cuisine: ${currentRecipe['Cuisine']}\n` +
+                `Core Ingredient: ${currentRecipe['Core Ingredient']}\n\n` +
+                `View it at: ${window.location.href}`
+            );
+            
+            window.location.href = `mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`;
+        }
         
         // Add event listeners
         cuisineSelect.addEventListener('change', updateIngredientOptions);
@@ -160,12 +184,14 @@
 
         // Load and display recipe
         async function displayRecipe(recipe) {
+            currentRecipe = recipe;
             try {
                 const response = await fetch(`recipes/${recipe['File Name']}`);
                 const markdown = await response.text();
                 recipeDisplay.innerHTML = `
                     <h2>${recipe['Recipe Name']}</h2>
                     ${marked.parse(markdown)}
+                    <button id="email-btn" onclick="sendToBen()">Send to Ben!</button>
                 `;
             } catch (error) {
                 recipeDisplay.innerHTML = '<p>Error loading recipe content.</p>';
