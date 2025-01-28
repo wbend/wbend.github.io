@@ -108,13 +108,14 @@
         // Send email function
         function sendToBen(recipe, recipeText) {
             const subject = encodeURIComponent(`Recipe: ${recipe['Recipe Name']}`);
+            const recipeUrl = `https://wbend.github.io/recipe-selector/#${encodeURIComponent(recipe['Recipe Name'])}`;
             const body = encodeURIComponent(
-                `Check out this recipe I found!\n\n` +
+                `Hello, my love. This looks tasty.\n\n` +
                 `Recipe: ${recipe['Recipe Name']}\n` +
                 `Cuisine: ${recipe['Cuisine']}\n` +
                 `Core Ingredient: ${recipe['Core Ingredient']}\n\n` +
                 `${recipeText}\n\n` +
-                `View it at: ${window.location.href}`
+                `View it at: ${recipeUrl}`
             );
             
             window.open(`mailto:daltonwb@gmail.com?subject=${subject}&body=${body}`, '_blank');
@@ -190,7 +191,6 @@
                 
                 // Create the recipe display content
                 recipeDisplay.innerHTML = `
-                    <h2>${recipe['Recipe Name']}</h2>
                     ${marked.parse(markdown)}
                     <button class="email-btn">Send to Ben!</button>
                 `;
