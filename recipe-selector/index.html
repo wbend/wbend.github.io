@@ -103,32 +103,59 @@
             .then(data => {
                 recipes = Papa.parse(data, { header: true }).data;
                 
-                // Get unique cuisines and ingredients
+                // Get unique cuisines
                 const cuisines = [...new Set(recipes.map(recipe => recipe.Cuisine))];
-                const ingredients = [...new Set(recipes.map(recipe => recipe['Core Ingredient']))];
                 
-                // Populate dropdowns
+                // Populate cuisine dropdown
                 cuisines.forEach(cuisine => {
                     const option = document.createElement('option');
                     option.value = cuisine;
                     option.textContent = cuisine;
                     cuisineSelect.appendChild(option);
                 });
-                
-                ingredients.forEach(ingredient => {
-                    const option = document.createElement('option');
-                    option.value = ingredient;
-                    option.textContent = ingredient;
-                    ingredientSelect.appendChild(option);
-                });
+
+                // Initial population of ingredients
+                updateIngredientOptions();
             });
+
+        // Update ingredient options based on selected cuisine
+        function updateIngredientOptions() {
+            // Clear current options except the default
+            while (ingredientSelect.options.length > 1) {
+                ingredientSelect.remove(1);
+            }
+            
+            // Filter recipes by selected cuisine
+            let filteredRecipes = recipes;
+            if (cuisineSelect.value) {
+                filteredRecipes = recipes.filter(recipe => recipe.Cuisine === cuisineSelect.value);
+            }
+            
+            // Get unique ingredients from filtered recipes
+            const ingredients = [...new Set(filteredRecipes.map(recipe => recipe['Core Ingredient']))];
+            
+            // Add new options
+            ingredients.forEach(ingredient => {
+                const option = document.createElement('option');
+                option.value = ingredient;
+                option.textContent = ingredient;
+                ingredientSelect.appendChild(option);
+            });
+
+            // Reset ingredient selection when cuisine changes
+            ingredientSelect.value = '';
+            
+            // Update find button state
+            updateFindButton();
+        }
 
         // Enable/disable find button based on selections
         function updateFindButton() {
             findBtn.disabled = !cuisineSelect.value && !ingredientSelect.value;
         }
         
-        cuisineSelect.addEventListener('change', updateFindButton);
+        // Add event listeners
+        cuisineSelect.addEventListener('change', updateIngredientOptions);
         ingredientSelect.addEventListener('change', updateFindButton);
 
         // Load and display recipe
@@ -176,7 +203,7 @@
             const randomRecipe = recipes[Math.floor(Math.random() * recipes.length)];
             cuisineSelect.value = '';
             ingredientSelect.value = '';
-            updateFindButton();
+            updateIngredientOptions();
             displayRecipe(randomRecipe);
         });
     </script>
