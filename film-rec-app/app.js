@@ -13,6 +13,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+
+const MOVIES_PER_PAGE = 5;
+let currentPage = 1;
+let totalMovies = 0;
+
 // Keep track of all movies and genres
 let allMovies = [];
 let allGenres = new Set();
@@ -335,24 +340,42 @@ function resetRatingUI() {
 }
 
 // Watched movies functionality
-function loadWatchedMovies() {
+function loadWatchedMovies(page = 1) {
+    currentPage = page;
     const watchedMoviesContainer = document.getElementById('watchedMovies');
     watchedMoviesContainer.innerHTML = '<h3>Loading...</h3>';
     
-    database.ref('watched').orderByChild('watchedDate').once('value', (snapshot) => {
-        watchedMoviesContainer.innerHTML = '';
-        
-        if (!snapshot.exists()) {
-            watchedMoviesContainer.innerHTML = '<p>No watched movies yet.</p>';
-            return;
-        }
-
+    // First, get the total count of movies
+    database.ref('watched').once('value', (snapshot) => {
         const movies = [];
         snapshot.forEach((childSnapshot) => {
             movies.unshift({ id: childSnapshot.key, ...childSnapshot.val() });
         });
-
-        movies.forEach(movie => {
+        
+        totalMovies = movies.length;
+        const totalPages = Math.ceil(totalMovies / MOVIES_PER_PAGE);
+        
+        if (totalMovies === 0) {
+            watchedMoviesContainer.innerHTML = '<p>No watched movies yet.</p>';
+            return;
+        }
+        
+        // Calculate the slice of movies for the current page
+        const startIndex = (page - 1) * MOVIES_PER_PAGE;
+        const endIndex = startIndex + MOVIES_PER_PAGE;
+        const pageMovies = movies.slice(startIndex, endIndex);
+        
+        // Clear container and add movies
+        watchedMoviesContainer.innerHTML = '';
+        
+        // Add total count
+        const totalCount = document.createElement('div');
+        totalCount.className = 'total-movies-count';
+        totalCount.textContent = `Total movies watched: ${totalMovies}`;
+        watchedMoviesContainer.appendChild(totalCount);
+        
+        // Add movies for current page
+        pageMovies.forEach(movie => {
             const movieCard = document.createElement('div');
             movieCard.className = 'movie-card watched-movie';
             movieCard.innerHTML = `
@@ -362,13 +385,93 @@ function loadWatchedMovies() {
                 <p>Genre: ${movie.genre || 'Unspecified'}</p>
                 <p class="rating">Rating: ${'★'.repeat(movie.rating)}${'☆'.repeat(5-movie.rating)}</p>
                 <p class="watched-date">Watched: ${new Date(movie.watchedDate).toLocaleDateString()}</p>
-                <button onclick="unarchiveMovie('${movie.id}')" class="secondary-button">
-                    Move back to watchlist
-                </button>
+                <div class="movie-actions">
+                    <button onclick="unarchiveMovie('${movie.id}')" class="secondary-button">
+                        Move back to watchlist
+                    </button>
+                    <button onclick="deleteWatchedMovie('${movie.id}')" class="delete-button">
+                        Delete
+                    </button>
+                </div>
             `;
             watchedMoviesContainer.appendChild(movieCard);
         });
+        
+        // Add pagination controls if there are multiple pages
+        if (totalPages > 1) {
+            const paginationControls = createPaginationControls(totalPages);
+            watchedMoviesContainer.appendChild(paginationControls);
+        }
     });
+}
+
+function deleteWatchedMovie(watchedId) {
+    if (confirm('Are you sure you want to delete this movie from your watched list?')) {
+        database.ref(`watched/${watchedId}`).remove()
+            .then(() => {
+                loadWatchedMovies(currentPage);
+                
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success-message floating';
+                successMsg.textContent = 'Movie successfully deleted!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error deleting movie:', error);
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'error-message floating';
+                errorMsg.textContent = 'Error deleting movie. Please try again.';
+                document.body.appendChild(errorMsg);
+                
+                setTimeout(() => {
+                    errorMsg.remove();
+                }, 3000);
+            });
+    }
+}
+
+function createPaginationControls(totalPages) {
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination-controls';
+    
+    // Previous button
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '← Previous';
+    prevButton.className = 'pagination-button';
+    prevButton.disabled = currentPage === 1;
+    prevButton.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            loadWatchedMovies(currentPage);
+        }
+    };
+    
+    // Page info
+    const pageInfo = document.createElement('span');
+    pageInfo.className = 'page-info';
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    
+    // Next button
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next →';
+    nextButton.className = 'pagination-button';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            loadWatchedMovies(currentPage);
+        }
+    };
+    
+    paginationContainer.appendChild(prevButton);
+    paginationContainer.appendChild(pageInfo);
+    paginationContainer.appendChild(nextButton);
+    
+    return paginationContainer;
 }
 
 function unarchiveMovie(watchedId) {
