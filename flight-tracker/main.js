@@ -2,19 +2,15 @@ class FlightMapVisualization {
     constructor() {
         this.map = null;
         this.flightData = null;
-        this.timeSlider = null;
-        this.isPlaying = false;
-        this.animationInterval = null;
         this.visibleFlights = new Map();
-        this.clusteringEnabled = false;
-        this.dateRange = { min: null, max: null };
+        this.routeGroups = new Map();
+        this.DISTANCE_THRESHOLD = 50; // km - threshold for considering airports "nearby"
         
         this.init();
     }
 
     async init() {
-        // Initialize map
-        this.map = L.map('map').setView([55.7558, 37.6173], 6); // Centered on Moscow
+        this.map = L.map('map').setView([55.7558, 37.6173], 6);
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -22,9 +18,8 @@ class FlightMapVisualization {
 
         try {
             await this.loadData();
-            this.setupControls();
-            this.initializeTimeSlider();
-            this.setupEventListeners();
+            this.groupSimilarFlights();
+            this.renderFlights();
         } catch (error) {
             console.error('Error initializing map:', error);
             alert('Error loading flight data. Please try again later.');
@@ -36,244 +31,181 @@ class FlightMapVisualization {
             const response = await fetch('flight_paths.geojson');
             if (!response.ok) throw new Error('Network response was not ok');
             
-            this.flightData = await response.json();
+            const text = await response.text();
+            const cleanedText = text.replace(/: ?NaN/g, ': null');
             
-            // Extract date range
-            const dates = this.flightData.features.map(f => 
-                new Date(f.properties.simplified_departure_date).getTime()
-            );
-            this.dateRange.min = Math.min(...dates);
-            this.dateRange.max = Math.max(...dates);
+            try {
+                this.flightData = JSON.parse(cleanedText);
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                throw new Error('Invalid JSON format in flight data');
+            }
             
-            // Initial visualization
-            this.updateVisualization([
-                new Date(this.dateRange.min).toISOString().split('T')[0],
-                new Date(this.dateRange.max).toISOString().split('T')[0]
-            ]);
+            this.flightData.features = this.flightData.features.filter(feature => {
+                return feature.properties && 
+                       feature.geometry &&
+                       feature.geometry.coordinates &&
+                       Array.isArray(feature.geometry.coordinates) &&
+                       feature.geometry.coordinates.length > 0 &&
+                       feature.properties.origin_coords &&
+                       feature.properties.destination_coords;
+            });
+            
         } catch (error) {
             console.error('Error loading GeoJSON:', error);
             throw error;
         }
     }
 
-    setupControls() {
-        const toggle = document.getElementById('cluster-toggle');
-        toggle.addEventListener('change', (e) => {
-            this.clusteringEnabled = e.target.checked;
-            this.updateVisualization(this.timeSlider.noUiSlider.get());
-        });
+    calculateDistance(coords1, coords2) {
+        const R = 6371; // Earth's radius in km
+        const [lat1, lon1] = coords1;
+        const [lat2, lon2] = coords2;
+        
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                 Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                 Math.sin(dLon/2) * Math.sin(dLon/2);
+        
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
     }
 
-    initializeTimeSlider() {
-        const slider = document.getElementById('time-slider');
+    findExistingRoute(originCoords, destCoords) {
+        for (let [routeKey, flights] of this.routeGroups.entries()) {
+            const existingFlight = flights[0];
+            const existingOrigin = existingFlight.properties.origin_coords;
+            const existingDest = existingFlight.properties.destination_coords;
+            
+            const originDistance = this.calculateDistance(originCoords, existingOrigin);
+            const destDistance = this.calculateDistance(destCoords, existingDest);
+            
+            if (originDistance <= this.DISTANCE_THRESHOLD && 
+                destDistance <= this.DISTANCE_THRESHOLD) {
+                return routeKey;
+            }
+        }
+        return null;
+    }
+
+    groupSimilarFlights() {
+        this.routeGroups.clear();
         
-        noUiSlider.create(slider, {
-            start: [this.dateRange.min, this.dateRange.max],
-            connect: true,
-            range: {
-                'min': this.dateRange.min,
-                'max': this.dateRange.max
-            },
-            step: 86400000, // One day in milliseconds
-            format: {
-                to: value => new Date(Number(value)).toISOString().split('T')[0],
-                from: value => new Date(value).getTime()
+        this.flightData.features.forEach(feature => {
+            const originCoords = feature.properties.origin_coords;
+            const destCoords = feature.properties.destination_coords;
+            
+            if (!originCoords || !destCoords) return;
+            
+            // Try to find an existing similar route
+            const existingRouteKey = this.findExistingRoute(originCoords, destCoords);
+            
+            if (existingRouteKey) {
+                // Add to existing route group
+                this.routeGroups.get(existingRouteKey).push(feature);
+            } else {
+                // Create new route group
+                const newRouteKey = `${feature.properties.origin_city}-${feature.properties.destination_city}-${this.routeGroups.size}`;
+                this.routeGroups.set(newRouteKey, [feature]);
             }
         });
-
-        this.timeSlider = slider;
-        
-        slider.noUiSlider.on('update', (values) => {
-            this.updateVisualization(values);
-            document.getElementById('current-date').textContent = 
-                `${values[0]} to ${values[1]}`;
-        });
     }
 
-    setupEventListeners() {
-        const playButton = document.getElementById('play-pause');
-        playButton.addEventListener('click', () => this.togglePlayPause());
-    }
-
-    togglePlayPause() {
-        this.isPlaying = !this.isPlaying;
-        const button = document.getElementById('play-pause');
-        
-        if (this.isPlaying) {
-            button.textContent = '⏸️ Pause';
-            this.startAnimation();
-        } else {
-            button.textContent = '▶️ Play';
-            this.stopAnimation();
-        }
-    }
-
-    startAnimation() {
-        if (this.animationInterval) return;
-        
-        const step = 86400000; // One day in milliseconds
-        this.animationInterval = setInterval(() => {
-            const [start, end] = this.timeSlider.noUiSlider.get().map(d => new Date(d).getTime());
-            const newStart = start + step;
-            const newEnd = end + step;
+    renderFlights() {
+        this.routeGroups.forEach((flights, routeKey) => {
+            const coordinates = flights[0].geometry.coordinates
+                .filter(coord => Array.isArray(coord) && coord.length >= 2)
+                .map(coord => [coord[1], coord[0]]);
             
-            if (newEnd > this.dateRange.max) {
-                this.stopAnimation();
-                return;
-            }
-            
-            this.timeSlider.noUiSlider.set([
-                new Date(newStart).toISOString().split('T')[0],
-                new Date(newEnd).toISOString().split('T')[0]
-            ]);
-        }, 1000);
-    }
+            if (coordinates.length < 2) return;
 
-    stopAnimation() {
-        if (this.animationInterval) {
-            clearInterval(this.animationInterval);
-            this.animationInterval = null;
-        }
-        this.isPlaying = false;
-        document.getElementById('play-pause').textContent = '▶️ Play';
-    }
-
-    updateVisualization(dateRange) {
-        // Clear existing flights
-        this.visibleFlights.forEach(layer => this.map.removeLayer(layer));
-        this.visibleFlights.clear();
-
-        const [startDate, endDate] = dateRange.map(d => new Date(d).getTime());
-        
-        // Filter flights within date range
-        const visibleFeatures = this.flightData.features.filter(f => {
-            const flightDate = new Date(f.properties.simplified_departure_date).getTime();
-            return flightDate >= startDate && flightDate <= endDate;
-        });
-
-        if (this.clusteringEnabled) {
-            this.renderClusteredFlights(visibleFeatures);
-        } else {
-            this.renderIndividualFlights(visibleFeatures);
-        }
-    }
-
-    renderIndividualFlights(features) {
-        features.forEach(feature => {
-            const coordinates = feature.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-            
-            const line = L.polyline(coordinates, {
-                color: '#4a90e2',
-                weight: 2,
-                opacity: 0.6
-            });
-
-            // Add hover effect
-            line.on('mouseover', (e) => {
-                e.target.setStyle({
-                    weight: 4,
-                    opacity: 1
-                });
-            }).on('mouseout', (e) => {
-                e.target.setStyle({
-                    weight: 2,
-                    opacity: 0.6
-                });
-            });
-
-            this.addFlightPopup(line, feature.properties);
-            line.addTo(this.map);
-            this.visibleFlights.set(feature.properties.fa_flight_id, line);
-        });
-    }
-
-    renderClusteredFlights(features) {
-        // Group flights by origin-destination pairs
-        const flightGroups = new Map();
-        
-        features.forEach(feature => {
-            const key = `${feature.properties.origin_code}-${feature.properties.destination_code}`;
-            if (!flightGroups.has(key)) {
-                flightGroups.set(key, []);
-            }
-            flightGroups.get(key).push(feature);
-        });
-
-        flightGroups.forEach((flights, key) => {
             const baseWeight = 2;
-            const weight = Math.min(baseWeight + Math.log2(flights.length), 10);
+            const weight = Math.min(baseWeight + Math.log2(flights.length), 8);
             
-            const coordinates = flights[0].geometry.coordinates.map(coord => [coord[1], coord[0]]);
             const line = L.polyline(coordinates, {
                 color: '#4a90e2',
                 weight: weight,
                 opacity: 0.6
             });
 
-            // Add hover effect
             line.on('mouseover', (e) => {
                 e.target.setStyle({
+                    weight: weight + 2,
                     opacity: 1
                 });
             }).on('mouseout', (e) => {
                 e.target.setStyle({
+                    weight: weight,
                     opacity: 0.6
                 });
             });
 
-            const popupContent = this.createClusterPopup(flights);
-            line.bindPopup(popupContent);
-            
+            this.addRoutePopup(line, flights);
             line.addTo(this.map);
-            this.visibleFlights.set(key, line);
+            this.visibleFlights.set(routeKey, line);
         });
     }
 
-    addFlightPopup(line, properties) {
+    addRoutePopup(line, flights) {
+        const sortedFlights = [...flights].sort((a, b) => {
+            return new Date(a.properties.simplified_departure_date) - 
+                   new Date(b.properties.simplified_departure_date);
+        });
+
+        const firstFlight = sortedFlights[0].properties;
+        const flightCount = flights.length;
+        const dateRange = this.getDateRange(sortedFlights);
+        
+        // Collect unique airports used
+        const origins = new Set(flights.map(f => `${f.properties.origin_city} (${f.properties.origin_code})`));
+        const destinations = new Set(flights.map(f => `${f.properties.destination_city} (${f.properties.destination_code})`));
+        
         const popupContent = `
             <div class="flight-info">
-                <h4>Flight ${properties.ident}</h4>
-                <p><strong>Registration:</strong> ${properties.registration}</p>
-                <p><strong>Date:</strong> ${properties.simplified_departure_date}</p>
-                <p><strong>Origin:</strong> ${properties.origin_city} (${properties.origin_coords.join(', ')})</p>
-                <p><strong>Destination:</strong> ${properties.destination_city} (${properties.destination_coords.join(', ')})</p>
-                <p><strong>Status:</strong> ${properties.status}</p>
-                ${properties.route_distance ? `<p><strong>Distance:</strong> ${properties.route_distance} km</p>` : ''}
+                <h4>${flightCount} ${flightCount === 1 ? 'Flight' : 'Flights'} on this Route</h4>
+                <p><strong>Origins:</strong> ${Array.from(origins).join(', ')}</p>
+                <p><strong>Destinations:</strong> ${Array.from(destinations).join(', ')}</p>
+                <p><strong>Date Range:</strong> ${dateRange}</p>
+                <p><strong>Route Distance:</strong> ${firstFlight.route_distance ? `${firstFlight.route_distance} km` : 'N/A'}</p>
+                <p><strong>Flight(s):</strong></p>
+                ${this.getFlightsHTML(sortedFlights.slice(-5).reverse())}
             </div>
         `;
         
         line.bindPopup(popupContent);
     }
 
-    createClusterPopup(flights) {
-        const count = flights.length;
-        const sample = flights[0].properties;
-        
-        return `
-            <div class="flight-info">
-                <h4>${count} Flights on this Route</h4>
-                <p><strong>Origin:</strong> ${sample.origin_city}</p>
-                <p><strong>Destination:</strong> ${sample.destination_city}</p>
-                <p><strong>Date Range:</strong> ${this.getDateRange(flights)}</p>
-                <p><strong>Flight Numbers:</strong> ${this.getUniqueFlightNumbers(flights)}</p>
-            </div>
-        `;
-    }
-
     getDateRange(flights) {
-        const dates = flights.map(f => new Date(f.properties.simplified_departure_date));
-        const minDate = new Date(Math.min(...dates)).toISOString().split('T')[0];
-        const maxDate = new Date(Math.max(...dates)).toISOString().split('T')[0];
-        return `${minDate} to ${maxDate}`;
+        const dates = flights.map(f => new Date(f.properties.simplified_departure_date))
+                           .filter(date => !isNaN(date.getTime()));
+        
+        if (dates.length === 0) return 'N/A';
+        
+        const minDate = new Date(Math.min(...dates));
+        const maxDate = new Date(Math.max(...dates));
+        
+        return `${minDate.toLocaleDateString()} to ${maxDate.toLocaleDateString()}`;
     }
 
-    getUniqueFlightNumbers(flights) {
-        const numbers = [...new Set(flights.map(f => f.properties.ident))];
-        return numbers.slice(0, 5).join(', ') + (numbers.length > 5 ? '...' : '');
+    getFlightsHTML(flights) {
+        return flights.map(flight => {
+            const props = flight.properties;
+            return `
+                <div class="recent-flight">
+                    <p class="flight-detail">
+                        ${new Date(props.simplified_departure_date).toLocaleDateString()} - 
+                        ${props.origin_code} → ${props.destination_code}
+                        ${props.ident ? ` - Flight ${props.ident}` : ''}
+                        ${props.registration ? ` (${props.registration})` : ''}
+                    </p>
+                </div>
+            `;
+        }).join('');
     }
 }
 
-// Initialize the visualization when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     new FlightMapVisualization();
 });
