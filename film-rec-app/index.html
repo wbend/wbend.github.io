@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Film Recommendations App - Login">
     <title>Film Recommendations - Login</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    
     <style>
         :root {
             --color-primary: #3498db;
@@ -95,19 +101,41 @@
     </div>
 
     <script>
-        // Check if already authenticated
-        if (localStorage.getItem('authenticated') === 'true') {
-            window.location.href = 'app.html';
-        }
+        // Firebase initialization
+        const firebaseConfig = {
+            apiKey: "AIzaSyBoFWaIbuzfn6hLH84n1HxAebcG16O9UYQ",
+            authDomain: "film-rec-app.firebaseapp.com",
+            databaseURL: "https://film-rec-app-default-rtdb.firebaseio.com",
+            projectId: "film-rec-app",
+            storageBucket: "film-rec-app.firebasestorage.app",
+            messagingSenderId: "626874820258",
+            appId: "1:626874820258:web:85d0834f6e682386a299fb",
+            measurementId: "G-LVLYMVNGQD"
+        };
 
-        function handleLogin(event) {
+        firebase.initializeApp(firebaseConfig);
+
+        // Check if already authenticated
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = 'app.html';
+            }
+        });
+
+        async function handleLogin(event) {
             event.preventDefault();
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
             
+            // Check if password matches before attempting anonymous sign in
             if (password === 'mina') {
-                localStorage.setItem('authenticated', 'true');
-                window.location.href = 'app.html';
+                try {
+                    await firebase.auth().signInAnonymously();
+                    // Successful login will trigger onAuthStateChanged and redirect
+                } catch (error) {
+                    errorMessage.textContent = 'Authentication error. Please try again.';
+                    errorMessage.style.display = 'block';
+                }
             } else {
                 errorMessage.textContent = 'Incorrect password';
                 errorMessage.style.display = 'block';

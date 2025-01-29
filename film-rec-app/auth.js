@@ -1,14 +1,19 @@
 // Check authentication status
 function checkAuth() {
-    if (localStorage.getItem('authenticated') !== 'true') {
-        window.location.href = 'index.html';
-    }
+    firebase.auth().onAuthStateChanged((user) => {
+        if (!user) {
+            window.location.href = 'index.html';
+        }
+    });
 }
 
 // Add logout functionality
 function logout() {
-    localStorage.removeItem('authenticated');
-    window.location.href = 'index.html';
+    firebase.auth().signOut().then(() => {
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.error('Error signing out:', error);
+    });
 }
 
 // Check authentication when page loads
