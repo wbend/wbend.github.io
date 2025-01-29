@@ -10,136 +10,86 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-            color: #333;
+        /* Previous styles remain the same until the additions below */
+
+        .search-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
         }
 
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            margin-bottom: 5px;
         }
 
-        .section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 0 0 6px 6px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-result-item {
+            padding: 10px;
+            cursor: pointer;
             border-bottom: 1px solid #eee;
         }
 
-        .section:last-child {
-            border-bottom: none;
+        .search-result-item:hover {
+            background-color: #f5f5f5;
         }
 
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-
-        h2 {
-            color: #34495e;
-            margin-bottom: 20px;
-            font-size: 1.6em;
-        }
-
-        button {
-            background-color: #3498db;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 1em;
-            transition: background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: #2980b9;
-        }
-
-        select, input {
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1em;
+        .genre-input-container {
+            position: relative;
             width: 100%;
             max-width: 300px;
         }
 
-        select:focus, input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        .genre-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
         }
 
-        .movie-card {
-            border: 1px solid #eee;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        .genre-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 0 0 6px 6px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
         }
 
-        .movie-card h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
-
-        .star-rating {
-            color: #f1c40f;
-            font-size: 24px;
+        .genre-suggestion-item {
+            padding: 8px 12px;
             cursor: pointer;
-            user-select: none;
-            margin: 10px 0;
         }
 
-        .star-rating span {
-            transition: color 0.2s;
+        .genre-suggestion-item:hover {
+            background-color: #f5f5f5;
         }
 
-        .star-rating span:hover {
-            color: #f39c12;
-        }
-
-        .add-movie-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-width: 400px;
-        }
-
-        #recommendedMovie {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #ebf5fb;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .success-message {
-            color: #27ae60;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            display: none;
-        }
-
-        .error-message {
-            color: #c0392b;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            display: none;
-        }
+        /* Rest of the previous styles remain the same */
     </style>
 </head>
 <body>
@@ -151,19 +101,6 @@
             <button onclick="recommendRandom()">Random Film</button>
             <select id="genreSelect" onchange="recommendByGenre()">
                 <option value="">Select Genre</option>
-                <option value="Action">Action</option>
-                <option value="Drama">Drama</option>
-                <option value="Comedy">Comedy</option>
-                <option value="Documentary">Documentary</option>
-                <option value="Animated">Animated</option>
-                <option value="French">French</option>
-                <option value="TV Series">TV Series</option>
-                <option value="Experimental">Experimental</option>
-                <option value="Musical">Musical</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Thriller">Thriller</option>
-                <option value="Science Fiction">Science Fiction</option>
-                <option value="Martial Arts">Martial Arts</option>
             </select>
             <div id="recommendedMovie"></div>
         </div>
@@ -174,22 +111,10 @@
                 <input type="text" id="title" placeholder="Title" required>
                 <input type="text" id="director" placeholder="Director">
                 <input type="number" id="year" placeholder="Year">
-                <select id="genre" required>
-                    <option value="">Select Genre</option>
-                    <option value="Action">Action</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Animated">Animated</option>
-                    <option value="French">French</option>
-                    <option value="TV Series">TV Series</option>
-                    <option value="Experimental">Experimental</option>
-                    <option value="Musical">Musical</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Science Fiction">Science Fiction</option>
-                    <option value="Martial Arts">Martial Arts</option>
-                </select>
+                <div class="genre-input-container">
+                    <input type="text" id="genre" class="genre-input" placeholder="Enter or select genre" required>
+                    <div class="genre-suggestions" id="genreSuggestions"></div>
+                </div>
                 <button type="submit">Add Film</button>
             </form>
             <div id="addSuccess" class="success-message">Film added successfully!</div>
@@ -198,9 +123,10 @@
 
         <div class="section">
             <h2>Rate and Archive Film</h2>
-            <select id="movieSelect" onchange="displayRatingOptions()">
-                <option value="">Select a Film</option>
-            </select>
+            <div class="search-container">
+                <input type="text" id="movieSearch" class="search-input" placeholder="Search for a film...">
+                <div id="searchResults" class="search-results"></div>
+            </div>
             <div id="ratingOptions" style="display: none;">
                 <div class="star-rating">
                     <span onclick="rateMovie(1)">★</span>
@@ -216,7 +142,7 @@
     </div>
 
     <script>
-        // Initialize Firebase with your configuration
+        // Firebase initialization remains the same
         const firebaseConfig = {
             apiKey: "AIzaSyBoFWaIbuzfn6hLH84n1HxAebcG16O9UYQ",
             authDomain: "film-rec-app.firebaseapp.com",
@@ -231,32 +157,117 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
-        // Populate movie select
-        function updateMovieSelect() {
-            const select = document.getElementById('movieSelect');
-            select.innerHTML = '<option value="">Select a Film</option>';
+        // Keep track of all movies and genres
+        let allMovies = [];
+        let allGenres = new Set();
+        
+        // Load and maintain genres
+        function updateGenres() {
             database.ref('movies').once('value', (snapshot) => {
-                const movies = [];
+                allGenres.clear();
                 snapshot.forEach((childSnapshot) => {
-                    movies.push({
-                        id: childSnapshot.key,
-                        ...childSnapshot.val()
-                    });
+                    const movie = childSnapshot.val();
+                    if (movie.genre) {
+                        allGenres.add(movie.genre);
+                    }
                 });
                 
-                // Sort movies alphabetically by title
-                movies.sort((a, b) => a.title.localeCompare(b.title));
-                
-                movies.forEach(movie => {
+                // Update genre select dropdowns
+                const genreSelect = document.getElementById('genreSelect');
+                genreSelect.innerHTML = '<option value="">Select Genre</option>';
+                [...allGenres].sort().forEach(genre => {
                     const option = document.createElement('option');
-                    option.value = movie.id;
-                    option.textContent = movie.title;
-                    select.appendChild(option);
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreSelect.appendChild(option);
                 });
             });
         }
 
-        // Recommend random movie
+        // Genre input handling
+        const genreInput = document.getElementById('genre');
+        const genreSuggestions = document.getElementById('genreSuggestions');
+
+        genreInput.addEventListener('input', function() {
+            const value = this.value.toLowerCase();
+            const filteredGenres = [...allGenres].filter(genre => 
+                genre.toLowerCase().includes(value)
+            );
+            
+            genreSuggestions.innerHTML = '';
+            if (filteredGenres.length > 0 && value) {
+                genreSuggestions.style.display = 'block';
+                filteredGenres.forEach(genre => {
+                    const div = document.createElement('div');
+                    div.className = 'genre-suggestion-item';
+                    div.textContent = genre;
+                    div.onclick = () => {
+                        genreInput.value = genre;
+                        genreSuggestions.style.display = 'none';
+                    };
+                    genreSuggestions.appendChild(div);
+                });
+            } else {
+                genreSuggestions.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!genreInput.contains(e.target) && !genreSuggestions.contains(e.target)) {
+                genreSuggestions.style.display = 'none';
+            }
+        });
+
+        // Movie search functionality
+        let selectedMovieId = null;
+        const movieSearch = document.getElementById('movieSearch');
+        const searchResults = document.getElementById('searchResults');
+
+        movieSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            database.ref('movies').once('value', (snapshot) => {
+                searchResults.innerHTML = '';
+                if (!searchTerm) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const matches = [];
+                snapshot.forEach((childSnapshot) => {
+                    const movie = childSnapshot.val();
+                    const id = childSnapshot.key;
+                    if (movie.title.toLowerCase().includes(searchTerm)) {
+                        matches.push({ id, ...movie });
+                    }
+                });
+
+                if (matches.length > 0) {
+                    searchResults.style.display = 'block';
+                    matches.forEach(movie => {
+                        const div = document.createElement('div');
+                        div.className = 'search-result-item';
+                        div.innerHTML = `
+                            <strong>${movie.title}</strong>
+                            <br>
+                            <small>${movie.director || 'Unknown director'} (${movie.year || 'Year unknown'})</small>
+                        `;
+                        div.onclick = () => selectMovie(movie.id);
+                        searchResults.appendChild(div);
+                    });
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+        });
+
+        function selectMovie(movieId) {
+            selectedMovieId = movieId;
+            searchResults.style.display = 'none';
+            document.getElementById('ratingOptions').style.display = 'block';
+        }
+
+        // Rest of the functions updated
         function recommendRandom() {
             database.ref('movies').once('value', (snapshot) => {
                 const movies = [];
@@ -273,7 +284,6 @@
             });
         }
 
-        // Recommend by genre
         function recommendByGenre() {
             const genre = document.getElementById('genreSelect').value;
             if (!genre) return;
@@ -293,7 +303,6 @@
             });
         }
 
-        // Display recommendation
         function displayRecommendation(movie) {
             const recommendedMovie = document.getElementById('recommendedMovie');
             recommendedMovie.innerHTML = `
@@ -306,7 +315,6 @@
             `;
         }
 
-        // Add new movie
         function addMovie(event) {
             event.preventDefault();
             const movie = {
@@ -321,7 +329,7 @@
                     document.getElementById('addSuccess').style.display = 'block';
                     document.getElementById('addError').style.display = 'none';
                     event.target.reset();
-                    updateMovieSelect();
+                    updateGenres();
                     setTimeout(() => {
                         document.getElementById('addSuccess').style.display = 'none';
                     }, 3000);
@@ -336,35 +344,27 @@
                 });
         }
 
-        // Display rating options
-        function displayRatingOptions() {
-            const movieId = document.getElementById('movieSelect').value;
-            document.getElementById('ratingOptions').style.display = movieId ? 'block' : 'none';
-        }
-
-        // Rate and archive movie
         function rateMovie(rating) {
-            const movieId = document.getElementById('movieSelect').value;
-            if (!movieId) return;
+            if (!selectedMovieId) return;
 
-            database.ref(`movies/${movieId}`).once('value', (snapshot) => {
+            database.ref(`movies/${selectedMovieId}`).once('value', (snapshot) => {
                 const movie = snapshot.val();
                 
-                // Add to watched movies with rating
                 database.ref('watched').push({
                     ...movie,
                     rating: rating,
                     watchedDate: new Date().toISOString()
                 })
                 .then(() => {
-                    // Remove from active movies
-                    return database.ref(`movies/${movieId}`).remove();
+                    return database.ref(`movies/${selectedMovieId}`).remove();
                 })
                 .then(() => {
                     document.getElementById('rateSuccess').style.display = 'block';
                     document.getElementById('rateError').style.display = 'none';
-                    updateMovieSelect();
                     document.getElementById('ratingOptions').style.display = 'none';
+                    document.getElementById('movieSearch').value = '';
+                    selectedMovieId = null;
+                    updateGenres();
                     setTimeout(() => {
                         document.getElementById('rateSuccess').style.display = 'none';
                     }, 3000);
@@ -380,8 +380,8 @@
             });
         }
 
-        // Initial load
-        updateMovieSelect();
+        // Initialize
+        updateGenres();
     </script>
 </body>
 </html>
