@@ -4,7 +4,9 @@ class FlightMapVisualization {
         this.flightData = null;
         this.visibleFlights = new Map();
         this.routeGroups = new Map();
-        this.DISTANCE_THRESHOLD = 50; // km - threshold for considering airports "nearby"
+        this.DISTANCE_THRESHOLD = 50;
+        this.modal = null;
+        this.currentFlights = null;
         
         this.init();
     }
@@ -16,14 +18,84 @@ class FlightMapVisualization {
             attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);
 
+        this.setupModal();
+
         try {
             await this.loadData();
+            this.setupDistanceControls();
             this.groupSimilarFlights();
             this.renderFlights();
         } catch (error) {
             console.error('Error initializing map:', error);
             alert('Error loading flight data. Please try again later.');
         }
+    }
+
+    setupModal() {
+        this.modal = document.getElementById('flight-modal');
+        const closeButton = document.querySelector('.close-modal');
+        
+        closeButton.onclick = () => {
+            this.modal.style.display = 'none';
+        };
+        
+        window.onclick = (event) => {
+            if (event.target === this.modal) {
+                this.modal.style.display = 'none';
+            }
+        };
+    }
+
+    showAllFlights(flights) {
+        this.currentFlights = flights;
+        const modalBody = this.modal.querySelector('.modal-body');
+        
+        const sortedFlights = [...flights].sort((a, b) => {
+            return new Date(a.properties.simplified_departure_date) - 
+                   new Date(b.properties.simplified_departure_date);
+        });
+
+        const firstFlight = sortedFlights[0].properties;
+        
+        // Update modal header
+        const modalTitle = this.modal.querySelector('.modal-header h2');
+        modalTitle.textContent = `${flights.length} Flights: ${firstFlight.origin_city} to ${firstFlight.destination_city}`;
+        
+        // Generate flight list HTML
+        const flightListHTML = sortedFlights.map(flight => {
+            const props = flight.properties;
+            return `
+                <div class="flight-list-item">
+                    <strong>${new Date(props.simplified_departure_date).toLocaleDateString()}</strong> - 
+                    ${props.origin_code} → ${props.destination_code}
+                    ${props.ident ? ` - Flight ${props.ident}` : ''}
+                    ${props.registration ? ` (${props.registration})` : ''}
+                </div>
+            `;
+        }).join('');
+        
+        modalBody.innerHTML = flightListHTML;
+        this.modal.style.display = 'block';
+    }
+
+    setupDistanceControls() {
+        const radioButtons = document.querySelectorAll('input[name="distance"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                this.DISTANCE_THRESHOLD = parseInt(e.target.value);
+                this.updateVisualization();
+            });
+        });
+    }
+
+    updateVisualization() {
+        // Clear existing flights
+        this.visibleFlights.forEach(layer => this.map.removeLayer(layer));
+        this.visibleFlights.clear();
+        
+        // Regroup and render flights with new threshold
+        this.groupSimilarFlights();
+        this.renderFlights();
     }
 
     async loadData() {
@@ -74,6 +146,9 @@ class FlightMapVisualization {
     }
 
     findExistingRoute(originCoords, destCoords) {
+        // If grouping is disabled (threshold = 0), don't try to find existing routes
+        if (this.DISTANCE_THRESHOLD === 0) return null;
+        
         for (let [routeKey, flights] of this.routeGroups.entries()) {
             const existingFlight = flights[0];
             const existingOrigin = existingFlight.properties.origin_coords;
@@ -99,16 +174,22 @@ class FlightMapVisualization {
             
             if (!originCoords || !destCoords) return;
             
-            // Try to find an existing similar route
-            const existingRouteKey = this.findExistingRoute(originCoords, destCoords);
-            
-            if (existingRouteKey) {
-                // Add to existing route group
-                this.routeGroups.get(existingRouteKey).push(feature);
+            if (this.DISTANCE_THRESHOLD === 0) {
+                // When grouping is disabled, each flight gets its own route
+                const uniqueKey = `${feature.properties.ident}-${feature.properties.simplified_departure_date}`;
+                this.routeGroups.set(uniqueKey, [feature]);
             } else {
-                // Create new route group
-                const newRouteKey = `${feature.properties.origin_city}-${feature.properties.destination_city}-${this.routeGroups.size}`;
-                this.routeGroups.set(newRouteKey, [feature]);
+                // Try to find an existing similar route
+                const existingRouteKey = this.findExistingRoute(originCoords, destCoords);
+                
+                if (existingRouteKey) {
+                    // Add to existing route group
+                    this.routeGroups.get(existingRouteKey).push(feature);
+                } else {
+                    // Create new route group
+                    const newRouteKey = `${feature.properties.origin_city}-${feature.properties.destination_city}-${this.routeGroups.size}`;
+                    this.routeGroups.set(newRouteKey, [feature]);
+                }
             }
         });
     }
@@ -122,7 +203,9 @@ class FlightMapVisualization {
             if (coordinates.length < 2) return;
 
             const baseWeight = 2;
-            const weight = Math.min(baseWeight + Math.log2(flights.length), 8);
+            const weight = this.DISTANCE_THRESHOLD === 0 ? 
+                          baseWeight : 
+                          Math.min(baseWeight + Math.log2(flights.length), 8);
             
             const line = L.polyline(coordinates, {
                 color: '#4a90e2',
@@ -158,7 +241,6 @@ class FlightMapVisualization {
         const flightCount = flights.length;
         const dateRange = this.getDateRange(sortedFlights);
         
-        // Collect unique airports used
         const origins = new Set(flights.map(f => `${f.properties.origin_city} (${f.properties.origin_code})`));
         const destinations = new Set(flights.map(f => `${f.properties.destination_city} (${f.properties.destination_code})`));
         
@@ -169,8 +251,14 @@ class FlightMapVisualization {
                 <p><strong>Destinations:</strong> ${Array.from(destinations).join(', ')}</p>
                 <p><strong>Date Range:</strong> ${dateRange}</p>
                 <p><strong>Route Distance:</strong> ${firstFlight.route_distance ? `${firstFlight.route_distance} km` : 'N/A'}</p>
+                ${this.DISTANCE_THRESHOLD > 0 ? '<p><strong>Grouping Distance:</strong> ' + this.DISTANCE_THRESHOLD + ' km</p>' : ''}
                 <p><strong>Flight(s):</strong></p>
                 ${this.getFlightsHTML(sortedFlights.slice(-5).reverse())}
+                ${flightCount > 5 ? `
+                    <button class="see-all-button" onclick="window.flightViz.showAllFlights(${JSON.stringify(flights)})">
+                        See All ${flightCount} Flights
+                    </button>
+                ` : ''}
             </div>
         `;
         
@@ -206,6 +294,7 @@ class FlightMapVisualization {
     }
 }
 
+// Initialize the visualization and make it globally available for the modal
 document.addEventListener('DOMContentLoaded', () => {
-    new FlightMapVisualization();
+    window.flightViz = new FlightMapVisualization();
 });

@@ -17,6 +17,27 @@
         <div class="controls">
             <div class="control-panel">
                 <h3>Flight Path Visualization</h3>
+                <div class="grouping-controls">
+                    <p>Route Grouping Distance:</p>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="distance" value="0">
+                            No Grouping
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="distance" value="50" checked>
+                            50 km
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="distance" value="100">
+                            100 km
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="distance" value="200">
+                            200 km
+                        </label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -26,5 +47,17 @@
     
     <!-- Custom JS -->
     <script src="main.js"></script>
+    <!-- Modal for full flight list -->
+    <div id="flight-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Complete Flight List</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Flight list will be inserted here -->
+            </div>
+        </div>
+    </div>
 </body>
 </html>
