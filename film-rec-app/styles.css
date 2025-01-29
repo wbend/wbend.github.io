@@ -309,3 +309,15 @@ select:focus, input:focus {
         justify-content: center;
     }
 }
+
+.selected-movie-title {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}
