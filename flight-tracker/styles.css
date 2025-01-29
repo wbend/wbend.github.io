@@ -1,3 +1,6 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
 /* Reset and base styles */
 * {
     margin: 0;
@@ -5,10 +8,21 @@
     box-sizing: border-box;
 }
 
+/* Base font settings */
+:root {
+    /* DM Sans is similar to Circular Std */
+    --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Lora is similar to Lyon */
+    --font-secondary: 'Lora', Georgia, serif;
+    /* Inter is similar to Platform */
+    --font-tertiary: 'Inter', system-ui, sans-serif;
+}
+
 html, body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    font-family: var(--font-primary);
 }
 
 #map-container {
@@ -40,6 +54,8 @@ html, body {
 .control-panel h3 {
     margin-bottom: 15px;
     font-size: 16px;
+    font-family: var(--font-secondary);
+    font-weight: 500;
     color: #333;
 }
 
@@ -51,6 +67,7 @@ html, body {
 .grouping-controls p {
     margin-bottom: 8px;
     font-size: 14px;
+    font-family: var(--font-tertiary);
     color: #555;
 }
 
@@ -65,6 +82,7 @@ html, body {
     align-items: center;
     gap: 8px;
     font-size: 14px;
+    font-family: var(--font-primary);
     color: #444;
     cursor: pointer;
     padding: 4px;
@@ -84,6 +102,7 @@ html, body {
 .leaflet-popup-content {
     margin: 10px;
     max-width: 300px;
+    font-family: var(--font-primary);
 }
 
 .flight-info {
@@ -93,6 +112,8 @@ html, body {
 
 .flight-info h4 {
     margin-bottom: 8px;
+    font-family: var(--font-secondary);
+    font-weight: 500;
     color: #333;
 }
 
@@ -109,6 +130,7 @@ html, body {
 }
 
 .flight-detail {
+    font-family: var(--font-tertiary);
     font-size: 13px;
     margin: 0 !important;
 }
@@ -149,7 +171,9 @@ html, body {
 
 .modal-header h2 {
     margin: 0;
+    font-family: var(--font-secondary);
     font-size: 18px;
+    font-weight: 500;
     color: #333;
 }
 
@@ -157,6 +181,7 @@ html, body {
     padding: 20px;
     overflow-y: auto;
     flex-grow: 1;
+    font-family: var(--font-primary);
 }
 
 .close-modal {
@@ -182,7 +207,9 @@ html, body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: var(--font-primary);
     font-size: 13px;
+    font-weight: 500;
     transition: background-color 0.2s;
 }
 
@@ -193,6 +220,7 @@ html, body {
 .flight-list-item {
     padding: 8px;
     border-bottom: 1px solid #eee;
+    font-family: var(--font-tertiary);
     font-size: 14px;
 }
 

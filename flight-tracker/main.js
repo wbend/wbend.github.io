@@ -8,6 +8,17 @@ class FlightMapVisualization {
         this.modal = null;
         this.currentFlights = null;
         
+        // Add click handler for "See All Flights" buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('see-all-button')) {
+                const routeKey = e.target.dataset.routeKey;
+                const flights = this.routeGroups.get(routeKey);
+                if (flights) {
+                    this.showAllFlights(flights);
+                }
+            }
+        });
+        
         this.init();
     }
 
@@ -175,8 +186,8 @@ class FlightMapVisualization {
             if (!originCoords || !destCoords) return;
             
             if (this.DISTANCE_THRESHOLD === 0) {
-                // When grouping is disabled, each flight gets its own route
-                const uniqueKey = `${feature.properties.ident}-${feature.properties.simplified_departure_date}`;
+                // Ensure unique key even if ident is missing
+                const uniqueKey = `${feature.properties.origin_code}-${feature.properties.destination_code}-${feature.properties.simplified_departure_date}-${feature.properties.registration || 'unknown'}`;
                 this.routeGroups.set(uniqueKey, [feature]);
             } else {
                 // Try to find an existing similar route
@@ -225,13 +236,13 @@ class FlightMapVisualization {
                 });
             });
 
-            this.addRoutePopup(line, flights);
+            this.addRoutePopup(line, flights, routeKey);
             line.addTo(this.map);
             this.visibleFlights.set(routeKey, line);
         });
     }
 
-    addRoutePopup(line, flights) {
+    addRoutePopup(line, flights, routeKey) {
         const sortedFlights = [...flights].sort((a, b) => {
             return new Date(a.properties.simplified_departure_date) - 
                    new Date(b.properties.simplified_departure_date);
@@ -255,7 +266,7 @@ class FlightMapVisualization {
                 <p><strong>Flight(s):</strong></p>
                 ${this.getFlightsHTML(sortedFlights.slice(-5).reverse())}
                 ${flightCount > 5 ? `
-                    <button class="see-all-button" onclick="window.flightViz.showAllFlights(${JSON.stringify(flights)})">
+                    <button class="see-all-button" data-route-key="${routeKey}">
                         See All ${flightCount} Flights
                     </button>
                 ` : ''}
