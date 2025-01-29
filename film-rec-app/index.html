@@ -18,22 +18,26 @@
 
         <div class="section">
             <h2>Get Recommendation</h2>
-            <button onclick="recommendRandom()">Random Film</button>
-            <select id="genreSelect" onchange="recommendByGenre()">
-                <option value="">Select Genre</option>
-            </select>
+            <div class="button-container">
+                <button onclick="recommendRandom()">Random Film</button>
+                <select id="genreSelect" onchange="recommendByGenre()" class="mobile-friendly-select">
+                    <option value="">Select Genre</option>
+                </select>
+            </div>
             <div id="recommendedMovie"></div>
         </div>
 
         <div class="section">
             <h2>Add New Film</h2>
             <form class="add-movie-form" onsubmit="addMovie(event)">
-                <input type="text" id="title" placeholder="Title" required>
-                <input type="text" id="director" placeholder="Director">
-                <input type="number" id="year" placeholder="Year">
-                <div class="genre-input-container">
-                    <input type="text" id="genre" class="genre-input" placeholder="Enter or select genre" required>
-                    <div class="genre-suggestions" id="genreSuggestions"></div>
+                <div class="form-grid">
+                    <input type="text" id="title" placeholder="Title" required class="mobile-friendly-input">
+                    <input type="text" id="director" placeholder="Director" class="mobile-friendly-input">
+                    <input type="number" id="year" placeholder="Year" class="mobile-friendly-input">
+                    <div class="genre-input-container">
+                        <input type="text" id="genre" class="genre-input mobile-friendly-input" placeholder="Enter or select genre" required>
+                        <div class="genre-suggestions" id="genreSuggestions"></div>
+                    </div>
                 </div>
                 <button type="submit">Add Film</button>
             </form>
@@ -44,7 +48,7 @@
         <div class="section">
             <h2>Rate and Archive Film</h2>
             <div class="search-container">
-                <input type="text" id="movieSearch" class="search-input" placeholder="Search for a film...">
+                <input type="text" id="movieSearch" class="search-input mobile-friendly-input" placeholder="Search for a film or add new...">
                 <div id="searchResults" class="search-results"></div>
             </div>
             <div id="ratingOptions" style="display: none;">
@@ -58,6 +62,12 @@
             </div>
             <div id="rateSuccess" class="success-message"></div>
             <div id="rateError" class="error-message"></div>
+        </div>
+
+        <div class="section">
+            <h2>Watched Movies</h2>
+            <button onclick="loadWatchedMovies()" class="secondary-button">Load Watched Movies</button>
+            <div id="watchedMovies" class="watched-movies-container"></div>
         </div>
     </div>
 

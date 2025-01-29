@@ -17,6 +17,7 @@ const database = firebase.database();
 let allMovies = [];
 let allGenres = new Set();
 let selectedMovieTitle = null;
+let selectedMovieId = null;
 
 // Load and maintain genres
 function updateGenres() {
@@ -75,20 +76,20 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// Movie search functionality
-let selectedMovieId = null;
+// Movie search functionality with support for new movies
 const movieSearch = document.getElementById('movieSearch');
 const searchResults = document.getElementById('searchResults');
 
 movieSearch.addEventListener('input', function() {
-    const searchTerm = this.value.toLowerCase();
+    const searchTerm = this.value.toLowerCase().trim();
     
+    if (!searchTerm) {
+        searchResults.style.display = 'none';
+        return;
+    }
+
     database.ref('movies').once('value', (snapshot) => {
         searchResults.innerHTML = '';
-        if (!searchTerm) {
-            searchResults.style.display = 'none';
-            return;
-        }
         
         const matches = [];
         snapshot.forEach((childSnapshot) => {
@@ -99,48 +100,91 @@ movieSearch.addEventListener('input', function() {
             }
         });
 
-        if (matches.length > 0) {
-            searchResults.style.display = 'block';
-            matches.forEach(movie => {
-                const div = document.createElement('div');
-                div.className = 'search-result-item';
-                div.innerHTML = `
-                    <strong>${movie.title}</strong>
-                    <br>
-                    <small>${movie.director || 'Unknown director'} (${movie.year || 'Year unknown'})</small>
-                `;
-                div.onclick = () => selectMovie(movie.id);
-                searchResults.appendChild(div);
-            });
-        } else {
-            searchResults.style.display = 'none';
-        }
+        searchResults.style.display = 'block';
+
+        // Show existing matches
+        matches.forEach(movie => {
+            const div = document.createElement('div');
+            div.className = 'search-result-item';
+            div.innerHTML = `
+                <strong>${movie.title}</strong>
+                <br>
+                <small>${movie.director || 'Unknown director'} (${movie.year || 'Year unknown'})</small>
+            `;
+            div.onclick = () => selectMovie(movie.id, movie.title);
+            searchResults.appendChild(div);
+        });
+
+        // Always show option to add as new movie
+        const div = document.createElement('div');
+        div.className = 'search-result-item new-movie';
+        div.innerHTML = `
+            <strong>Add "${searchTerm}" as new movie</strong>
+            <br>
+            <small>Add to watched list</small>
+        `;
+        div.onclick = () => selectNewMovie(searchTerm);
+        searchResults.appendChild(div);
     });
 });
 
-function selectMovie(movieId) {
+function selectMovie(movieId, movieTitle) {
     selectedMovieId = movieId;
+    selectedMovieTitle = movieTitle;
     
-    // Get the movie title
-    database.ref(`movies/${movieId}`).once('value', (snapshot) => {
-        const movie = snapshot.val();
-        selectedMovieTitle = movie.title;
-        
-        // Update the UI
-        searchResults.style.display = 'none';
-        const ratingOptions = document.getElementById('ratingOptions');
-        ratingOptions.style.display = 'block';
-        
-        // Add or update the title display
-        let titleDisplay = document.getElementById('selectedMovieTitle');
-        if (!titleDisplay) {
-            titleDisplay = document.createElement('div');
-            titleDisplay.id = 'selectedMovieTitle';
-            titleDisplay.className = 'selected-movie-title';
-            ratingOptions.insertBefore(titleDisplay, ratingOptions.firstChild);
-        }
-        titleDisplay.textContent = selectedMovieTitle;
-    });
+    searchResults.style.display = 'none';
+    const ratingOptions = document.getElementById('ratingOptions');
+    ratingOptions.style.display = 'block';
+    
+    // Update the UI
+    let titleDisplay = document.getElementById('selectedMovieTitle');
+    if (!titleDisplay) {
+        titleDisplay = document.createElement('div');
+        titleDisplay.id = 'selectedMovieTitle';
+        titleDisplay.className = 'selected-movie-title';
+        ratingOptions.insertBefore(titleDisplay, ratingOptions.firstChild);
+    }
+    titleDisplay.textContent = selectedMovieTitle;
+
+    // Remove any existing new movie fields
+    const existingFields = document.getElementById('newMovieFields');
+    if (existingFields) {
+        existingFields.remove();
+    }
+}
+
+function selectNewMovie(title) {
+    selectedMovieId = null;
+    selectedMovieTitle = title;
+    
+    searchResults.style.display = 'none';
+    const ratingOptions = document.getElementById('ratingOptions');
+    ratingOptions.style.display = 'block';
+    
+    let titleDisplay = document.getElementById('selectedMovieTitle');
+    if (!titleDisplay) {
+        titleDisplay = document.createElement('div');
+        titleDisplay.id = 'selectedMovieTitle';
+        titleDisplay.className = 'selected-movie-title';
+        ratingOptions.insertBefore(titleDisplay, ratingOptions.firstChild);
+    }
+    titleDisplay.textContent = selectedMovieTitle;
+    
+    // Add fields for new movie details
+    const existingFields = document.getElementById('newMovieFields');
+    if (existingFields) {
+        existingFields.remove();
+    }
+
+    const additionalFields = document.createElement('div');
+    additionalFields.id = 'newMovieFields';
+    additionalFields.className = 'new-movie-fields';
+    additionalFields.innerHTML = `
+        <input type="text" id="newMovieDirector" placeholder="Director (optional)" class="mobile-friendly-input">
+        <input type="number" id="newMovieYear" placeholder="Year (optional)" class="mobile-friendly-input">
+        <input type="text" id="newMovieGenre" placeholder="Genre (optional)" class="mobile-friendly-input">
+    `;
+    ratingOptions.insertBefore(additionalFields, ratingOptions.children[1]);
 }
 
 // Recommendation functions
@@ -151,7 +195,6 @@ function recommendRandom() {
         const movies = [];
         snapshot.forEach((childSnapshot) => {
             const movie = childSnapshot.val();
-            // If a genre is selected, only include movies of that genre
             if (!selectedGenre || movie.genre === selectedGenre) {
                 movies.push(movie);
             }
@@ -176,7 +219,8 @@ function displayRecommendation(movie) {
             <h3>${movie.title}</h3>
             <p>Director: ${movie.director || 'Unknown'}</p>
             <p>Year: ${movie.year || 'Unknown'}</p>
-            <p>Genre: ${movie.genre}</p>
+            <p>Genre: ${movie.genre || 'Unspecified'}</p>
+            <p class="rating-info">${movie.rating ? `Rating: ${'★'.repeat(movie.rating)}${'☆'.repeat(5-movie.rating)}` : ''}</p>
         </div>
     `;
 }
@@ -215,33 +259,55 @@ function addMovie(event) {
 }
 
 function rateMovie(rating) {
-    if (!selectedMovieId) return;
+    const movieData = {
+        title: selectedMovieTitle,
+        rating: rating,
+        watchedDate: new Date().toISOString()
+    };
 
-    database.ref(`movies/${selectedMovieId}`).once('value', (snapshot) => {
-        const movie = snapshot.val();
+    if (selectedMovieId) {
+        // Existing movie flow
+        database.ref(`movies/${selectedMovieId}`).once('value', (snapshot) => {
+            const movie = snapshot.val();
+            movieData.director = movie.director;
+            movieData.year = movie.year;
+            movieData.genre = movie.genre;
+            
+            saveRating(movieData, selectedMovieId);
+        });
+    } else {
+        // New movie flow
+        const newMovieFields = document.getElementById('newMovieFields');
+        if (newMovieFields) {
+            movieData.director = document.getElementById('newMovieDirector').value;
+            movieData.year = document.getElementById('newMovieYear').value;
+            movieData.genre = document.getElementById('newMovieGenre').value || 'Unspecified';
+        }
         
-        database.ref('watched').push({
-            ...movie,
-            rating: rating,
-            watchedDate: new Date().toISOString()
-        })
+        saveRating(movieData, null);
+    }
+}
+
+function saveRating(movieData, movieId) {
+    database.ref('watched').push(movieData)
         .then(() => {
-            return database.ref(`movies/${selectedMovieId}`).remove();
+            if (movieId) {
+                return database.ref(`movies/${movieId}`).remove();
+            }
         })
         .then(() => {
             const successMsg = document.getElementById('rateSuccess');
             successMsg.textContent = 'Rating saved successfully!';
             successMsg.style.display = 'block';
             document.getElementById('rateError').style.display = 'none';
-            document.getElementById('ratingOptions').style.display = 'none';
-            document.getElementById('movieSearch').value = '';
-            document.getElementById('selectedMovieTitle').textContent = '';
-            selectedMovieId = null;
-            selectedMovieTitle = null;
+            resetRatingUI();
             updateGenres();
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-            }, 3000);
+            
+            // Refresh watched movies list if it's visible
+            const watchedMoviesContainer = document.getElementById('watchedMovies');
+            if (watchedMoviesContainer.children.length > 0) {
+                loadWatchedMovies();
+            }
         })
         .catch((error) => {
             console.error('Error rating movie:', error);
@@ -249,12 +315,104 @@ function rateMovie(rating) {
             errorMsg.textContent = 'Error saving rating. Please try again.';
             errorMsg.style.display = 'block';
             document.getElementById('rateSuccess').style.display = 'none';
-            setTimeout(() => {
-                errorMsg.style.display = 'none';
-            }, 3000);
+        });
+}
+
+function resetRatingUI() {
+    const ratingOptions = document.getElementById('ratingOptions');
+    ratingOptions.style.display = 'none';
+    document.getElementById('movieSearch').value = '';
+    const newMovieFields = document.getElementById('newMovieFields');
+    if (newMovieFields) {
+        newMovieFields.remove();
+    }
+    const titleDisplay = document.getElementById('selectedMovieTitle');
+    if (titleDisplay) {
+        titleDisplay.textContent = '';
+    }
+    selectedMovieId = null;
+    selectedMovieTitle = null;
+}
+
+// Watched movies functionality
+function loadWatchedMovies() {
+    const watchedMoviesContainer = document.getElementById('watchedMovies');
+    watchedMoviesContainer.innerHTML = '<h3>Loading...</h3>';
+    
+    database.ref('watched').orderByChild('watchedDate').once('value', (snapshot) => {
+        watchedMoviesContainer.innerHTML = '';
+        
+        if (!snapshot.exists()) {
+            watchedMoviesContainer.innerHTML = '<p>No watched movies yet.</p>';
+            return;
+        }
+
+        const movies = [];
+        snapshot.forEach((childSnapshot) => {
+            movies.unshift({ id: childSnapshot.key, ...childSnapshot.val() });
+        });
+
+        movies.forEach(movie => {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card watched-movie';
+            movieCard.innerHTML = `
+                <h3>${movie.title}</h3>
+                <p>Director: ${movie.director || 'Unknown'}</p>
+                <p>Year: ${movie.year || 'Unknown'}</p>
+                <p>Genre: ${movie.genre || 'Unspecified'}</p>
+                <p class="rating">Rating: ${'★'.repeat(movie.rating)}${'☆'.repeat(5-movie.rating)}</p>
+                <p class="watched-date">Watched: ${new Date(movie.watchedDate).toLocaleDateString()}</p>
+                <button onclick="unarchiveMovie('${movie.id}')" class="secondary-button">
+                    Move back to watchlist
+                </button>
+            `;
+            watchedMoviesContainer.appendChild(movieCard);
         });
     });
 }
 
-// Initialize
+function unarchiveMovie(watchedId) {
+    database.ref(`watched/${watchedId}`).once('value', (snapshot) => {
+        const movie = snapshot.val();
+        
+        // Remove rating and watched date before adding back to movies
+        const movieData = {
+            title: movie.title,
+            director: movie.director,
+            year: movie.year,
+            genre: movie.genre
+        };
+        
+        database.ref('movies').push(movieData)
+            .then(() => {
+                return database.ref(`watched/${watchedId}`).remove();
+            })
+            .then(() => {
+                loadWatchedMovies();
+                updateGenres();
+                
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success-message floating';
+                successMsg.textContent = 'Movie moved back to watchlist!';
+                document.body.appendChild(successMsg);
+                
+                setTimeout(() => {
+                    successMsg.remove();
+                }, 3000);
+            })
+            .catch((error) => {
+                console.error('Error unarchiving movie:', error);
+                const errorMsg = document.createElement('div');
+                errorMsg.className = 'error-message floating';
+                errorMsg.textContent = 'Error moving movie. Please try again.';
+                document.body.appendChild(errorMsg);
+                
+                setTimeout(() => {
+                    errorMsg.remove();
+                }, 3000);
+            });
+    });
+}
+
+// Initialize the application
 updateGenres();
