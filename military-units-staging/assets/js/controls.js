@@ -292,16 +292,19 @@ function initControls(map, layers) {
   suggestButton.style.margin = '5px';
   suggestButton.style.padding = '5px';
 
-  // Add collapse button for mobile
-  var collapseButton = L.DomUtil.create('button', 'layer-control-collapse-btn', layerControlContainer);
-  collapseButton.innerHTML = '×';
-  collapseButton.setAttribute('aria-label', 'Collapse layer control');
-  collapseButton.style.fontSize = '20px';
+// Add collapse button for mobile
+var collapseButton = L.DomUtil.create('button', 'layer-control-collapse-btn', layerControlContainer);
+collapseButton.innerHTML = '×';
+collapseButton.setAttribute('aria-label', 'Collapse layer control');
+collapseButton.style.fontSize = '20px';
 
-  L.DomEvent.on(collapseButton, 'click', function(e) {
+L.DomEvent.on(collapseButton, 'click', function(e) {
     L.DomEvent.stopPropagation(e);
-    layerControl.collapse();
-  });
+    var control = document.querySelector('.leaflet-control-layers');
+    if (control) {
+        control.classList.remove('leaflet-control-layers-expanded');
+    }
+});
 
   L.DomEvent.on(selectButton, 'click', function(e) {
     L.DomEvent.stopPropagation(e);
