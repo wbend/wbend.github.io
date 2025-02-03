@@ -10,8 +10,19 @@ $(document).ready(function() {
   controls = initControls(map, layers);
 
   map.addLayer(layers.ca_countries);  // Add country borders layer
-  map.addLayer(layers.tajikistanUnits);
-  map.addLayer(layers.uzbekistanUnits);  // Add Uzbekistan layer by default
+  
+  // Add country layers in alphabetical order
+  const orderedCountries = [
+    'kazakhstanUnits',
+    'kyrgyzstanUnits',
+    'tajikistanUnits',
+    'turkmenistanUnits',
+    'uzbekistanUnits'
+  ];
+
+  orderedCountries.forEach(countryLayer => {
+    map.addLayer(layers[countryLayer]);
+  });
 
   $(window).resize(function() {
     sizeLayerControl();

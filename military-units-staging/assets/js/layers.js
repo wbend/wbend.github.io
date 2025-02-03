@@ -108,44 +108,49 @@ function initLayers(map) {
     });
   }
 
-  const kazakhstanUnits = createCountryLayer('Kazakhstan');
-  const kyrgyzstanUnits = createCountryLayer('Kyrgyzstan');
-  const tajikistanUnits = createCountryLayer('Tajikistan');
-  const turkmenistanUnits = createCountryLayer('Turkmenistan');
-  const uzbekistanUnits = createCountryLayer('Uzbekistan');
+  // Create country layers alphabetically
+  const countryLayers = {
+    kazakhstanUnits: createCountryLayer('Kazakhstan'),
+    kyrgyzstanUnits: createCountryLayer('Kyrgyzstan'),
+    tajikistanUnits: createCountryLayer('Tajikistan'),
+    turkmenistanUnits: createCountryLayer('Turkmenistan'),
+    uzbekistanUnits: createCountryLayer('Uzbekistan')
+  };
 
+  // Load data for each country in alphabetical order
   $.getJSON("data/kazakhstan_units.geojson", function (data) {
-    kazakhstanUnits.addData(data);
+    countryLayers.kazakhstanUnits.addData(data);
   });
 
   $.getJSON("data/kyrgyzstan_units.geojson", function (data) {
-    kyrgyzstanUnits.addData(data);
+    countryLayers.kyrgyzstanUnits.addData(data);
   });
 
   $.getJSON("data/tajikistan_units.geojson", function (data) {
-    tajikistanUnits.addData(data);
+    countryLayers.tajikistanUnits.addData(data);
   });
 
   $.getJSON("data/turkmenistan_units.geojson", function (data) {
-    turkmenistanUnits.addData(data);
+    countryLayers.turkmenistanUnits.addData(data);
   });
 
   $.getJSON("data/uzbekistan_units.geojson", function (data) {
-    uzbekistanUnits.addData(data);
+    countryLayers.uzbekistanUnits.addData(data);
   });
 
+  // Add layers to map in alphabetical order
   Object.values(categoryLayers).forEach(function(layer) {
     map.addLayer(layer);
   });
-  map.addLayer(tajikistanUnits);
+
+  // Add country layers in alphabetical order
+  Object.values(countryLayers).forEach(function(layer) {
+    map.addLayer(layer);
+  });
 
   return { 
     ca_countries,
-    kazakhstanUnits,
-    kyrgyzstanUnits,
-    tajikistanUnits,
-    turkmenistanUnits,
-    uzbekistanUnits,
+    ...countryLayers,
     categoryLayers
   };
 }

@@ -17,16 +17,16 @@ function initControls(map, layers) {
 
   const isCollapsed = (document.body.clientWidth <= 767);
 
-  // Track state
+  // Track state for all countries
   const state = {
-    selectedCountries: new Set(['Tajikistan', 'Uzbekistan']),
+    selectedCountries: new Set(['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan']),
     selectedUnitTypes: new Set(Object.keys(categories)),
     unitTypesInCountry: {},
     countriesWithUnitType: {}
   };
 
-  // Initialize relationship maps
-  ['Tajikistan', 'Uzbekistan'].forEach(country => {
+  // Initialize relationship maps for all countries
+  ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].forEach(country => {
     state.unitTypesInCountry[country] = new Set();
   });
   Object.keys(categories).forEach(category => {
@@ -39,13 +39,12 @@ function initControls(map, layers) {
       const country = feature.properties.Country;
       const category = normalizeCategory(feature.properties.Category || "POI");
       
-      if (country === 'Tajikistan' || country === 'Uzbekistan') {
+      if (state.selectedCountries.has(country)) {
         state.unitTypesInCountry[country].add(category);
         state.countriesWithUnitType[category].add(country);
       }
     });
     
-    // Initialize the map
     updateLayerControlState();
   });
 
@@ -55,10 +54,10 @@ function initControls(map, layers) {
     },
     "Military Units": {},
     "Countries": {
-      "Kazakhstan (Coming Soon)": layers.kazakhstanUnits,
-      "Kyrgyzstan (Coming Soon)": layers.kyrgyzstanUnits,
+      "Kazakhstan": layers.kazakhstanUnits,
+      "Kyrgyzstan": layers.kyrgyzstanUnits,
       "Tajikistan": layers.tajikistanUnits,
-      "Turkmenistan (Coming Soon)": layers.turkmenistanUnits,
+      "Turkmenistan": layers.turkmenistanUnits,
       "Uzbekistan": layers.uzbekistanUnits
     }
   };
@@ -81,7 +80,7 @@ function initControls(map, layers) {
 
   function updateMapDisplay() {
     // Update checkbox states first
-    ['Tajikistan', 'Uzbekistan'].forEach(country => {
+    ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].forEach(country => {
       const checkbox = getCheckbox(country);
       if (checkbox) {
         checkbox.checked = state.selectedCountries.has(country);
@@ -95,103 +94,130 @@ function initControls(map, layers) {
       }
     });
 
-    // Clear all existing layers first
-    Object.keys(categories).forEach(category => {
-      const layer = layers.categoryLayers[category];
-      if (layer && map.hasLayer(layer)) {
-        map.removeLayer(layer);
-      }
+    // Remove all layers first
+    Object.keys(layers.categoryLayers).forEach(category => {
+      layers.categoryLayers[category].clearLayers();
     });
 
-    ['Tajikistan', 'Uzbekistan'].forEach(country => {
-      const layer = layers[country.toLowerCase() + 'Units'];
-      if (layer && map.hasLayer(layer)) {
-        map.removeLayer(layer);
-      }
-    });
-
-    // Add back the selected layers
-    state.selectedCountries.forEach(country => {
+    ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].forEach(country => {
       const countryLayer = layers[country.toLowerCase() + 'Units'];
-      if (countryLayer) {
-        // Clear existing features
+      if (countryLayer && countryLayer.getLayers) {
         countryLayer.clearLayers();
-        
-        // Get the original features for this country
-        $.getJSON(`data/${country.toLowerCase()}_units.geojson`, function(data) {
-          // Filter and add features based on selected unit types
-          const filteredFeatures = data.features.filter(feature => {
-            const category = normalizeCategory(feature.properties.Category || "POI");
-            return state.selectedUnitTypes.has(category);
-          });
-          
-          countryLayer.addData({
-            type: "FeatureCollection",
-            features: filteredFeatures
-          });
-          
-          // Add the layer to the map if it has features
-          if (filteredFeatures.length > 0) {
-            map.addLayer(countryLayer);
-          }
-        });
       }
     });
 
-    // Add category layers
-    state.selectedUnitTypes.forEach(category => {
-      const categoryLayer = layers.categoryLayers[category];
-      if (categoryLayer) {
-        // Clear existing features
-        categoryLayer.clearLayers();
+    // Load GeoJSON data again to rebuild layers
+    $.getJSON("data/all_units.geojson", function(data) {
+      data.features.forEach(feature => {
+        const country = feature.properties.Country;
+        const category = normalizeCategory(feature.properties.Category || "POI");
         
-        // Get all features for selected countries
-        state.selectedCountries.forEach(country => {
-          $.getJSON(`data/${country.toLowerCase()}_units.geojson`, function(data) {
-            // Filter features for this category
-            const filteredFeatures = data.features.filter(feature => {
-              const featureCategory = normalizeCategory(feature.properties.Category || "POI");
-              return featureCategory === category;
-            });
-            
-            if (filteredFeatures.length > 0) {
-              // Create temporary GeoJSON to add filtered features
-              const tempGeoJSON = L.geoJson({
-                type: "FeatureCollection",
-                features: filteredFeatures
-              }, {
-                pointToLayer: function(feature, latlng) {
-                  // Recreate the marker with the same options as in layers.js
-                  var iconUrl = feature.properties.Symbology || 
-                               "assets/img/" + (categories[category] || categories["POI"]);
-                  var iconSize = feature.properties.Symbology ? [32, 32] : [36, 42];
+        // Only process features for selected countries and unit types
+        if (state.selectedCountries.has(country) && state.selectedUnitTypes.has(category)) {
+          // Create marker using the same logic as in layers.js
+          const marker = L.geoJson(feature, {
+            pointToLayer: function (feature, latlng) {
+              var iconUrl;
+              var iconSize = [36, 42];
+              
+              if (feature.properties.Symbology) {
+                iconUrl = feature.properties.Symbology;
+                iconSize = [32, 32];
+              } else {
+                iconUrl = "assets/img/" + (categories[category] || categories["POI"]);
+              }
+              
+              return L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: iconUrl,
+                  iconSize: iconSize,
+                  iconAnchor: [iconSize[0] / 2, iconSize[1]],
+                  popupAnchor: [0, -iconSize[1] / 2]
+                }),
+                title: feature.properties.Location || feature.properties.Title || '',
+                riseOnHover: true
+              });
+            },
+            onEachFeature: function(feature, layer) {
+              if (feature.properties) {
+                function createContent(isTooltip) {
+                  var content = '';
+                  var excludeFields = ['geometry', 'id'];
                   
-                  return L.marker(latlng, {
-                    icon: L.icon({
-                      iconUrl: iconUrl,
-                      iconSize: iconSize,
-                      iconAnchor: [iconSize[0] / 2, iconSize[1]],
-                      popupAnchor: [0, -iconSize[1] / 2]
-                    }),
-                    title: feature.properties.Location || feature.properties.Title || '',
-                    riseOnHover: true
+                  for (var key in feature.properties) {
+                    if (feature.properties.hasOwnProperty(key) && !excludeFields.includes(key) && feature.properties[key]) {
+                      var value = feature.properties[key];
+                      if (key === 'Category') {
+                        value = normalizeCategory(value);
+                      }
+                      if (key === 'Symbology' && feature.properties.Symbology) {
+                        content += '<strong>' + key + ':</strong><br><img src="' + value + '" style="width: 150px; height: 150px; object-fit: contain;"><br>';
+                      } else {
+                        content += '<strong>' + key + ':</strong> ' + value + '<br>';
+                      }
+                    }
+                  }
+                  
+                  return content;
+                }
+
+                var tooltipContent = createContent(true);
+                if (tooltipContent) {
+                  layer.bindPopup(tooltipContent, {
+                    closeButton: false,
+                    offset: L.point(0, -40),
+                    className: 'tooltip-popup'
+                  });
+                  
+                  layer.on('mouseover', function (e) {
+                    this.openPopup();
+                  });
+                  layer.on('mouseout', function (e) {
+                    this.closePopup();
                   });
                 }
-              });
-              
-              // Add the markers to the category layer
-              tempGeoJSON.eachLayer(marker => {
-                categoryLayer.addLayer(marker);
-              });
-              
-              // Add the category layer to the map
-              if (!map.hasLayer(categoryLayer)) {
-                map.addLayer(categoryLayer);
+
+                var popupContent = createContent(false);
+                layer.on('click', function (e) {
+                  $("#feature-title").html(feature.properties.Title || feature.properties.Name || 'Unit Information');
+                  $("#feature-info").html(popupContent);
+                  $("#featureModal").modal("show");
+                });
               }
             }
           });
-        });
-      }
+          
+          // Add marker to both country and category layers
+          const countryLayer = layers[country.toLowerCase() + 'Units'];
+          const categoryLayer = layers.categoryLayers[category];
+          
+          if (countryLayer) {
+            marker.eachLayer(layer => countryLayer.addLayer(layer));
+          }
+          if (categoryLayer) {
+            marker.eachLayer(layer => categoryLayer.addLayer(layer));
+          }
+        }
+      });
+
+      // Add or remove layers from map based on selection
+      ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].forEach(country => {
+        const layer = layers[country.toLowerCase() + 'Units'];
+        if (state.selectedCountries.has(country)) {
+          if (!map.hasLayer(layer)) map.addLayer(layer);
+        } else {
+          if (map.hasLayer(layer)) map.removeLayer(layer);
+        }
+      });
+
+      Object.keys(categories).forEach(category => {
+        const layer = layers.categoryLayers[category];
+        if (state.selectedUnitTypes.has(category)) {
+          if (!map.hasLayer(layer)) map.addLayer(layer);
+        } else {
+          if (map.hasLayer(layer)) map.removeLayer(layer);
+        }
+      });
     });
   }
 
@@ -200,10 +226,10 @@ function initControls(map, layers) {
     if (!e.target.classList.contains('leaflet-control-layers-selector')) return;
 
     const label = e.target.nextSibling.textContent.trim();
-    if (label === 'Show Borders' || label.includes('Coming Soon')) return;
+    if (label === 'Show Borders') return;
 
     // Handle country selection
-    if (label === 'Tajikistan' || label === 'Uzbekistan') {
+    if (['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].includes(label)) {
       if (e.target.checked) {
         state.selectedCountries.add(label);
       } else {
@@ -238,7 +264,7 @@ function initControls(map, layers) {
   }
   
   function selectAllLayers() {
-    ['Tajikistan', 'Uzbekistan'].forEach(country => {
+    ['Kazakhstan', 'Kyrgyzstan', 'Tajikistan', 'Turkmenistan', 'Uzbekistan'].forEach(country => {
       state.selectedCountries.add(country);
     });
     Object.keys(categories).forEach(category => {
