@@ -326,3 +326,25 @@ function initControls(map, layers) {
     updateLayerControlState: updateLayerControlState
   };
 }
+
+// Add collapse button for mobile
+var collapseButton = L.DomUtil.create('button', 'layer-control-collapse-btn', layerControlContainer);
+collapseButton.innerHTML = '×';
+collapseButton.setAttribute('aria-label', 'Collapse layer control');
+collapseButton.style.fontSize = '20px';
+
+L.DomEvent.on(collapseButton, 'click', function(e) {
+  L.DomEvent.stopPropagation(e);
+  L.DomUtil.removeClass(layerControlContainer, 'leaflet-control-layers-expanded');
+});
+
+L.DomEvent.disableClickPropagation(layerControlContainer);
+
+var container = $(".leaflet-control-layers")[0];
+if (!L.Browser.touch) {
+  L.DomEvent
+  .disableClickPropagation(container)
+  .disableScrollPropagation(container);
+} else {
+  L.DomEvent.disableClickPropagation(container);
+}
