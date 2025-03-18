@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Paths Visualization</title>
+    <title>PMC Aircraft Flight Paths Visualization</title>
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
@@ -17,6 +17,25 @@
         <div class="controls">
             <div class="control-panel">
                 <h3>Flight Path Visualization</h3>
+                
+                <!-- Aircraft Selection -->
+                <div class="aircraft-controls">
+                    <p>Aircraft:</p>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aircraft" value="RA-76845" checked>
+                            <span class="color-indicator" style="background-color: #4a90e2"></span>
+                            RA-76845
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="aircraft" value="RA-76846" checked>
+                            <span class="color-indicator" style="background-color: #e24a4a"></span>
+                            RA-76846
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Grouping Controls -->
                 <div class="grouping-controls">
                     <p>Route Grouping Distance:</p>
                     <div class="radio-group">
@@ -47,6 +66,7 @@
     
     <!-- Custom JS -->
     <script src="main.js"></script>
+    
     <!-- Modal for full flight list -->
     <div id="flight-modal" class="modal">
         <div class="modal-content">

@@ -16,6 +16,12 @@
     --font-secondary: 'Lora', Georgia, serif;
     /* Inter is similar to Platform */
     --font-tertiary: 'Inter', system-ui, sans-serif;
+    
+    /* Aircraft colors */
+    --aircraft-color-1: #4a90e2; /* RA-76845 blue */
+    --aircraft-color-2: #e24a4a; /* RA-76846 red */
+    --aircraft-color-3: #4ae278; /* Future aircraft green */
+    --aircraft-color-4: #e2c74a; /* Future aircraft yellow */
 }
 
 html, body {
@@ -59,6 +65,55 @@ html, body {
     color: #333;
 }
 
+/* Aircraft Controls */
+.aircraft-controls {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.aircraft-controls p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-family: var(--font-tertiary);
+    color: #555;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-family: var(--font-primary);
+    color: #444;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.checkbox-label:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin: 0;
+}
+
+.color-indicator {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 /* Grouping Controls */
 .grouping-controls {
     margin-top: 10px;
@@ -91,7 +146,7 @@ html, body {
 }
 
 .radio-label:hover {
-    background-color: rgba(74, 144, 226, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .radio-label input[type="radio"] {
@@ -122,10 +177,19 @@ html, body {
     color: #666;
 }
 
+.flight-info .aircraft-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
 .recent-flight {
     margin: 8px 0;
     padding: 4px 8px;
-    background: rgba(74, 144, 226, 0.1);
     border-radius: 4px;
 }
 
@@ -226,6 +290,16 @@ html, body {
 
 .flight-list-item:last-child {
     border-bottom: none;
+}
+
+.flight-list-item .aircraft-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin-right: 5px;
 }
 
 /* Responsive Adjustments */
