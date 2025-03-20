@@ -8,6 +8,10 @@ class FlightMapVisualization {
         this.modal = null;
         this.currentFlights = null;
         
+        // New properties for year filtering
+        this.availableYears = new Set();
+        this.selectedYear = null; // null means all years
+        
         // Define aircraft information
         this.aircraft = [
             {
@@ -54,6 +58,9 @@ class FlightMapVisualization {
         this.setupModal();
         this.setupAircraftControls();
         this.setupDistanceControls();
+        
+        // Add year filter setup
+        this.setupYearFilter();
 
         try {
             // Load data for all aircraft that are visible
@@ -105,6 +112,45 @@ class FlightMapVisualization {
             });
         });
     }
+    
+    setupYearFilter() {
+        // Create UI elements for year filter
+        const controls = document.querySelector('.control-panel');
+        
+        const yearControlsDiv = document.createElement('div');
+        yearControlsDiv.className = 'year-controls';
+        
+        const yearFilterP = document.createElement('p');
+        yearFilterP.textContent = 'Filter by Year:';
+        
+        const yearSelectDiv = document.createElement('div');
+        yearSelectDiv.className = 'year-select';
+        
+        // Create the dropdown
+        const yearSelect = document.createElement('select');
+        yearSelect.id = 'year-filter';
+        
+        // Add default "All Years" option
+        const allYearsOption = document.createElement('option');
+        allYearsOption.value = '';
+        allYearsOption.textContent = 'All Years';
+        yearSelect.appendChild(allYearsOption);
+        
+        // We'll populate the other options once data is loaded
+        
+        yearSelect.addEventListener('change', (e) => {
+            this.selectedYear = e.target.value ? e.target.value : null;
+            this.updateVisualization();
+        });
+        
+        yearSelectDiv.appendChild(yearSelect);
+        yearControlsDiv.appendChild(yearFilterP);
+        yearControlsDiv.appendChild(yearSelectDiv);
+        
+        // Add to controls after the distance controls
+        const groupingControls = document.querySelector('.grouping-controls');
+        groupingControls.after(yearControlsDiv);
+    }
 
     showAllFlights(flights) {
         this.currentFlights = flights;
@@ -113,30 +159,75 @@ class FlightMapVisualization {
         const sortedFlights = [...flights].sort((a, b) => {
             const dateA = a.properties.simplified_departure_date ? new Date(a.properties.simplified_departure_date) : new Date(0);
             const dateB = b.properties.simplified_departure_date ? new Date(b.properties.simplified_departure_date) : new Date(0);
-            return dateA - dateB;
+            return dateB - dateA; // Newest first
         });
 
-        const firstFlight = sortedFlights[0].properties;
+        const firstFlight = flights[0].properties;
         
         // Update modal header
         const modalTitle = this.modal.querySelector('.modal-header h2');
-        modalTitle.textContent = `${flights.length} Flights: ${firstFlight.origin_city || 'Unknown'} to ${firstFlight.destination_city || 'Unknown'}`;
         
-        // Generate flight list HTML
-        const flightListHTML = sortedFlights.map(flight => {
-            const props = flight.properties;
-            const aircraft = this.aircraft.find(a => a.id === props.ident || a.id === props.registration);
-            const aircraftColor = aircraft ? aircraft.color : '#999';
-            const aircraftId = props.ident || props.registration || 'Unknown';
+        // Group origins and destinations for the header
+        const originSet = new Set(flights.map(f => f.properties.origin_city || 'Unknown'));
+        const destSet = new Set(flights.map(f => f.properties.destination_city || 'Unknown'));
+        
+        const originText = originSet.size > 3 ? 
+            `${Array.from(originSet).slice(0, 3).join('/')} & others` : 
+            Array.from(originSet).join('/');
+        
+        const destText = destSet.size > 3 ? 
+            `${Array.from(destSet).slice(0, 3).join('/')} & others` : 
+            Array.from(destSet).join('/');
+        
+        modalTitle.textContent = `${flights.length} Flights: ${originText} to ${destText}`;
+        
+        // Generate flight list HTML with year grouping
+        const flightsByYear = {};
+        
+        sortedFlights.forEach(flight => {
+            const year = flight.properties.simplified_departure_date ? 
+                flight.properties.simplified_departure_date.split('-')[0] : 'Unknown';
             
-            return `
-                <div class="flight-list-item">
-                    <span class="aircraft-tag" style="background-color: ${aircraftColor}">${aircraftId}</span>
-                    <strong>${props.simplified_departure_date ? new Date(props.simplified_departure_date).toLocaleDateString() : 'Unknown Date'}</strong> - 
-                    ${props.origin_code || 'Unknown'} → ${props.destination_code || 'Unknown'}
+            if (!flightsByYear[year]) {
+                flightsByYear[year] = [];
+            }
+            
+            flightsByYear[year].push(flight);
+        });
+        
+        // Generate HTML with year sections
+        let flightListHTML = '';
+        
+        for (const [year, yearFlights] of Object.entries(flightsByYear).sort((a, b) => b[0] - a[0])) {
+            flightListHTML += `
+                <div class="flight-year-section">
+                    <h3 class="flight-year-header">${year}</h3>
+                    <div class="flight-year-list">
+            `;
+            
+            yearFlights.forEach(flight => {
+                const props = flight.properties;
+                const aircraft = this.aircraft.find(a => a.id === props.ident || a.id === props.registration);
+                const aircraftColor = aircraft ? aircraft.color : '#999';
+                const aircraftId = props.ident || props.registration || 'Unknown';
+                const formattedDate = props.simplified_departure_date ? 
+                    new Date(props.simplified_departure_date).toLocaleDateString() : 'Unknown Date';
+                
+                flightListHTML += `
+                    <div class="flight-list-item">
+                        <span class="aircraft-tag" style="background-color: ${aircraftColor}">${aircraftId}</span>
+                        <strong>${formattedDate}</strong> - 
+                        ${props.origin_code || 'Unknown'} → ${props.destination_code || 'Unknown'}
+                        ${props.origin_city ? `(${props.origin_city} to ${props.destination_city || 'Unknown'})` : ''}
+                    </div>
+                `;
+            });
+            
+            flightListHTML += `
+                    </div>
                 </div>
             `;
-        }).join('');
+        }
         
         modalBody.innerHTML = flightListHTML;
         this.modal.style.display = 'block';
@@ -182,12 +273,34 @@ class FlightMapVisualization {
                     if (!feature.properties.aircraftId) {
                         feature.properties.aircraftId = aircraft.id;
                     }
+                    
+                    // Extract year for filtering with proper validation
+                    if (feature.properties.simplified_departure_date) {
+                        try {
+                            // Ensure it's a valid date string
+                            const dateStr = feature.properties.simplified_departure_date;
+                            const dateParts = dateStr.split('-');
+                            
+                            // Only add if it's a valid year format (4 digits)
+                            if (dateParts[0] && /^\d{4}$/.test(dateParts[0])) {
+                                const year = dateParts[0];
+                                this.availableYears.add(year);
+                            }
+                        } catch (e) {
+                            // Skip invalid dates
+                            console.debug("Skipped invalid date", feature.properties.simplified_departure_date);
+                        }
+                    }
+                    
                     return feature;
                 });
                 
                 aircraft.data = data;
                 aircraft.loaded = true;
                 console.log(`Loaded ${data.features.length} flights for ${aircraft.id}`);
+                
+                // Update year filter options
+                this.updateYearOptions();
             } catch (parseError) {
                 console.error(`Error parsing JSON for ${aircraft.id}:`, parseError);
                 throw new Error(`Invalid JSON format in flight data for ${aircraft.id}`);
@@ -197,6 +310,26 @@ class FlightMapVisualization {
             aircraft.loaded = false;
             throw error;
         }
+    }
+    
+    // Add this new method to update year dropdown options
+    updateYearOptions() {
+        const yearSelect = document.getElementById('year-filter');
+        
+        // Clear existing year options (except All Years)
+        while (yearSelect.options.length > 1) {
+            yearSelect.remove(1);
+        }
+        
+        // Add years in descending order (newest first)
+        const sortedYears = Array.from(this.availableYears).sort((a, b) => b - a);
+        
+        sortedYears.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+        });
     }
 
     updateVisualization() {
@@ -209,7 +342,17 @@ class FlightMapVisualization {
         let allFeatures = [];
         for (let aircraft of this.aircraft) {
             if (aircraft.visible && aircraft.loaded && aircraft.data) {
-                allFeatures = allFeatures.concat(aircraft.data.features);
+                // Apply year filter if selected
+                let features = aircraft.data.features;
+                
+                if (this.selectedYear) {
+                    features = features.filter(feature => {
+                        if (!feature.properties.simplified_departure_date) return false;
+                        return feature.properties.simplified_departure_date.startsWith(this.selectedYear);
+                    });
+                }
+                
+                allFeatures = allFeatures.concat(features);
             }
         }
         
@@ -344,8 +487,40 @@ class FlightMapVisualization {
         const flightCount = flights.length;
         const dateRange = this.getDateRange(sortedFlights);
         
-        const origins = new Set(flights.map(f => `${f.properties.origin_city || 'Unknown'} (${f.properties.origin_code || 'Unknown'})`));
-        const destinations = new Set(flights.map(f => `${f.properties.destination_city || 'Unknown'} (${f.properties.destination_code || 'Unknown'})`));
+        // Group and count origins
+        const originMap = new Map();
+        flights.forEach(f => {
+            const originKey = `${f.properties.origin_city || 'Unknown'} (${f.properties.origin_code || 'Unknown'})`;
+            originMap.set(originKey, (originMap.get(originKey) || 0) + 1);
+        });
+        
+        // Group and count destinations
+        const destMap = new Map();
+        flights.forEach(f => {
+            const destKey = `${f.properties.destination_city || 'Unknown'} (${f.properties.destination_code || 'Unknown'})`;
+            destMap.set(destKey, (destMap.get(destKey) || 0) + 1);
+        });
+        
+        // Get top origins with counts
+        const topOrigins = Array.from(originMap.entries())
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([name, count]) => `${name}${count > 1 ? ` (${count})` : ''}`)
+            .join(', ');
+        
+        // Get top destinations with counts
+        const topDestinations = Array.from(destMap.entries())
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5)
+            .map(([name, count]) => `${name}${count > 1 ? ` (${count})` : ''}`)
+            .join(', ');
+        
+        // Append "and X more" if needed
+        const originsText = originMap.size > 5 ? 
+            `${topOrigins} and ${originMap.size - 5} more` : topOrigins;
+        
+        const destinationsText = destMap.size > 5 ? 
+            `${topDestinations} and ${destMap.size - 5} more` : topDestinations;
         
         const popupContent = `
             <div class="flight-info">
@@ -353,13 +528,13 @@ class FlightMapVisualization {
                     <span class="aircraft-tag" style="background-color: ${aircraft.color}">${aircraft.id}</span>
                     ${flightCount} ${flightCount === 1 ? 'Flight' : 'Flights'} on this Route
                 </h4>
-                <p><strong>Origins:</strong> ${Array.from(origins).join(', ')}</p>
-                <p><strong>Destinations:</strong> ${Array.from(destinations).join(', ')}</p>
+                <p><strong>Origins:</strong> ${originsText}</p>
+                <p><strong>Destinations:</strong> ${destinationsText}</p>
                 <p><strong>Date Range:</strong> ${dateRange}</p>
                 <p><strong>Route Distance:</strong> ${firstFlight.route_distance ? `${firstFlight.route_distance} km` : 'N/A'}</p>
                 ${this.DISTANCE_THRESHOLD > 0 ? '<p><strong>Grouping Distance:</strong> ' + this.DISTANCE_THRESHOLD + ' km</p>' : ''}
-                <p><strong>Flight(s):</strong></p>
-                <div style="border-left: 3px solid ${aircraft.color}; padding-left: 8px;">
+                <p><strong>Recent Flights:</strong></p>
+                <div style="border-left: 3px solid ${aircraft.color}; padding-left: 8px; max-height: 150px; overflow-y: auto;">
                     ${this.getFlightsHTML(sortedFlights.slice(-5).reverse(), aircraft)}
                 </div>
                 ${flightCount > 5 ? `
