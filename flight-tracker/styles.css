@@ -426,3 +426,149 @@ html, body {
         padding: 6px;
     }
 }
+
+/* Aircraft Info Button Styles */
+.aircraft-info-button {
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f0f0f0;
+    color: #444;
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.aircraft-info-button:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.1);
+}
+
+.info-icon {
+    font-style: italic;
+}
+
+/* Aircraft Info Modal Styles */
+.aircraft-modal-content {
+    max-width: 700px;
+}
+
+.aircraft-info-body {
+    padding: 20px;
+    font-family: var(--font-primary);
+    line-height: 1.5;
+}
+
+.aircraft-info-body h3 {
+    font-family: var(--font-secondary);
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.aircraft-info-body h4 {
+    font-family: var(--font-tertiary);
+    font-size: 16px;
+    margin: 20px 0 10px;
+    color: #444;
+}
+
+.aircraft-info-body p {
+    margin-bottom: 12px;
+}
+
+.aircraft-info-body ul {
+    margin: 10px 0 15px 20px;
+}
+
+.aircraft-info-body li {
+    margin-bottom: 8px;
+}
+
+.aircraft-alert {
+    background-color: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.aircraft-alert p {
+    margin-bottom: 8px;
+}
+
+.aircraft-alert p:last-child {
+    margin-bottom: 0;
+}
+
+.sanctions-alert {
+    background-color: #ffebee;
+    border-left: 4px solid #f44336;
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.sanctions-alert h4 {
+    color: #c62828;
+    margin-top: 0 !important;
+    margin-bottom: 10px !important;
+    font-family: var(--font-tertiary);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.sanctions-alert p {
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.sanctions-alert p:last-child {
+    margin-bottom: 0;
+}
+
+.image-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.caption {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px !important;
+    font-style: italic;
+}
+
+/* Make the checkbox label positioning better with the info button */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Fix for when clicking the info button inside the label doesn't toggle checkbox */
+.aircraft-info-button {
+    position: relative;
+    z-index: 5;
+}
+
+.aircraft-info-button:focus {
+    outline: none;
+}
