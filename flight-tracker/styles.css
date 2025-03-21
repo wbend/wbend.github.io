@@ -572,3 +572,46 @@ html, body {
 .aircraft-info-button:focus {
     outline: none;
 }
+
+/* Operator grouping styles */
+.operator-header {
+    margin-top: 12px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    font-family: var(--font-tertiary);
+    font-weight: 600;
+    font-size: 13px;
+    color: #444;
+    border-bottom: 1px solid #eee;
+}
+
+.operator-header:first-child {
+    margin-top: 0;
+}
+
+/* Adjust checkbox labels to show proper hierarchical relationship */
+.checkbox-label {
+    margin-left: 8px;
+}
+
+/* Make the control panel scrollable if there are many aircraft */
+.checkbox-group {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+    margin-right: -5px;
+}
+
+.checkbox-group::-webkit-scrollbar {
+    width: 4px;
+}
+
+.checkbox-group::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.checkbox-group::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+

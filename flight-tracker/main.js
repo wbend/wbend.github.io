@@ -114,13 +114,15 @@ class FlightMapVisualization {
             
             // Fallback to default aircraft config if CSV fails to load
             this.aircraft = [
+                // Original aircraft
                 {
                     id: 'RA-76845',
                     file: 'RA76845_flight_paths.geojson',
                     color: '#4a90e2', // Blue
                     visible: true,
                     loaded: false,
-                    data: null
+                    data: null,
+                    operator: 'Ministry of Civil Defence, Emergencies and Disaster Relief'
                 },
                 {
                     id: 'RA-76846',
@@ -128,7 +130,63 @@ class FlightMapVisualization {
                     color: '#e24a4a', // Red
                     visible: true,
                     loaded: false,
-                    data: null
+                    data: null,
+                    operator: 'Aviacon Zitotrans'
+                },
+                // New aircraft - 223rd Flight Detachment
+                {
+                    id: 'RA-65689',
+                    file: 'RA65689_flight_paths.geojson',
+                    color: '#4ae278', // Green
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
+                },
+                {
+                    id: 'RA-65690',
+                    file: 'RA65690_flight_paths.geojson',
+                    color: '#e2c74a', // Yellow
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
+                },
+                {
+                    id: 'RA-65729',
+                    file: 'RA65729_flight_paths.geojson',
+                    color: '#9c27b0', // Purple
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
+                },
+                {
+                    id: 'RA-65733',
+                    file: 'RA65733_flight_paths.geojson',
+                    color: '#00bcd4', // Cyan
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
+                },
+                {
+                    id: 'RA-65992',
+                    file: 'RA65992_flight_paths.geojson',
+                    color: '#ff9800', // Orange
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
+                },
+                {
+                    id: 'RA-65996',
+                    file: 'RA65996_flight_paths.geojson',
+                    color: '#795548', // Brown
+                    visible: true,
+                    loaded: false,
+                    data: null,
+                    operator: '223rd Flight Detachment'
                 }
             ];
         }
@@ -175,51 +233,74 @@ class FlightMapVisualization {
     }
     
     setupAircraftControls() {
-        // Create aircraft checkboxes dynamically based on loaded aircraft info
+        // Clear existing controls first
         const controlsContainer = document.querySelector('.checkbox-group');
-        
-        // Clear existing checkboxes if any
         controlsContainer.innerHTML = '';
         
-        // Create checkbox for each aircraft
+        // Group aircraft by operator
+        const aircraftByOperator = {};
+        
         this.aircraft.forEach(aircraft => {
-            const label = document.createElement('label');
-            label.className = 'checkbox-label';
+            const operator = aircraft.operator || 'Unknown Operator';
             
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.name = 'aircraft';
-            checkbox.value = aircraft.id;
-            checkbox.checked = aircraft.visible;
+            if (!aircraftByOperator[operator]) {
+                aircraftByOperator[operator] = [];
+            }
             
-            const colorIndicator = document.createElement('span');
-            colorIndicator.className = 'color-indicator';
-            colorIndicator.style.backgroundColor = aircraft.color;
+            aircraftByOperator[operator].push(aircraft);
+        });
+        
+        // Sort operators alphabetically
+        const sortedOperators = Object.keys(aircraftByOperator).sort();
+        
+        // Create grouped checkboxes
+        sortedOperators.forEach(operator => {
+            // Create operator header
+            const operatorHeader = document.createElement('div');
+            operatorHeader.className = 'operator-header';
+            operatorHeader.textContent = operator;
+            controlsContainer.appendChild(operatorHeader);
             
-            const textNode = document.createTextNode(aircraft.id);
-            
-            const infoButton = document.createElement('button');
-            infoButton.className = 'aircraft-info-button';
-            infoButton.dataset.aircraft = aircraft.id;
-            infoButton.innerHTML = '<i class="info-icon">i</i>';
-            infoButton.title = `Show information about ${aircraft.id}`;
-            
-            label.appendChild(checkbox);
-            label.appendChild(colorIndicator);
-            label.appendChild(textNode);
-            label.appendChild(infoButton);
-            
-            controlsContainer.appendChild(label);
-            
-            // Add checkbox change handler
-            checkbox.addEventListener('change', (e) => {
-                const aircraftId = e.target.value;
-                const aircraft = this.aircraft.find(a => a.id === aircraftId);
+            // Create checkbox for each aircraft under this operator
+            aircraftByOperator[operator].forEach(aircraft => {
+                const label = document.createElement('label');
+                label.className = 'checkbox-label';
                 
-                if (aircraft) {
-                    aircraft.visible = e.target.checked;
-                    this.updateVisualization();
-                }
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = 'aircraft';
+                checkbox.value = aircraft.id;
+                checkbox.checked = aircraft.visible;
+                
+                const colorIndicator = document.createElement('span');
+                colorIndicator.className = 'color-indicator';
+                colorIndicator.style.backgroundColor = aircraft.color;
+                
+                const textNode = document.createTextNode(aircraft.id);
+                
+                const infoButton = document.createElement('button');
+                infoButton.className = 'aircraft-info-button';
+                infoButton.dataset.aircraft = aircraft.id;
+                infoButton.innerHTML = '<i class="info-icon">i</i>';
+                infoButton.title = `Show information about ${aircraft.id}`;
+                
+                label.appendChild(checkbox);
+                label.appendChild(colorIndicator);
+                label.appendChild(textNode);
+                label.appendChild(infoButton);
+                
+                controlsContainer.appendChild(label);
+                
+                // Add checkbox change handler
+                checkbox.addEventListener('change', (e) => {
+                    const aircraftId = e.target.value;
+                    const aircraft = this.aircraft.find(a => a.id === aircraftId);
+                    
+                    if (aircraft) {
+                        aircraft.visible = e.target.checked;
+                        this.updateVisualization();
+                    }
+                });
             });
         });
     }
@@ -535,7 +616,9 @@ class FlightMapVisualization {
     
     async loadSingleAircraftData(aircraft) {
         try {
-            const response = await fetch(aircraft.file);
+            // Update path to include the flight_data folder
+            const filePath = `flight_data/${aircraft.file}`;
+            const response = await fetch(filePath);
             if (!response.ok) throw new Error(`Network response was not ok for ${aircraft.id}`);
             
             const text = await response.text();
