@@ -1,76 +1,270 @@
 class FlightMapVisualization {
-    constructor() {
-        this.map = null;
-        this.aircraftData = new Map(); // Map of aircraft ID to GeoJSON data
-        this.visibleFlights = new Map(); // Map of route key to polyline layer
-        this.routeGroups = new Map(); // Map of route key to array of flight features
-        this.DISTANCE_THRESHOLD = 50;
-        this.modal = null;
-        this.currentFlights = null;
-        
-        // Year filter properties
-        this.availableYears = new Set();
-        this.selectedYear = null; // null means all years
-        
-        // Aircraft info modal
-        this.aircraftInfoModal = null;
-        
-        // Basic aircraft configuration - minimal info needed before CSV loads
-        this.aircraft = [];
-        this.aircraftInfoLoaded = false;
-        
-        // Add click handlers
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('see-all-button')) {
-                const routeKey = e.target.dataset.routeKey;
-                const flights = this.routeGroups.get(routeKey);
-                if (flights) {
-                    this.showAllFlights(flights);
-                }
+    // Add these properties to the FlightMapVisualization constructor
+constructor() {
+    this.map = null;
+    this.aircraftData = new Map(); // Map of aircraft ID to GeoJSON data
+    this.visibleFlights = new Map(); // Map of route key to polyline layer
+    this.routeGroups = new Map(); // Map of route key to array of flight features
+    this.DISTANCE_THRESHOLD = 200;
+    this.modal = null;
+    this.currentFlights = null;
+    
+    // Map layer properties
+    this.baseLayers = {};
+    this.currentBaseLayer = null;
+    
+    // Year filter properties
+    this.availableYears = new Set();
+    this.selectedYear = null; // null means all years
+    
+    // Aircraft info modal
+    this.aircraftInfoModal = null;
+    
+    // Basic aircraft configuration - minimal info needed before CSV loads
+    this.aircraft = [];
+    this.aircraftInfoLoaded = false;
+    
+    // Add click handlers
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('see-all-button')) {
+            const routeKey = e.target.dataset.routeKey;
+            const flights = this.routeGroups.get(routeKey);
+            if (flights) {
+                this.showAllFlights(flights);
             }
-            
-            // Add handler for aircraft info buttons
-            if (e.target.classList.contains('aircraft-info-button') || e.target.closest('.aircraft-info-button')) {
-                const button = e.target.classList.contains('aircraft-info-button') ? 
-                    e.target : e.target.closest('.aircraft-info-button');
-                const aircraftId = button.dataset.aircraft;
-                this.showAircraftInfo(aircraftId);
-            }
-        });
-        
-        this.init();
-    }
-
-    async init() {
-        // Initialize map centered on Europe/Russia/Middle East region
-        this.map = L.map('map').setView([45, 45], 4);
-        
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(this.map);
-
-        this.setupModal();
-        
-        try {
-            // First load aircraft info from CSV
-            await this.loadAircraftInfo();
-            
-            // Then set up controls that depend on aircraft info
-            this.setupAircraftControls();
-            this.setupDistanceControls();
-            this.setupYearFilter();
-            this.setupAircraftInfoModal();
-            
-            // Load flight data for all aircraft
-            await this.loadAircraftData();
-            this.updateVisualization();
-        } catch (error) {
-            console.error('Error initializing map:', error);
-            alert('Error loading flight data. Please try again later.');
         }
+        
+        // Add handler for aircraft info buttons
+        if (e.target.classList.contains('aircraft-info-button') || e.target.closest('.aircraft-info-button')) {
+            const button = e.target.classList.contains('aircraft-info-button') ? 
+                e.target : e.target.closest('.aircraft-info-button');
+            const aircraftId = button.dataset.aircraft;
+            this.showAircraftInfo(aircraftId);
+        }
+        
+        // Add handlers for map type buttons
+        if (e.target.classList.contains('map-type-button')) {
+            this.switchMapType(e.target.id);
+        }
+    });
+    
+    this.init();
+}
+
+// Replace the map initialization in the init() method
+async init() {
+    // Initialize map centered on Europe/Russia/Middle East region
+    this.map = L.map('map').setView([45, 45], 4);
+    
+    // Define base layers
+    this.baseLayers = {
+        'standard': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }),
+        'satellite': L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+        })
+    };
+    
+    // Add the standard layer by default
+    this.baseLayers['standard'].addTo(this.map);
+    this.currentBaseLayer = 'standard';
+    
+    this.setupModal();
+    
+    try {
+        // First load aircraft info from CSV
+        await this.loadAircraftInfo();
+        
+        // Then set up controls that depend on aircraft info
+        this.setupAircraftControls();
+        this.setupDistanceControls();
+        this.setupYearFilter();
+        this.setupMapTypeControls();
+        this.setupAircraftInfoModal();
+        
+        // Load flight data for all aircraft
+        await this.loadAircraftData();
+        this.updateVisualization();
+    } catch (error) {
+        console.error('Error initializing map:', error);
+        alert('Error loading flight data. Please try again later.');
     }
+}
+
+// Add a new method to set up map type controls
+setupMapTypeControls() {
+    // Set the initial state (standard is active by default)
+    const standardButton = document.getElementById('standard-map');
+    const satelliteButton = document.getElementById('satellite-map');
+    
+    if (standardButton && satelliteButton) {
+        standardButton.classList.add('active');
+        satelliteButton.classList.remove('active');
+    }
+}
+
+// Add a new method to switch map types
+switchMapType(mapTypeId) {
+    // Remove active class from all buttons
+    const mapButtons = document.querySelectorAll('.map-type-button');
+    mapButtons.forEach(button => button.classList.remove('active'));
+    
+    // Add active class to the clicked button
+    const clickedButton = document.getElementById(mapTypeId);
+    if (clickedButton) clickedButton.classList.add('active');
+    
+    // Determine which map type to switch to
+    let newType = 'standard';
+    if (mapTypeId === 'satellite-map') {
+        newType = 'satellite';
+    }
+    
+    // Only switch if different from current
+    if (newType !== this.currentBaseLayer) {
+        // Remove current layer
+        this.map.removeLayer(this.baseLayers[this.currentBaseLayer]);
+        
+        // Add new layer
+        this.baseLayers[newType].addTo(this.map);
+        this.currentBaseLayer = newType;
+    }
+}
 
     async loadAircraftInfo() {
+        // Define default aircraft configuration
+        const defaultAircraft = [
+            // RA-76845 and RA-76846 (toggled off by default)
+            {
+                id: 'RA-76845',
+                file: 'RA76845_flight_paths.geojson',
+                color: '#4a90e2', // Blue
+                visible: false, // Changed to false
+                loaded: false,
+                data: null,
+                operator: 'Ministry of Civil Defence, Emergencies and Disaster Relief',
+                type: 'Il-76' // Added aircraft type
+            },
+            {
+                id: 'RA-76846',
+                file: 'RA76846_flight_paths.geojson', 
+                color: '#e24a4a', // Red
+                visible: false, // Changed to false
+                loaded: false,
+                data: null,
+                operator: 'Aviacon Zitotrans',
+                type: 'Il-76' // Added aircraft type
+            },
+            // 223rd Flight Detachment - Tu-134 aircraft
+            {
+                id: 'RA-65689',
+                file: 'RA65689_flight_paths.geojson',
+                color: '#4ae278', // Green
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            {
+                id: 'RA-65690',
+                file: 'RA65690_flight_paths.geojson',
+                color: '#e2c74a', // Yellow
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            {
+                id: 'RA-65729',
+                file: 'RA65729_flight_paths.geojson',
+                color: '#9c27b0', // Purple
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            {
+                id: 'RA-65733',
+                file: 'RA65733_flight_paths.geojson',
+                color: '#00bcd4', // Cyan
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            {
+                id: 'RA-65992',
+                file: 'RA65992_flight_paths.geojson',
+                color: '#ff9800', // Orange
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            {
+                id: 'RA-65996',
+                file: 'RA65996_flight_paths.geojson',
+                color: '#795548', // Brown
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Tu-134' // Added aircraft type
+            },
+            // New aircraft - 223rd Flight Detachment (Il-76)
+            {
+                id: 'RA-78830',
+                file: 'RA78830_flight_paths.geojson',
+                color: '#3f51b5', // Indigo
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Il-76' // Added aircraft type
+            },
+            {
+                id: 'RA-78847',
+                file: 'RA78847_flight_paths.geojson',
+                color: '#f44336', // Red variant
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Il-76' // Added aircraft type
+            },
+            {
+                id: 'RA-78850',
+                file: 'RA78850_flight_paths.geojson',
+                color: '#009688', // Teal
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Il-76' // Added aircraft type
+            },
+            {
+                id: 'RA-86906',
+                file: 'RA86906_flight_paths.geojson',
+                color: '#607d8b', // Blue Grey
+                visible: true,
+                loaded: false,
+                data: null,
+                operator: '223rd Flight Detachment',
+                type: 'Il-76' // Added aircraft type
+            }
+        ];
+    
+        // Create a map of default aircraft for easy lookup
+        const defaultAircraftMap = new Map();
+        defaultAircraft.forEach(aircraft => {
+            defaultAircraftMap.set(aircraft.id, aircraft);
+        });
+    
         try {
             const response = await fetch('aircraft-info.csv');
             if (!response.ok) {
@@ -83,6 +277,9 @@ class FlightMapVisualization {
             const lines = csvText.split('\n');
             const headers = lines[0].split(',');
             
+            // List of aircraft IDs found in CSV
+            const csvAircraftIds = new Set();
+            
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i].trim()) continue;
                 
@@ -94,101 +291,47 @@ class FlightMapVisualization {
                     aircraft[header] = values[index] || '';
                 });
                 
-                // Set required properties for visualization
-                aircraft.id = aircraft.id;
-                aircraft.file = aircraft.file;
-                aircraft.color = aircraft.color;
-                aircraft.visible = true;
+                // Get the aircraft ID
+                const aircraftId = aircraft.id;
+                csvAircraftIds.add(aircraftId);
+                
+                // Check if we have default settings for this aircraft
+                const defaultSettings = defaultAircraftMap.get(aircraftId);
+                if (defaultSettings) {
+                    // Apply default settings as needed
+                    aircraft.file = aircraft.file || defaultSettings.file;
+                    aircraft.color = aircraft.color || defaultSettings.color;
+                    aircraft.visible = defaultSettings.visible; // Always use our visibility setting
+                    aircraft.type = aircraft.type || defaultSettings.type;
+                    aircraft.operator = aircraft.operator || defaultSettings.operator;
+                } else {
+                    // Set default visibility based on operator
+                    aircraft.visible = aircraft.operator === '223rd Flight Detachment';
+                }
+                
+                // Set required properties
                 aircraft.loaded = false;
                 aircraft.data = null;
                 
                 this.aircraft.push(aircraft);
             }
             
+            // Add any default aircraft not found in the CSV
+            defaultAircraft.forEach(defaultAircraft => {
+                if (!csvAircraftIds.has(defaultAircraft.id)) {
+                    this.aircraft.push({...defaultAircraft});
+                }
+            });
+            
             this.aircraftInfoLoaded = true;
             console.log(`Loaded information for ${this.aircraft.length} aircraft`);
             
         } catch (error) {
             console.error('Error loading aircraft info:', error);
-            alert('Error loading aircraft information. Using default configuration.');
+            console.log('Using default configuration');
             
-            // Fallback to default aircraft config if CSV fails to load
-            this.aircraft = [
-                // Original aircraft
-                {
-                    id: 'RA-76845',
-                    file: 'RA76845_flight_paths.geojson',
-                    color: '#4a90e2', // Blue
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: 'Ministry of Civil Defence, Emergencies and Disaster Relief'
-                },
-                {
-                    id: 'RA-76846',
-                    file: 'RA76846_flight_paths.geojson', 
-                    color: '#e24a4a', // Red
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: 'Aviacon Zitotrans'
-                },
-                // New aircraft - 223rd Flight Detachment
-                {
-                    id: 'RA-65689',
-                    file: 'RA65689_flight_paths.geojson',
-                    color: '#4ae278', // Green
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                },
-                {
-                    id: 'RA-65690',
-                    file: 'RA65690_flight_paths.geojson',
-                    color: '#e2c74a', // Yellow
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                },
-                {
-                    id: 'RA-65729',
-                    file: 'RA65729_flight_paths.geojson',
-                    color: '#9c27b0', // Purple
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                },
-                {
-                    id: 'RA-65733',
-                    file: 'RA65733_flight_paths.geojson',
-                    color: '#00bcd4', // Cyan
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                },
-                {
-                    id: 'RA-65992',
-                    file: 'RA65992_flight_paths.geojson',
-                    color: '#ff9800', // Orange
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                },
-                {
-                    id: 'RA-65996',
-                    file: 'RA65996_flight_paths.geojson',
-                    color: '#795548', // Brown
-                    visible: true,
-                    loaded: false,
-                    data: null,
-                    operator: '223rd Flight Detachment'
-                }
-            ];
+            // Use all default aircraft
+            this.aircraft = defaultAircraft.map(aircraft => ({...aircraft}));
         }
     }
     
@@ -237,17 +380,23 @@ class FlightMapVisualization {
         const controlsContainer = document.querySelector('.checkbox-group');
         controlsContainer.innerHTML = '';
         
-        // Group aircraft by operator
+        // Group aircraft by operator and then by type
         const aircraftByOperator = {};
         
         this.aircraft.forEach(aircraft => {
             const operator = aircraft.operator || 'Unknown Operator';
             
             if (!aircraftByOperator[operator]) {
-                aircraftByOperator[operator] = [];
+                aircraftByOperator[operator] = {};
             }
             
-            aircraftByOperator[operator].push(aircraft);
+            const type = aircraft.type || 'Unknown Type';
+            
+            if (!aircraftByOperator[operator][type]) {
+                aircraftByOperator[operator][type] = [];
+            }
+            
+            aircraftByOperator[operator][type].push(aircraft);
         });
         
         // Sort operators alphabetically
@@ -261,45 +410,60 @@ class FlightMapVisualization {
             operatorHeader.textContent = operator;
             controlsContainer.appendChild(operatorHeader);
             
-            // Create checkbox for each aircraft under this operator
-            aircraftByOperator[operator].forEach(aircraft => {
-                const label = document.createElement('label');
-                label.className = 'checkbox-label';
+            // Get all aircraft types for this operator
+            const aircraftTypes = Object.keys(aircraftByOperator[operator]);
+            
+            // For each aircraft type, create a subheader and list aircraft
+            aircraftTypes.forEach(type => {
+                // Create type subheader if there are multiple types
+                if (aircraftTypes.length > 1) {
+                    const typeHeader = document.createElement('div');
+                    typeHeader.className = 'type-header';
+                    typeHeader.textContent = type;
+                    controlsContainer.appendChild(typeHeader);
+                }
                 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.name = 'aircraft';
-                checkbox.value = aircraft.id;
-                checkbox.checked = aircraft.visible;
-                
-                const colorIndicator = document.createElement('span');
-                colorIndicator.className = 'color-indicator';
-                colorIndicator.style.backgroundColor = aircraft.color;
-                
-                const textNode = document.createTextNode(aircraft.id);
-                
-                const infoButton = document.createElement('button');
-                infoButton.className = 'aircraft-info-button';
-                infoButton.dataset.aircraft = aircraft.id;
-                infoButton.innerHTML = '<i class="info-icon">i</i>';
-                infoButton.title = `Show information about ${aircraft.id}`;
-                
-                label.appendChild(checkbox);
-                label.appendChild(colorIndicator);
-                label.appendChild(textNode);
-                label.appendChild(infoButton);
-                
-                controlsContainer.appendChild(label);
-                
-                // Add checkbox change handler
-                checkbox.addEventListener('change', (e) => {
-                    const aircraftId = e.target.value;
-                    const aircraft = this.aircraft.find(a => a.id === aircraftId);
+                // Create checkbox for each aircraft under this type
+                aircraftByOperator[operator][type].forEach(aircraft => {
+                    const label = document.createElement('label');
+                    label.className = 'checkbox-label';
                     
-                    if (aircraft) {
-                        aircraft.visible = e.target.checked;
-                        this.updateVisualization();
-                    }
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.name = 'aircraft';
+                    checkbox.value = aircraft.id;
+                    checkbox.checked = aircraft.visible;
+                    
+                    const colorIndicator = document.createElement('span');
+                    colorIndicator.className = 'color-indicator';
+                    colorIndicator.style.backgroundColor = aircraft.color;
+                    
+                    // Display registration number only without type
+                    const textNode = document.createTextNode(aircraft.id);
+                    
+                    const infoButton = document.createElement('button');
+                    infoButton.className = 'aircraft-info-button';
+                    infoButton.dataset.aircraft = aircraft.id;
+                    infoButton.innerHTML = '<i class="info-icon">i</i>';
+                    infoButton.title = `Show information about ${aircraft.id}`;
+                    
+                    label.appendChild(checkbox);
+                    label.appendChild(colorIndicator);
+                    label.appendChild(textNode);
+                    label.appendChild(infoButton);
+                    
+                    controlsContainer.appendChild(label);
+                    
+                    // Add checkbox change handler
+                    checkbox.addEventListener('change', (e) => {
+                        const aircraftId = e.target.value;
+                        const aircraft = this.aircraft.find(a => a.id === aircraftId);
+                        
+                        if (aircraft) {
+                            aircraft.visible = e.target.checked;
+                            this.updateVisualization();
+                        }
+                    });
                 });
             });
         });
@@ -420,13 +584,18 @@ class FlightMapVisualization {
     
     // Generate HTML content for aircraft info modal based on CSV data
     generateAircraftInfoHTML(aircraft) {
+        // Format title nicely
+        const titleModel = aircraft.model ? aircraft.model : '';
+        const titleType = aircraft.type ? aircraft.type : '';
+        const titleText = titleModel ? `${titleModel} (${aircraft.id})` : `${titleType} ${aircraft.id}`;
+        
         let html = `
-            <h3>${aircraft.model} (${aircraft.id})</h3>
-            <p>${aircraft.description}</p>
+            <h3>${titleText}</h3>
+            <p>${aircraft.description || ''}</p>
         `;
         
         // Add aircraft details section if we have data
-        if (aircraft.serial || aircraft.first_flight || aircraft.registration_date || aircraft.status) {
+        if (aircraft.serial || aircraft.first_flight || aircraft.registration_date || aircraft.status || aircraft.type) {
             html += `
                 <div class="aircraft-info">
                     <h4>Aircraft Details</h4>
@@ -434,6 +603,7 @@ class FlightMapVisualization {
             `;
             
             if (aircraft.operator) html += `<li><strong>Operator:</strong> ${aircraft.operator}</li>`;
+            if (aircraft.type) html += `<li><strong>Type:</strong> ${aircraft.type}</li>`;
             if (aircraft.model) html += `<li><strong>Model:</strong> ${aircraft.model}</li>`;
             if (aircraft.serial) html += `<li><strong>Serial:</strong> ${aircraft.serial}</li>`;
             if (aircraft.first_flight) html += `<li><strong>First Flight:</strong> ${aircraft.first_flight}</li>`;
@@ -505,16 +675,6 @@ class FlightMapVisualization {
             html += `</ul>`;
         }
         
-        // Add image if available
-      //  if (aircraft.image_url) {
-       //     html += `
-       //         <div class="image-container">
-       //             <img src="${aircraft.image_url}" alt="${aircraft.model} ${aircraft.id}" />
-        //            <p class="caption">${aircraft.model} ${aircraft.id} (Source: Archive Photo)</p>
-        //        </div>
-       //     `;
-    //    }
-        
         return html;
     }
 
@@ -527,7 +687,7 @@ class FlightMapVisualization {
             const dateB = b.properties.simplified_departure_date ? new Date(b.properties.simplified_departure_date) : new Date(0);
             return dateB - dateA; // Newest first
         });
-
+    
         const firstFlight = flights[0].properties;
         
         // Update modal header
@@ -573,15 +733,16 @@ class FlightMapVisualization {
             
             yearFlights.forEach(flight => {
                 const props = flight.properties;
-                const aircraft = this.aircraft.find(a => a.id === props.ident || a.id === props.registration);
+                const aircraft = this.aircraft.find(a => a.id === props.ident || a.id === props.registration || a.id === props.aircraftId);
                 const aircraftColor = aircraft ? aircraft.color : '#999';
-                const aircraftId = props.ident || props.registration || 'Unknown';
+                const aircraftId = props.ident || props.registration || props.aircraftId || 'Unknown';
+                const aircraftType = aircraft && aircraft.type ? ` (${aircraft.type})` : '';
                 const formattedDate = props.simplified_departure_date ? 
                     new Date(props.simplified_departure_date).toLocaleDateString() : 'Unknown Date';
                 
                 flightListHTML += `
                     <div class="flight-list-item">
-                        <span class="aircraft-tag" style="background-color: ${aircraftColor}">${aircraftId}</span>
+                        <span class="aircraft-tag" style="background-color: ${aircraftColor}">${aircraftId}${aircraftType}</span>
                         <strong>${formattedDate}</strong> - 
                         ${props.origin_code || 'Unknown'} → ${props.destination_code || 'Unknown'}
                         ${props.origin_city ? `(${props.origin_city} to ${props.destination_city || 'Unknown'})` : ''}
@@ -849,7 +1010,7 @@ class FlightMapVisualization {
             const dateB = b.properties.simplified_departure_date ? new Date(b.properties.simplified_departure_date) : new Date(0);
             return dateA - dateB;
         });
-
+    
         const firstFlight = sortedFlights[0].properties;
         const flightCount = flights.length;
         const dateRange = this.getDateRange(sortedFlights);
@@ -889,10 +1050,13 @@ class FlightMapVisualization {
         const destinationsText = destMap.size > 5 ? 
             `${topDestinations} and ${destMap.size - 5} more` : topDestinations;
         
+        // Add aircraft type info to the popup
+        const aircraftTypeText = aircraft.type ? ` (${aircraft.type})` : '';
+        
         const popupContent = `
             <div class="flight-info">
                 <h4>
-                    <span class="aircraft-tag" style="background-color: ${aircraft.color}">${aircraft.id}</span>
+                    <span class="aircraft-tag" style="background-color: ${aircraft.color}">${aircraft.id}${aircraftTypeText}</span>
                     ${flightCount} ${flightCount === 1 ? 'Flight' : 'Flights'} on this Route
                 </h4>
                 <p><strong>Origins:</strong> ${originsText}</p>

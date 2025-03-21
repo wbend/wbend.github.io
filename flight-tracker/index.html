@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PMC Aircraft Flight Paths Visualization</title>
+    <title>Russian Military Transport Aircraft Flight Paths</title>
     
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
@@ -35,7 +35,7 @@
                             No Grouping
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="distance" value="50" checked>
+                            <input type="radio" name="distance" value="50">
                             50 km
                         </label>
                         <label class="radio-label">
@@ -43,13 +43,20 @@
                             100 km
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="distance" value="200">
+                            <input type="radio" name="distance" value="200" checked>
                             200 km
                         </label>
                     </div>
                 </div>
                 
                 <!-- Year Filter will be added here dynamically -->
+                <div class="map-type-controls">
+                    <p>Map Type:</p>
+                    <div class="map-type-buttons">
+                        <button id="standard-map" class="map-type-button active">Standard</button>
+                        <button id="satellite-map" class="map-type-button">Satellite</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
