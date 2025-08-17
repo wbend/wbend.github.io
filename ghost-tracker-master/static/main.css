@@ -1,0 +1,313 @@
+
+.main-body{
+
+  background:#f5f7f7;
+  background:#edeef0;
+}
+.inputContainer{
+
+  background-color: white;
+  border-radius: 4px;
+  height: 570px;
+  width: 95%;
+  margin: auto;
+  margin-top: 50px;
+
+
+}
+.container {
+position:relative;margin:0 auto;
+font-size:12.5px;
+padding:0 15px;
+background:#4872a3;
+height:55px;
+box-sizing:border-box;
+border-bottom: 1px solid #4e7097;
+
+
+  color: white;
+  margin-top: -1.4rem;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  display: block;
+
+
+}
+.container li{
+  display: inline-block;
+  
+  color: white;
+    padding-left: 20px;
+
+
+
+}
+
+.container h1{
+  padding-top: 5px;
+  padding-left: 20px;
+  text-align: left;
+  color: white;
+
+}
+
+
+.container ul{
+  float: right;
+  margin-top: -2.4rem;
+  margin-right: 0.3rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+
+}
+.container li a{
+
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+
+
+
+}
+
+.inputForm {
+
+  margin: 3.5%;
+  height: 80%;  /* The height is 400 pixels */
+  width: 35%;  /* The height is 700 pixels */
+  float: left;
+}
+
+.inputFields input {
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  display: block;
+  width : 270px;
+  height: 35px;
+  box-sizing:border-box;
+  border-radius: 3px;
+  border:1px solid #d3d9de;
+  padding-left: 10px;
+  font-size: 13px;
+  color: black;
+
+
+  display: inline-block;
+
+
+}
+.inputFields label {
+
+    /*text-align: center;*/
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: gray;
+    display: block;
+    text-align: left;
+    
+    display: inline-block;
+    margin-right: 50px;
+
+
+    display: inline-block;
+    width: 240px;
+
+}
+#latt, #long{
+
+  width: 270px;
+  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+  color: black;
+
+}
+.inputFields select{
+
+  width: 270px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  height: 35px;
+
+}
+
+.inputTable {
+
+    vertical-align: middle;
+    border-collapse: collapse;
+
+    
+}
+
+.inputTable tr{
+border-bottom: 1px solid gray;
+}
+.inputFields td{
+
+vertical-align: middle;
+
+}
+
+
+#map {
+  height: 100%;
+  width: 100%;  /* The width is the width of the web page */
+
+  
+  }
+  .test{
+    margin: 3.5%;
+    /*height: 80%; */
+    width: 50%;
+    border: 1px solid gray;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+
+    float: right;
+    height: 99.5%;
+    margin: 0;
+    padding: 0;
+
+
+  }
+
+.submit-div {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+}
+#submit-button{
+
+  width:100px; 
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 7px 16px 8px;
+  background-color: #4872a3;
+  color: #fff;
+  border-style: solid;
+  border-color: #4872a3;
+
+}
+
+.resultContainer{
+
+  background-color: white;
+  border-radius: 4px;
+  width: 95%;
+  margin: auto;
+  display: inline-block;
+  
+
+
+}
+
+.resultWrapper{
+  text-align: center;
+  margin-top: 30px;
+}
+
+
+.post{
+  margin: 20px;
+  display: block;
+  width: 150px;
+  text-align: center;
+  float: left;
+
+}
+
+.postPicture{
+
+  /*margin: 20px;*/
+  width: 150px;
+  height: 150px;
+  /*display: block;*/
+}
+
+.userInfo{
+  margin: 25px;
+  display: block;
+  width: 150px;
+  height: 100%;
+  text-align: center;
+  float: left;
+
+
+}
+.userCol{
+  vertical-align: top;
+}
+
+.profilePicture{
+
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  /*vertical-align: top;*/
+  /*display: block;*/
+
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 28px;
+  padding: 5px 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 350px;
+  margin-top: 12px;
+  border-color: black;
+  border: 1px solid gray;
+}
+
+.infoCount {
+
+  width: 94%;
+  margin: auto;
+  margin-top: 30px;
+
+}
+
+.counter td{
+
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px; 
+  font-size: 20px;
+
+}
+
+
+/* Add these styles to your existing static/main.css file */
+
+.logout-container {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logout-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
