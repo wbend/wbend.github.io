@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A7A5 Hub Wallet Deep Dive - OSINT Investigation</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #c9d1d9; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        header { border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #58a6ff; font-size: 2em; margin-bottom: 10px; }
+        .subtitle { color: #8b949e; font-size: 1.1em; }
+        .breadcrumb { margin-bottom: 20px; }
+        .breadcrumb a { color: #58a6ff; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        h2 { color: #58a6ff; margin: 40px 0 20px; padding-bottom: 10px; border-bottom: 1px solid #30363d; }
+        .alert { background: #f8514922; border: 1px solid #f85149; border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .alert-title { color: #f85149; font-weight: bold; margin-bottom: 5px; }
+        .insight { background: #23863622; border: 1px solid #238636; border-radius: 8px; padding: 15px 20px; margin: 20px 0; }
+        .insight-title { color: #3fb950; font-weight: bold; margin-bottom: 5px; }
+        .explainer { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .explainer h4 { color: #58a6ff; margin-bottom: 10px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px; text-align: center; }
+        .stat-value { font-size: 2.2em; font-weight: bold; color: #58a6ff; }
+        .stat-label { color: #8b949e; font-size: 0.9em; margin-top: 5px; }
+        .stat-card.alert-stat { border-color: #f85149; }
+        .stat-card.alert-stat .stat-value { color: #f85149; }
+        #network { height: 700px; border: 1px solid #30363d; border-radius: 8px; background: #0d1117; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { text-align: left; padding: 12px; border-bottom: 1px solid #30363d; }
+        th { background: #161b22; color: #8b949e; font-weight: 600; }
+        tr:hover { background: #1c2128; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.85em; font-weight: 500; }
+        .tag-hub { background: #a371f733; color: #a371f7; }
+        .tag-shared { background: #d2992233; color: #d29922; }
+        .tag-mega { background: #f8514933; color: #f85149; }
+        .wallet-addr { font-family: monospace; font-size: 0.85em; color: #79c0ff; }
+        .legend { display: flex; gap: 20px; flex-wrap: wrap; margin: 15px 0; }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .flow-diagram { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 30px; margin: 20px 0; text-align: center; }
+        .flow-box { display: inline-block; padding: 15px 25px; border-radius: 8px; margin: 10px; font-weight: bold; }
+        .flow-arrow { color: #58a6ff; font-size: 2em; margin: 0 10px; }
+        footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">← A7A5 Investigation</a>
+        </div>
+        <header>
+            <h1>Hub Wallet Deep Dive</h1>
+            <p class="subtitle">Tracing the Mixing Infrastructure Behind A7A5 Trail-Breaking</p>
+            <p style="color: #8b949e; margin-top: 10px;">Analysis of 10,000 transfers | January 28, 2026</p>
+        </header>
+
+        <div class="alert">
+            <div class="alert-title">LAYERING PATTERN IDENTIFIED</div>
+            <p>Analysis reveals a classic money laundering structure: funds flow from <strong>Hub Alpha</strong> through <strong>5 intermediate "shared" wallets</strong> to <strong>Hub Gamma</strong>. This multi-hop pattern is designed to obscure the connection between source and destination.</p>
+        </div>
+
+        <h2>The Discovered Structure</h2>
+        <div class="explainer">
+            <h4>What is Layering?</h4>
+            <p>"Layering" is the second stage of money laundering, where funds are moved through multiple accounts to create distance from their origin. In crypto, this means routing through intermediate wallets. The key finding here: <strong>5 wallets connect both major hubs</strong>, acting as a mixing layer.</p>
+        </div>
+
+        <div class="flow-diagram">
+            <div class="flow-box" style="background: #f8514933; border: 2px solid #f85149;">Hub Alpha<br><span style="font-size: 0.8em; color: #8b949e;">0x354245...</span><br><span style="font-size: 0.9em;">40.6B A7A5</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box" style="background: #d2992233; border: 2px solid #d29922;">5 Shared Wallets<br><span style="font-size: 0.8em; color: #8b949e;">(Mixing Layer)</span><br><span style="font-size: 0.9em;">~100B A7A5</span></div>
+            <span class="flow-arrow">→</span>
+            <div class="flow-box" style="background: #3fb95033; border: 2px solid #3fb950;">Hub Gamma<br><span style="font-size: 0.8em; color: #8b949e;">0x62d149...</span><br><span style="font-size: 0.9em;">3.4B A7A5</span></div>
+        </div>
+
+        <h2>Key Findings</h2>
+        <div class="stat-grid">
+            <div class="stat-card alert-stat"><div class="stat-value">5</div><div class="stat-label">Shared Wallets Between Hubs</div></div>
+            <div class="stat-card"><div class="stat-value">37</div><div class="stat-label">Second-Degree Connections</div></div>
+            <div class="stat-card alert-stat"><div class="stat-value">97.8B</div><div class="stat-label">Mega-Wallet Volume (A7A5)</div></div>
+            <div class="stat-card"><div class="stat-value">10,000</div><div class="stat-label">Transfers Analyzed</div></div>
+        </div>
+
+        <h2>The Mixing Layer: 5 Shared Wallets</h2>
+        <div class="insight">
+            <div class="insight-title">Why These Matter</div>
+            <p>These 5 wallets are the only ones that connect <strong>both</strong> Hub Alpha and Hub Gamma. If you're trying to trace funds from one hub to the other, you <em>must</em> go through one of these. This makes them critical chokepoints - and likely controlled by the same operator.</p>
+        </div>
+
+        <table>
+            <thead><tr><th>Wallet</th><th>Volume In</th><th>Volume Out</th><th>Top Sender</th><th>Top Receiver</th><th>Pattern</th></tr></thead>
+            <tbody>
+                <tr><td><span class="tag tag-mega">MEGA</span> <span class="wallet-addr">0x0bf90a4bec2b02...</span></td><td>97.9B</td><td>97.5B</td><td>0xef529a... (97.9B)</td><td>0xe1c85f... (43.7B)</td><td>Single source, multiple destinations</td></tr>
+                <tr><td><span class="tag tag-shared">SHARED</span> <span class="wallet-addr">0x252bf8a85a51c0...</span></td><td>6.2B</td><td>6.2B</td><td>0xdcef9b... (1.4B)</td><td>Hub Gamma (2.3B)</td><td>Multi-source aggregator → Hub</td></tr>
+                <tr><td><span class="tag tag-shared">SHARED</span> <span class="wallet-addr">0x29292b448eaabf...</span></td><td>1.2B</td><td>1.2B</td><td>Hub Alpha (0.4B)</td><td>0xe2bca4... (1.2B)</td><td>Hub → Single destination</td></tr>
+                <tr><td><span class="tag tag-shared">SHARED</span> <span class="wallet-addr">0x5d046b85a96874...</span></td><td>0.8B</td><td>0.8B</td><td>Hub Alpha (0.4B)</td><td>0x252bf8... (0.8B)</td><td>Hub → Aggregator chain</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Network Visualization</h2>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background: #f85149;"></div><span>Hub Wallets</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #d29922;"></div><span>Shared/Mixing Wallets</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #a371f7;"></div><span>Mega-Volume Wallet (97B+)</span></div>
+            <div class="legend-item"><div class="legend-dot" style="background: #8b949e;"></div><span>Second-Degree Connections</span></div>
+        </div>
+        <div id="network"></div>
+
+        <h2>Second-Degree Network</h2>
+        <div class="explainer">
+            <h4>Wallets Connected to Multiple Shared Wallets</h4>
+            <p>These wallets appear in 2+ of the shared wallet networks, suggesting they may be additional mixing infrastructure or significant counterparties.</p>
+        </div>
+        <table>
+            <thead><tr><th>Wallet</th><th>Appearances</th><th>Note</th></tr></thead>
+            <tbody>
+                <tr><td><span class="tag tag-hub">HUB</span> <span class="wallet-addr">0x62d149a54c9b3e91...</span></td><td>4</td><td>Hub Gamma - receives from multiple shared wallets</td></tr>
+                <tr><td><span class="tag tag-hub">HUB</span> <span class="wallet-addr">0x354245f95bb49d6f...</span></td><td>4</td><td>Hub Alpha - sends to multiple shared wallets</td></tr>
+                <tr><td><span class="wallet-addr">0x0d860b17df9c9c78fe...</span></td><td>2</td><td>Unknown - investigate further</td></tr>
+                <tr><td><span class="wallet-addr">0xad078a5a281c89db85...</span></td><td>2</td><td>High volume (52B) - possible third hub</td></tr>
+            </tbody>
+        </table>
+
+        <h2>Investigation Implications</h2>
+        <div class="explainer">
+            <h4>What This Means for Sanctions Enforcement</h4>
+            <ol style="margin: 10px 0 0 20px;">
+                <li><strong>Centralized Control:</strong> The 5 shared wallets suggest a single operator managing the mixing layer</li>
+                <li><strong>Predictable Structure:</strong> The Hub → Shared → Hub pattern can be monitored for future activity</li>
+                <li><strong>Mega-Wallet Risk:</strong> 0x0bf90a... moved 97.8B A7A5 (~$1.1B USD) - this is institutional scale</li>
+                <li><strong>Actionable Addresses:</strong> The 5 shared wallets and 3 hubs are priority targets for sanctions designation</li>
+            </ol>
+        </div>
+
+        <div class="alert">
+            <div class="alert-title">RECOMMENDED ACTIONS</div>
+            <ul style="margin: 10px 0 0 20px;">
+                <li>Submit hub wallet addresses to OFAC for potential designation</li>
+                <li>Cross-reference with Grinex exchange hot wallet lists</li>
+                <li>Monitor shared wallets for new activity patterns</li>
+                <li>Extend analysis to August 2025 to capture post-sanctions evasion</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><a href="index.html" style="color: #58a6ff;">← Back to Main Report</a></p>
+            <p style="margin-top: 10px;">Generated by A7A5 Trail-Break Detector | Analysis Date: January 28, 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        const nodes = new vis.DataSet([
+            {id: 'hub_alpha', label: 'Hub Alpha\n0x354245...', color: '#f85149', size: 50, font: {color: '#c9d1d9'}},
+            {id: 'hub_gamma', label: 'Hub Gamma\n0x62d149...', color: '#f85149', size: 40, font: {color: '#c9d1d9'}},
+            {id: 'mega', label: 'MEGA\n0x0bf90a...\n97.8B A7A5', color: '#a371f7', size: 60, font: {color: '#c9d1d9'}},
+            {id: 's1', label: '0x252bf8...\n6.2B', color: '#d29922', size: 30, font: {color: '#c9d1d9'}},
+            {id: 's2', label: '0x29292b...\n1.2B', color: '#d29922', size: 25, font: {color: '#c9d1d9'}},
+            {id: 's3', label: '0x5d046b...\n0.8B', color: '#d29922', size: 22, font: {color: '#c9d1d9'}},
+            {id: 'd1', label: '0xef529a...\n(Mega source)', color: '#8b949e', size: 35, font: {color: '#c9d1d9'}},
+            {id: 'd2', label: '0xe1c85f...\n(Mega dest)', color: '#8b949e', size: 30, font: {color: '#c9d1d9'}},
+            {id: 'd3', label: '0xad078a...\n52B (3rd hub?)', color: '#8b949e', size: 35, font: {color: '#c9d1d9'}},
+        ]);
+        const edges = new vis.DataSet([
+            {from: 'hub_alpha', to: 's1', width: 3, color: '#f85149', arrows: 'to'},
+            {from: 'hub_alpha', to: 's2', label: '0.4B', width: 2, color: '#f85149', arrows: 'to'},
+            {from: 'hub_alpha', to: 's3', label: '0.4B', width: 2, color: '#f85149', arrows: 'to'},
+            {from: 's1', to: 'hub_gamma', label: '2.3B', width: 3, color: '#3fb950', arrows: 'to'},
+            {from: 's3', to: 's1', label: '0.8B', width: 2, color: '#d29922', arrows: 'to'},
+            {from: 'd1', to: 'mega', label: '97.8B', width: 6, color: '#a371f7', arrows: 'to'},
+            {from: 'mega', to: 'd2', label: '43.7B', width: 5, color: '#a371f7', arrows: 'to'},
+            {from: 'mega', to: 'hub_gamma', width: 2, color: '#a371f7', arrows: 'to', dashes: true},
+            {from: 'd3', to: 's1', width: 2, color: '#8b949e', arrows: 'to', dashes: true},
+            {from: 'd3', to: 'hub_alpha', width: 2, color: '#8b949e', arrows: 'to', dashes: true},
+        ]);
+        const container = document.getElementById('network');
+        new vis.Network(container, {nodes, edges}, {
+            physics: {forceAtlas2Based: {gravitationalConstant: -80, centralGravity: 0.015, springLength: 200}, solver: 'forceAtlas2Based'},
+            edges: {smooth: {type: 'curvedCW', roundness: 0.2}, font: {color: '#8b949e', size: 11}},
+            interaction: {hover: true}
+        });
+    </script>
+</body>
+</html>
