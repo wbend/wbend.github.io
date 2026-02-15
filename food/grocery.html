@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Grocery List</title>
+  <link rel="stylesheet" href="style.css">
+  
+<script>
+const SK = 'rv-grocery-checks';
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(SK)) || {}; }
+  catch { return {}; }
+}
+
+function save(c) { localStorage.setItem(SK, JSON.stringify(c)); }
+
+function toggle(el) {
+  const cb = el.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  el.classList.toggle('checked', cb.checked);
+  const c = load();
+  if (cb.checked) c[el.dataset.key] = true;
+  else delete c[el.dataset.key];
+  save(c);
+  count();
+}
+
+function count() {
+  const total = document.querySelectorAll('.grocery-item').length;
+  const done = document.querySelectorAll('.grocery-item.checked').length;
+  document.getElementById('counter').textContent = done + ' / ' + total + ' items';
+}
+
+function resetAll() {
+  document.querySelectorAll('.grocery-item').forEach(el => {
+    el.classList.remove('checked');
+    el.querySelector('input[type="checkbox"]').checked = false;
+  });
+  save({});
+  count();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const c = load();
+  document.querySelectorAll('.grocery-item').forEach(el => {
+    if (c[el.dataset.key]) {
+      el.classList.add('checked');
+      el.querySelector('input[type="checkbox"]').checked = true;
+    }
+  });
+  count();
+});
+</script>
+</head>
+<body>
+  <nav class="topnav">
+  <a href="index.html" class="nav-brand">Recipe Vault</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Recipes</a>
+    <a href="grocery.html" class="nav-link active">Grocery List</a>
+  </div>
+</nav>
+  <main>
+    <div class="grocery-header">
+      <h1>Grocery List</h1>
+      <div class="grocery-meta">
+        <div class="grocery-recipes"><a href="easy-lemon-pepper-chicken.html" class="badge badge-tag recipe-link">Easy Lemon Pepper Chicken</a> <a href="german-pork-rouladen.html" class="badge badge-tag recipe-link">German Pork Rouladen</a></div>
+        <div class="grocery-time">Generated Feb 15, 04:49 PM</div>
+      </div>
+    </div>
+    <div class="grocery-controls">
+      <span id="counter">0 / 11 items</span>
+      <button class="btn btn-secondary" onclick="resetAll()">Reset</button>
+    </div>
+    <div class="grocery-body">
+      
+      <div class="grocery-section">
+        <h3>Produce</h3>
+        <ul><li class="grocery-item" data-key="1 onion (white)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 onion (white)</span></li><li class="grocery-item" data-key="1 bunch fresh parsley" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 bunch fresh parsley</span></li><li class="grocery-item" data-key="1 lemon" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 lemon</span></li></ul>
+      </div>
+      <div class="grocery-section">
+        <h3>Meat &amp; Seafood</h3>
+        <ul><li class="grocery-item" data-key="2 boneless skinless chicken breasts (about 1.3 lbs)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>2 boneless skinless chicken breasts (about 1.3 lbs)</span></li><li class="grocery-item" data-key="4 pork cutlets (scallopini)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>4 pork cutlets (scallopini)</span></li><li class="grocery-item" data-key="4 slices bacon" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>4 slices bacon</span></li></ul>
+      </div>
+      <div class="grocery-section">
+        <h3>Canned &amp; Jarred</h3>
+        <ul><li class="grocery-item" data-key="1-2 dill pickles" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1-2 dill pickles</span></li><li class="grocery-item" data-key="Beef broth or stock (2 cups)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Beef broth or stock (2 cups)</span></li><li class="grocery-item" data-key="Chicken broth (1/2 cup)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Chicken broth (1/2 cup)</span></li><li class="grocery-item" data-key="Grainy German mustard (such as fig-apple mustard)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Grainy German mustard (such as fig-apple mustard)</span></li></ul>
+      </div>
+      <div class="grocery-section">
+        <h3>Spices &amp; Seasonings</h3>
+        <ul><li class="grocery-item" data-key="Lemon pepper seasoning" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Lemon pepper seasoning</span></li></ul>
+      </div>
+    </div></main>
+</body>
+</html>
