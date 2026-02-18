@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PIN Gate -->
+  <div id="pin-gate" class="gate-overlay hidden">
+    <div class="gate-card">
+      <div id="gate-set" class="hidden">
+        <h2>Create your PIN</h2>
+        <p class="gate-sub">4–8 digits. Only you will know it.</p>
+        <input type="password" id="pin-set-input" inputmode="numeric" maxlength="8" placeholder="New PIN" autocomplete="new-password">
+        <input type="password" id="pin-confirm-input" inputmode="numeric" maxlength="8" placeholder="Confirm PIN" autocomplete="new-password">
+        <p class="gate-error hidden" id="gate-set-error"></p>
+        <button class="btn btn-primary btn-full" id="pin-set-btn">Set PIN</button>
+      </div>
+      <div id="gate-enter" class="hidden">
+        <h2>Welcome back</h2>
+        <p class="gate-sub">Enter your PIN to continue.</p>
+        <input type="password" id="pin-enter-input" inputmode="numeric" maxlength="8" placeholder="PIN" autocomplete="current-password">
+        <p class="gate-error hidden" id="gate-enter-error">Incorrect PIN</p>
+        <button class="btn btn-primary btn-full" id="pin-enter-btn">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Shell -->
+  <div id="app" class="hidden">
+
+    <!-- Nav -->
+    <nav class="app-nav">
+      <a href="#today" class="nav-link" data-view="today">Today</a>
+      <a href="#history" class="nav-link" data-view="history">History</a>
+      <a href="#stats" class="nav-link" data-view="stats">Stats</a>
+    </nav>
+
+    <!-- Today View -->
+    <main id="view-today" class="view hidden">
+      <div id="today-logged" class="hidden">
+        <div class="score-card">
+          <div class="score-date" id="tl-date"></div>
+          <div class="score-number" id="tl-score"></div>
+          <div class="score-label">Today's Score</div>
+          <div class="streak-badge" id="tl-streak"></div>
+          <div class="score-motivation" id="tl-motivation"></div>
+        </div>
+        <button class="btn btn-secondary btn-full" id="edit-today-btn">Edit today's entry</button>
+      </div>
+
+      <div id="today-form">
+        <header class="today-header">
+          <div class="today-date" id="form-date"></div>
+          <div class="evening-reminder hidden" id="evening-reminder">You haven't logged today yet.</div>
+        </header>
+
+        <div class="card">
+          <div class="habit-row" data-habit="noAlcohol">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">No Alcohol</div>
+          </div>
+          <div class="habit-row calorie-row" data-habit="calorieLimitMet">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">Calorie Limit Met</div>
+            <input type="text" class="calorie-input" id="calories-input" placeholder="kcal (optional)" inputmode="numeric">
+          </div>
+          <div class="habit-row" data-habit="writingCoding">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">Writing / Coding</div>
+          </div>
+          <div class="habit-row" data-habit="jobApplication">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">Job Application</div>
+          </div>
+          <div class="habit-row" data-habit="russianPractice">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">Russian Practice</div>
+          </div>
+          <div class="habit-row" data-habit="drumPractice">
+            <div class="habit-toggle"></div>
+            <div class="habit-label">Drum Practice</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Exercise</div>
+          <div id="exercise-list"></div>
+          <div class="add-exercise-row">
+            <input type="text" id="add-exercise-input" placeholder="Add exercise type…">
+            <button class="btn btn-secondary" id="add-exercise-btn">Add</button>
+          </div>
+        </div>
+
+        <div class="card notes-card">
+          <button class="notes-toggle" id="notes-toggle">
+            Notes <span class="notes-arrow">▼</span>
+          </button>
+          <div class="notes-body hidden" id="notes-body">
+            <label class="notes-label">Exercise Notes</label>
+            <div class="notes-textarea-wrap">
+              <textarea id="exercise-notes" placeholder="How did it go?"></textarea>
+              <button class="btn-cleanup" data-type="exercise" title="Clean up with AI">✨</button>
+            </div>
+            <label class="notes-label">Food Notes</label>
+            <div class="notes-textarea-wrap">
+              <textarea id="food-notes" placeholder="What did you make?"></textarea>
+              <button class="btn-cleanup" data-type="food" title="Clean up with AI">✨</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <button class="btn btn-primary btn-full" id="save-today-btn">Save Today</button>
+        </div>
+      </div>
+
+      <!-- Score reveal overlay -->
+      <div id="score-reveal" class="score-reveal hidden">
+        <div class="score-reveal-card">
+          <div class="score-reveal-number" id="reveal-number">0</div>
+          <div class="score-reveal-label">Today's Score</div>
+          <div class="streak-badge" id="reveal-streak"></div>
+          <div class="score-motivation" id="reveal-motivation"></div>
+          <button class="btn btn-primary" id="reveal-close-btn">Done</button>
+        </div>
+        <div id="confetti-container"></div>
+      </div>
+    </main>
+
+    <!-- History View -->
+    <main id="view-history" class="view hidden">
+      <div class="view-header">
+        <h1>History</h1>
+      </div>
+      <div id="history-table-wrap">
+        <table class="history-table" id="history-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Day</th>
+              <th>Score</th>
+              <th class="habit-col" title="No Alcohol">🚫🍺</th>
+              <th class="habit-col" title="Calories">🥗</th>
+              <th class="habit-col" title="Exercise">💪</th>
+              <th class="habit-col" title="Writing/Coding">💻</th>
+              <th class="habit-col" title="Job App">📋</th>
+              <th class="habit-col" title="Russian">🇷🇺</th>
+              <th class="habit-col" title="Drums">🥁</th>
+            </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+        </table>
+        <div id="history-empty" class="empty-state hidden">No entries yet. Log your first day!</div>
+      </div>
+      <div class="pagination" id="history-pagination"></div>
+
+      <!-- Edit panel -->
+      <div id="history-edit-panel" class="edit-panel hidden">
+        <div class="edit-panel-header">
+          <h2 id="edit-panel-date"></h2>
+          <button class="btn-icon" id="edit-panel-close">✕</button>
+        </div>
+        <div id="edit-panel-body"></div>
+        <div class="save-bar">
+          <button class="btn btn-primary btn-full" id="edit-save-btn">Save Changes</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Stats View -->
+    <main id="view-stats" class="view hidden">
+      <div class="view-header">
+        <h1>Stats</h1>
+        <div class="range-selector" id="range-selector">
+          <button class="range-btn active" data-range="7">7d</button>
+          <button class="range-btn" data-range="30">30d</button>
+          <button class="range-btn" data-range="90">90d</button>
+          <button class="range-btn" data-range="all">All</button>
+        </div>
+      </div>
+
+      <div class="stats-grid" id="stats-summary">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg">—</div>
+          <div class="stat-label">Avg Score</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-streak">—</div>
+          <div class="stat-label">Current Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-longest">—</div>
+          <div class="stat-label">Longest Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-label">Days Logged</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Habit Completion</div>
+        <div id="habit-bars"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Score Trend</div>
+        <svg id="sparkline" class="sparkline" viewBox="0 0 300 60" preserveAspectRatio="none"></svg>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Best &amp; Worst Days</div>
+        <div id="best-worst"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Data</div>
+        <div class="data-actions">
+          <button class="btn btn-secondary" id="import-csv-btn">Import CSV</button>
+          <button class="btn btn-secondary" id="export-json-btn">Export JSON</button>
+          <button class="btn btn-secondary" id="export-csv-btn">Export CSV</button>
+        </div>
+        <div class="api-key-row">
+          <span class="notes-label" style="margin:0">AI cleanup key</span>
+          <input type="password" id="api-key-input" placeholder="sk-ant-…" autocomplete="off">
+          <button class="btn btn-secondary" id="api-key-save-btn">Save</button>
+          <button class="btn btn-secondary" id="api-key-clear-btn">Clear</button>
+        </div>
+        <p class="api-key-status hidden" id="api-key-status"></p>
+        <div id="import-panel" class="hidden">
+          <p class="import-help">Paste CSV content or pick a file.</p>
+          <label class="import-overwrite-label">
+            <input type="checkbox" id="import-overwrite"> Overwrite existing entries
+          </label>
+          <textarea id="import-textarea" placeholder="Paste CSV here…" rows="6"></textarea>
+          <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+            <input type="file" id="import-file" accept=".csv,text/csv" style="font-size:14px;">
+          </div>
+          <div style="margin-top:12px; display:flex; gap:8px;">
+            <button class="btn btn-primary" id="import-preview-btn">Preview Import</button>
+            <button class="btn btn-secondary" id="import-cancel-btn">Cancel</button>
+          </div>
+          <div id="import-preview" class="hidden"></div>
+        </div>
+      </div>
+    </main>
+
+  </div><!-- /app -->
+
+  <script src="app.js"></script>
+</body>
+</html>
