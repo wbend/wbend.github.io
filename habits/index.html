@@ -18,6 +18,17 @@
         <input type="password" id="pin-confirm-input" inputmode="numeric" maxlength="8" placeholder="Confirm PIN" autocomplete="new-password">
         <p class="gate-error hidden" id="gate-set-error"></p>
         <button class="btn btn-primary btn-full" id="pin-set-btn">Set PIN</button>
+        <div class="gate-divider-row">
+          <button class="btn-text" id="gate-restore-btn">Already have data? Restore from sync →</button>
+        </div>
+        <div id="gate-sync-form" class="hidden">
+          <hr class="gate-divider">
+          <p class="gate-sub" style="margin-top:12px">Enter your GitHub token and Gist ID to restore your data on this device.</p>
+          <input type="password" id="gate-gist-token" placeholder="GitHub Personal Access Token" autocomplete="off">
+          <input type="text" id="gate-gist-id" placeholder="Gist ID" autocomplete="off">
+          <p class="gate-error hidden" id="gate-restore-error"></p>
+          <button class="btn btn-secondary btn-full" id="gate-restore-submit-btn">Restore Data</button>
+        </div>
       </div>
       <div id="gate-enter" class="hidden">
         <h2>Welcome back</h2>
@@ -231,6 +242,18 @@
           <button class="btn btn-secondary" id="api-key-clear-btn">Clear</button>
         </div>
         <p class="api-key-status hidden" id="api-key-status"></p>
+        <div class="api-key-row" style="margin-top:14px">
+          <span class="notes-label" style="margin:0">GitHub sync token</span>
+          <input type="password" id="sync-token-input" placeholder="ghp_…" autocomplete="off">
+          <button class="btn btn-secondary" id="sync-save-btn">Save</button>
+          <button class="btn btn-secondary" id="sync-clear-btn">Clear</button>
+        </div>
+        <p class="sync-gist-status" id="sync-gist-id-display"></p>
+        <div class="sync-actions" id="sync-actions">
+          <button class="btn btn-secondary" id="sync-push-btn">Push now</button>
+          <button class="btn btn-secondary" id="sync-pull-btn">Pull now</button>
+        </div>
+        <p class="api-key-status hidden" id="sync-status"></p>
         <div id="import-panel" class="hidden">
           <p class="import-help">Paste CSV content or pick a file.</p>
           <label class="import-overwrite-label">
