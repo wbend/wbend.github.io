@@ -22,7 +22,7 @@ function saveDataLocal(data) {
 
 function saveData(data) {
   saveDataLocal(data);
-  gistPush(data); // fire-and-forget
+  firestoreSync(data); // fire-and-forget
 }
 
 function loadDraft() {
@@ -182,9 +182,11 @@ function initPinGate() {
 
   // Already unlocked this session?
   if (sessionStorage.getItem('htUnlocked') === '1') {
+    if (data.pin) syncKey = data.pin; // already stored as hash
     gate.classList.add('hidden');
     app.classList.remove('hidden');
     initApp();
+    firestoreLoad();
     return;
   }
 
@@ -202,35 +204,73 @@ function initPinGate() {
 }
 
 function setupSetPin() {
-  const btn = document.getElementById('pin-set-btn');
-  const err = document.getElementById('gate-set-error');
+  const btn         = document.getElementById('pin-set-btn');
+  const err         = document.getElementById('gate-set-error');
+  const confirmWrap = document.getElementById('pin-confirm-wrap');
+  let awaitingConfirm = false;
 
   const submit = async () => {
     const a = document.getElementById('pin-set-input').value;
-    const b = document.getElementById('pin-confirm-input').value;
     err.classList.add('hidden');
+    err.style.color = '';
+
     if (a.length < 4) {
       err.textContent = 'PIN must be at least 4 digits.';
       err.classList.remove('hidden'); return;
     }
-    if (a !== b) {
-      err.textContent = 'PINs do not match.';
-      err.classList.remove('hidden'); return;
-    }
+
     const hash = await sha256(a);
-    const data = loadData();
-    data.pin = hash;
-    if (!data.exercises) data.exercises = DEFAULT_EXERCISES.slice();
-    if (!data.entries) data.entries = {};
-    saveData(data);
-    unlockApp();
+
+    if (awaitingConfirm) {
+      // Second step: confirm new PIN
+      const b = document.getElementById('pin-confirm-input').value;
+      if (a !== b) {
+        err.textContent = 'PINs do not match.';
+        err.classList.remove('hidden'); return;
+      }
+      const data = loadData();
+      data.pin = hash;
+      if (!data.exercises) data.exercises = DEFAULT_EXERCISES.slice();
+      if (!data.entries) data.entries = {};
+      syncKey = hash;
+      saveData(data);
+      unlockApp();
+      return;
+    }
+
+    // First step: check Firestore for existing data under this PIN
+    btn.disabled = true;
+    btn.textContent = 'Checking…';
+    let remoteData = null;
+    try {
+      const snap = await db.collection('users').doc(hash).get();
+      if (snap.exists) remoteData = JSON.parse(snap.data().payload);
+    } catch(e) {
+      console.warn('Firestore check skipped:', e);
+    }
+    btn.disabled = false;
+
+    if (remoteData) {
+      // Existing data found — restore and unlock
+      saveDataLocal(remoteData);
+      syncKey = hash;
+      unlockApp();
+    } else {
+      // No existing data — ask for confirmation before creating
+      awaitingConfirm = true;
+      confirmWrap.classList.remove('hidden');
+      document.getElementById('pin-confirm-input').focus();
+      btn.textContent = 'Create PIN';
+      err.textContent = 'New PIN — please confirm below.';
+      err.style.color = 'var(--text-muted)';
+      err.classList.remove('hidden');
+    }
   };
 
   btn.addEventListener('click', submit);
   ['pin-set-input','pin-confirm-input'].forEach(id =>
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') submit(); })
   );
-  setupGateSync();
 }
 
 function setupEnterPin(storedHash) {
@@ -243,6 +283,7 @@ function setupEnterPin(storedHash) {
     err.classList.add('hidden');
     const hash = await sha256(val);
     if (hash === storedHash) {
+      syncKey = hash;
       unlockApp();
     } else {
       err.classList.remove('hidden');
@@ -261,7 +302,7 @@ function unlockApp() {
   document.getElementById('pin-gate').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   initApp();
-  syncFromGist(); // pull latest data in background
+  firestoreLoad(); // pull latest data in background
 }
 
 // ─── App init ────────────────────────────────────────────────────────
@@ -1219,8 +1260,6 @@ function setupDataActions() {
     apiKeyStatus.classList.remove('hidden');
     setTimeout(() => apiKeyStatus.classList.add('hidden'), 2000);
   };
-
-  setupSyncUI();
 }
 
 function previewImport() {
@@ -1467,62 +1506,45 @@ function download(content, filename, type) {
   URL.revokeObjectURL(a.href);
 }
 
-// ─── GitHub Gist Sync ────────────────────────────────────────────────
-const GIST_TOKEN_KEY = 'habitGistToken';
-const GIST_ID_KEY    = 'habitGistId';
-const GIST_FILENAME  = 'habit-tracker-data.json';
+// ─── Firebase Firestore Sync ─────────────────────────────────────────
+const fbApp = firebase.initializeApp({
+  apiKey:            'AIzaSyBSlS_EfuUvh2oUt30f1MuOGoj13hRi7W8',
+  authDomain:        'habit-tracker-e4b8f.firebaseapp.com',
+  projectId:         'habit-tracker-e4b8f',
+  storageBucket:     'habit-tracker-e4b8f.firebasestorage.app',
+  messagingSenderId: '106291587390',
+  appId:             '1:106291587390:web:98d5d60a9f345062d3646f',
+});
+const db = firebase.firestore();
 
-async function gistPush(data) {
-  const token = localStorage.getItem(GIST_TOKEN_KEY);
-  if (!token) return;
-  const content = JSON.stringify(data);
-  let gistId = localStorage.getItem(GIST_ID_KEY);
+let syncKey = null; // SHA-256 of the active PIN — set on unlock
+
+async function firestoreSync(data) {
+  if (!syncKey) return;
   try {
-    let res;
-    if (gistId) {
-      res = await fetch(`https://api.github.com/gists/${gistId}`, {
-        method: 'PATCH',
-        headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ files: { [GIST_FILENAME]: { content } } }),
-      });
-    } else {
-      res = await fetch('https://api.github.com/gists', {
-        method: 'POST',
-        headers: { Authorization: `token ${token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          description: 'Habit Tracker Data',
-          public: false,
-          files: { [GIST_FILENAME]: { content } },
-        }),
-      });
-      if (res.ok) {
-        const json = await res.json();
-        localStorage.setItem(GIST_ID_KEY, json.id);
-        updateSyncUI();
-      }
-    }
-    if (res && !res.ok) console.error('Gist push error:', res.status, await res.text());
-  } catch (err) {
-    console.error('Gist push failed:', err);
+    await db.collection('users').doc(syncKey).set({
+      payload:   JSON.stringify(data),
+      updatedAt: new Date().toISOString(),
+    });
+  } catch(err) {
+    console.error('Firestore sync failed:', err);
   }
 }
 
-async function gistPull() {
-  const token  = localStorage.getItem(GIST_TOKEN_KEY);
-  const gistId = localStorage.getItem(GIST_ID_KEY);
-  if (!token || !gistId) return null;
+async function firestoreLoad() {
+  if (!syncKey) return;
   try {
-    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
-      headers: { Authorization: `token ${token}` },
-    });
-    if (!res.ok) return null;
-    const json    = await res.json();
-    const content = json.files?.[GIST_FILENAME]?.content;
-    if (!content) return null;
-    return JSON.parse(content);
-  } catch (err) {
-    console.error('Gist pull failed:', err);
-    return null;
+    const snap = await db.collection('users').doc(syncKey).get();
+    if (!snap.exists) return;
+    const remote = JSON.parse(snap.data().payload);
+    const local  = loadData();
+    const merged = mergeData(local, remote);
+    saveDataLocal(merged);
+    if (currentView === 'today')   renderToday();
+    if (currentView === 'history') renderHistory();
+    if (currentView === 'stats')   renderStats();
+  } catch(err) {
+    console.error('Firestore load failed:', err);
   }
 }
 
@@ -1552,140 +1574,6 @@ function mergeData(local, remote) {
     merged.gymExercises = [...(local.gymExercises || []), ...extra];
   }
   return merged;
-}
-
-// Pull from Gist and merge into local storage (runs silently after unlock)
-async function syncFromGist() {
-  const remote = await gistPull();
-  if (!remote) return;
-  const local  = loadData();
-  const merged = mergeData(local, remote);
-  saveDataLocal(merged);
-  if (currentView === 'today')   renderToday();
-  if (currentView === 'history') renderHistory();
-  if (currentView === 'stats')   renderStats();
-}
-
-// Pull from Gist on a brand-new device (replaces local storage with remote data)
-async function restoreFromGist(token, gistId) {
-  try {
-    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
-      headers: { Authorization: `token ${token}` },
-    });
-    if (!res.ok) return { ok: false, error: `GitHub error ${res.status}` };
-    const json    = await res.json();
-    const content = json.files?.[GIST_FILENAME]?.content;
-    if (!content) return { ok: false, error: 'No habit data found in that Gist.' };
-    const data = JSON.parse(content);
-    if (!data.pin) return { ok: false, error: 'Data is missing a PIN — cannot restore.' };
-    localStorage.setItem(GIST_TOKEN_KEY, token);
-    localStorage.setItem(GIST_ID_KEY, gistId);
-    saveDataLocal(data);
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, error: 'Network error: ' + err.message };
-  }
-}
-
-function setupGateSync() {
-  const restoreBtn = document.getElementById('gate-restore-btn');
-  const syncForm   = document.getElementById('gate-sync-form');
-  const submitBtn  = document.getElementById('gate-restore-submit-btn');
-  const errorEl    = document.getElementById('gate-restore-error');
-  if (!restoreBtn) return;
-
-  restoreBtn.onclick = () => syncForm.classList.toggle('hidden');
-
-  submitBtn.onclick = async () => {
-    const token  = document.getElementById('gate-gist-token').value.trim();
-    const gistId = document.getElementById('gate-gist-id').value.trim();
-    errorEl.classList.add('hidden');
-    if (!token || !gistId) {
-      errorEl.textContent = 'Both fields are required.';
-      errorEl.classList.remove('hidden');
-      return;
-    }
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Restoring…';
-    const result = await restoreFromGist(token, gistId);
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Restore Data';
-    if (result.ok) {
-      unlockApp();
-    } else {
-      errorEl.textContent = result.error;
-      errorEl.classList.remove('hidden');
-    }
-  };
-}
-
-function updateSyncUI() {
-  const gistId  = localStorage.getItem(GIST_ID_KEY);
-  const display = document.getElementById('sync-gist-id-display');
-  if (display) display.textContent = gistId ? `Gist ID: ${gistId}` : '';
-}
-
-function setupSyncUI() {
-  const tokenInp = document.getElementById('sync-token-input');
-  const saveBtn  = document.getElementById('sync-save-btn');
-  const clearBtn = document.getElementById('sync-clear-btn');
-  const pushBtn  = document.getElementById('sync-push-btn');
-  const pullBtn  = document.getElementById('sync-pull-btn');
-  const statusEl = document.getElementById('sync-status');
-  if (!tokenInp) return;
-
-  const existing = localStorage.getItem(GIST_TOKEN_KEY);
-  if (existing) tokenInp.value = existing;
-  updateSyncUI();
-
-  const showStatus = (msg, err = false) => {
-    statusEl.textContent = msg;
-    statusEl.style.color = err ? 'var(--danger)' : 'var(--success)';
-    statusEl.classList.remove('hidden');
-    setTimeout(() => statusEl.classList.add('hidden'), 3000);
-  };
-
-  saveBtn.onclick = () => {
-    const val = tokenInp.value.trim();
-    if (!val) return;
-    localStorage.setItem(GIST_TOKEN_KEY, val);
-    showStatus('Token saved.');
-  };
-
-  clearBtn.onclick = () => {
-    localStorage.removeItem(GIST_TOKEN_KEY);
-    localStorage.removeItem(GIST_ID_KEY);
-    tokenInp.value = '';
-    updateSyncUI();
-    showStatus('Sync cleared.');
-  };
-
-  pushBtn.onclick = async () => {
-    const token = localStorage.getItem(GIST_TOKEN_KEY);
-    if (!token) { showStatus('Save a GitHub token first.', true); return; }
-    pushBtn.disabled = true; pushBtn.textContent = 'Pushing…';
-    await gistPush(loadData());
-    pushBtn.disabled = false; pushBtn.textContent = 'Push now';
-    showStatus('Pushed to Gist.');
-    updateSyncUI();
-  };
-
-  pullBtn.onclick = async () => {
-    const token  = localStorage.getItem(GIST_TOKEN_KEY);
-    const gistId = localStorage.getItem(GIST_ID_KEY);
-    if (!token || !gistId) { showStatus('Configure sync first.', true); return; }
-    pullBtn.disabled = true; pullBtn.textContent = 'Pulling…';
-    const remote = await gistPull();
-    pullBtn.disabled = false; pullBtn.textContent = 'Pull now';
-    if (remote) {
-      const merged = mergeData(loadData(), remote);
-      saveDataLocal(merged);
-      renderStats();
-      showStatus('Pulled and merged.');
-    } else {
-      showStatus('Pull failed — check console.', true);
-    }
-  };
 }
 
 // ─── Utilities ───────────────────────────────────────────────────────

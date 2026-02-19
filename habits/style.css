@@ -98,6 +98,10 @@ body {
   border-color: var(--primary);
 }
 
+#pin-confirm-wrap {
+  margin-top: -4px; /* close the gap to first input */
+}
+
 .gate-error {
   color: var(--danger);
   font-size: .875rem;
@@ -1018,64 +1022,6 @@ td.habit-col { text-align: center; }
 .gym-stretch-toggle input[type="checkbox"] {
   width: 14px; height: 14px;
   cursor: pointer;
-}
-
-/* ─── Sync UI ───────────────────────────────────────────────────── */
-.btn-text {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--primary);
-  font-size: .85rem;
-  padding: 0;
-  font-weight: 500;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.btn-text:hover { color: var(--primary-dark); }
-
-.gate-divider-row {
-  text-align: center;
-  margin-top: 16px;
-}
-
-.gate-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 16px 0 0;
-}
-
-#gate-gist-token,
-#gate-gist-id {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 1rem;
-  border: 2px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  color: var(--text);
-  margin-bottom: 12px;
-  transition: border-color var(--transition);
-  outline: none;
-}
-
-#gate-gist-token:focus,
-#gate-gist-id:focus { border-color: var(--primary); }
-
-.sync-gist-status {
-  font-size: .78rem;
-  color: var(--text-muted);
-  margin-top: 6px;
-  font-family: monospace;
-  word-break: break-all;
-}
-
-.sync-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
 }
 
 /* ─── Responsive tweaks ─────────────────────────────────────────── */

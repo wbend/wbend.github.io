@@ -12,23 +12,14 @@
   <div id="pin-gate" class="gate-overlay hidden">
     <div class="gate-card">
       <div id="gate-set" class="hidden">
-        <h2>Create your PIN</h2>
-        <p class="gate-sub">4–8 digits. Only you will know it.</p>
-        <input type="password" id="pin-set-input" inputmode="numeric" maxlength="8" placeholder="New PIN" autocomplete="new-password">
-        <input type="password" id="pin-confirm-input" inputmode="numeric" maxlength="8" placeholder="Confirm PIN" autocomplete="new-password">
+        <h2>Your PIN</h2>
+        <p class="gate-sub">Enter your PIN to continue. First time here? You'll be asked to confirm it.</p>
+        <input type="password" id="pin-set-input" inputmode="numeric" maxlength="8" placeholder="PIN" autocomplete="current-password">
+        <div id="pin-confirm-wrap" class="hidden">
+          <input type="password" id="pin-confirm-input" inputmode="numeric" maxlength="8" placeholder="Confirm PIN" autocomplete="new-password">
+        </div>
         <p class="gate-error hidden" id="gate-set-error"></p>
-        <button class="btn btn-primary btn-full" id="pin-set-btn">Set PIN</button>
-        <div class="gate-divider-row">
-          <button class="btn-text" id="gate-restore-btn">Already have data? Restore from sync →</button>
-        </div>
-        <div id="gate-sync-form" class="hidden">
-          <hr class="gate-divider">
-          <p class="gate-sub" style="margin-top:12px">Enter your GitHub token and Gist ID to restore your data on this device.</p>
-          <input type="password" id="gate-gist-token" placeholder="GitHub Personal Access Token" autocomplete="off">
-          <input type="text" id="gate-gist-id" placeholder="Gist ID" autocomplete="off">
-          <p class="gate-error hidden" id="gate-restore-error"></p>
-          <button class="btn btn-secondary btn-full" id="gate-restore-submit-btn">Restore Data</button>
-        </div>
+        <button class="btn btn-primary btn-full" id="pin-set-btn">Continue</button>
       </div>
       <div id="gate-enter" class="hidden">
         <h2>Welcome back</h2>
@@ -242,18 +233,6 @@
           <button class="btn btn-secondary" id="api-key-clear-btn">Clear</button>
         </div>
         <p class="api-key-status hidden" id="api-key-status"></p>
-        <div class="api-key-row" style="margin-top:14px">
-          <span class="notes-label" style="margin:0">GitHub sync token</span>
-          <input type="password" id="sync-token-input" placeholder="ghp_…" autocomplete="off">
-          <button class="btn btn-secondary" id="sync-save-btn">Save</button>
-          <button class="btn btn-secondary" id="sync-clear-btn">Clear</button>
-        </div>
-        <p class="sync-gist-status" id="sync-gist-id-display"></p>
-        <div class="sync-actions" id="sync-actions">
-          <button class="btn btn-secondary" id="sync-push-btn">Push now</button>
-          <button class="btn btn-secondary" id="sync-pull-btn">Pull now</button>
-        </div>
-        <p class="api-key-status hidden" id="sync-status"></p>
         <div id="import-panel" class="hidden">
           <p class="import-help">Paste CSV content or pick a file.</p>
           <label class="import-overwrite-label">
@@ -274,6 +253,8 @@
 
   </div><!-- /app -->
 
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
