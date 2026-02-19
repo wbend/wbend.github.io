@@ -126,17 +126,6 @@ function calcLongestStreak(entries) {
   return longest;
 }
 
-// ─── Motivational lines ─────────────────────────────────────────────
-function motivation(score) {
-  if (score === 100) return "Perfect day. Absolute legend.";
-  if (score >= 86)  return "Outstanding — almost flawless.";
-  if (score >= 71)  return "Solid day. Keep the momentum.";
-  if (score >= 57)  return "Good progress. Push a little harder tomorrow.";
-  if (score >= 43)  return "Something is always better than nothing.";
-  if (score >= 29)  return "Tough day. Tomorrow's a fresh start.";
-  if (score >= 14)  return "At least you showed up.";
-  return "Every streak starts with one day.";
-}
 
 // ─── Default exercises ──────────────────────────────────────────────
 const DEFAULT_EXERCISES = [
@@ -364,7 +353,6 @@ function showLoggedCard(dateISO, entry, data) {
   const streak = calcStreak(data.entries || {});
   document.getElementById('tl-streak').textContent = streak === 1
     ? '🔥 1 day streak' : streak > 1 ? `🔥 ${streak} day streak` : '';
-  document.getElementById('tl-motivation').textContent = motivation(entry.score);
 
   document.getElementById('edit-today-btn').onclick = () => {
     openEditPanel(dateISO, entry);
@@ -684,7 +672,6 @@ function showScoreReveal(score, streak) {
 
   document.getElementById('reveal-streak').textContent =
     streak > 0 ? `🔥 ${streak} day${streak===1?'':'s'} streak` : '';
-  document.getElementById('reveal-motivation').textContent = motivation(score);
 
   // Count-up animation
   let current = 0;
@@ -1155,7 +1142,7 @@ async function callClaude(text, type) {
 
   const systemPrompts = {
     exercise: 'You are a terse fitness logger. Format the raw exercise notes into a clean, consistent log. One exercise per line, format: "Name: weight × sets×reps" or "Stretch: duration". Fix typos. Return only the log, nothing else.',
-    food: 'You are a concise culinary note-taker with a chef\'s eye. Clean up these raw cooking notes into a brief, readable chef\'s log entry. Preserve all key observations, substitutions, techniques, and ideas for next time. Return only the cleaned notes, nothing else.',
+    food: 'Fix typos and lightly clean up punctuation in these cooking notes. Do not add headers, sections, or structure. Do not rewrite or expand the content. Return only the lightly corrected text, nothing else.',
   };
 
   try {
