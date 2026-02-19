@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Import Historical Data</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; margin: 0; background: #f7f6f3;
+      padding: 24px;
+    }
+    .card {
+      background: #fff; border-radius: 12px; padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.12); text-align: center;
+      max-width: 360px; width: 100%;
+    }
+    h2 { margin: 0 0 8px; font-size: 1.3rem; }
+    .sub { color: #6b6b6b; font-size: .9rem; margin: 0 0 20px; }
+    input[type="password"] {
+      display: block; width: 100%; padding: 12px 14px;
+      font-size: 1.1rem; border: 2px solid #ddd; border-radius: 8px;
+      background: #f5f5f3; margin-bottom: 12px; letter-spacing: .2em;
+      outline: none; box-sizing: border-box; text-align: center;
+    }
+    input[type="password"]:focus { border-color: #3498db; }
+    button {
+      display: block; width: 100%; padding: 12px;
+      background: #3498db; color: #fff; border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+    }
+    button:hover { background: #2980b9; }
+    button:disabled { background: #aaa; cursor: wait; }
+    .error { color: #e74c3c; font-size: .875rem; margin: -4px 0 12px; min-height: 20px; }
+    .success { color: #27ae60; font-size: .9rem; margin: 0 0 16px; }
+    a.link-btn {
+      display: inline-block; padding: 11px 24px; background: #27ae60;
+      color: #fff; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: .95rem;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2 id="title">Import Historical Data</h2>
+  <p class="sub" id="sub">Enter your PIN to add your historical entries (Feb 10, 11, 13) to the tracker.</p>
+  <div id="form-area">
+    <input type="password" id="pin-input" inputmode="numeric" maxlength="8"
+           placeholder="PIN" autocomplete="current-password">
+    <p class="error hidden" id="error-msg"></p>
+    <button id="import-btn">Import</button>
+  </div>
+  <div id="result-area" style="display:none">
+    <p class="success" id="result-msg"></p>
+    <a class="link-btn" href="index.html">Open Habit Tracker →</a>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+const ENTRIES = {
+  "2026-02-10": {
+    "noAlcohol": true,
+    "calories": "n/a",
+    "calorieLimitMet": false,
+    "exercises": [],
+    "writingCoding": false,
+    "jobApplication": false,
+    "russianPractice": false,
+    "drumPractice": false,
+    "exerciseNotes": "",
+    "foodNotes": "broccoli and butter bean salad with tahini, lemon, and greek yogurt. use a different bean next time. steam salmon in paper in oven at 375 at least 12 mins. steam and then fry gnocchi in pesto. ate last of beef stroganoff for lunch.",
+    "gymLog": [],
+    "score": 14,
+    "completedAt": "2026-02-10T21:00:00"
+  },
+  "2026-02-11": {
+    "noAlcohol": true,
+    "calories": "n/a",
+    "calorieLimitMet": false,
+    "exercises": ["Gym / Strength Training"],
+    "writingCoding": true,
+    "jobApplication": false,
+    "russianPractice": false,
+    "drumPractice": false,
+    "exerciseNotes": "bench press 90 3x8\nleg extension 8 3x12\nRDL 65 3x10\nlat pulldown 10 3x10\noverhead press 50 3x10\ncurls 3x30",
+    "foodNotes": "homemade pasta sauce with pappardelle. splash of fish sauce, mirepoix, green pepper, some canned and cherry tomatoes. quite good. blended cilantro with lemon and oil and water for a bright green drizzle.",
+    "gymLog": [
+      { "name": "Bench press",    "weight": "90", "sets": "3x8",    "done": true, "isStretch": false },
+      { "name": "Leg extension",  "weight": "8",  "sets": "3x12",   "done": true, "isStretch": false },
+      { "name": "RDL",            "weight": "65", "sets": "3x10",   "done": true, "isStretch": false },
+      { "name": "Lat pulldown",   "weight": "10", "sets": "3x10",   "done": true, "isStretch": false },
+      { "name": "Overhead press", "weight": "50", "sets": "3x10",   "done": true, "isStretch": false },
+      { "name": "Curls",          "weight": "",   "sets": "3x30",   "done": true, "isStretch": false }
+    ],
+    "score": 43,
+    "completedAt": "2026-02-11T21:00:00"
+  },
+  "2026-02-13": {
+    "noAlcohol": false,
+    "calories": "n/a",
+    "calorieLimitMet": false,
+    "exercises": ["Gym / Strength Training"],
+    "writingCoding": false,
+    "jobApplication": false,
+    "russianPractice": false,
+    "drumPractice": false,
+    "exerciseNotes": "yes machine 90 3x12\nno machine 90 3x12\ngoblet squat 25 3x10\nplank 3x45sec\nab wheel 50 3x8\ncable row 70 3x8\ncouch stretch 90sec per side\n90/90 hip stretch 60sec per side\ndeep squat hold 2-3min",
+    "foodNotes": "",
+    "gymLog": [
+      { "name": "Yes machine",       "weight": "90",           "sets": "3x12",   "done": true, "isStretch": false },
+      { "name": "No machine",        "weight": "90",           "sets": "3x12",   "done": true, "isStretch": false },
+      { "name": "Goblet squat",      "weight": "25",           "sets": "3x10",   "done": true, "isStretch": false },
+      { "name": "Plank",             "weight": "",             "sets": "3x45sec","done": true, "isStretch": false },
+      { "name": "Ab wheel",          "weight": "50",           "sets": "3x8",    "done": true, "isStretch": false },
+      { "name": "Cable row",         "weight": "70",           "sets": "3x8",    "done": true, "isStretch": false },
+      { "name": "Couch stretch",     "weight": "90sec/side",   "sets": "",       "done": true, "isStretch": true  },
+      { "name": "90/90 hip stretch", "weight": "60sec/side",   "sets": "",       "done": true, "isStretch": true  },
+      { "name": "Deep squat hold",   "weight": "2-3min",       "sets": "",       "done": true, "isStretch": true  }
+    ],
+    "score": 14,
+    "completedAt": "2026-02-13T21:00:00"
+  }
+};
+
+const fbApp = firebase.initializeApp({
+  apiKey:            'AIzaSyBSlS_EfuUvh2oUt30f1MuOGoj13hRi7W8',
+  authDomain:        'habit-tracker-e4b8f.firebaseapp.com',
+  projectId:         'habit-tracker-e4b8f',
+  storageBucket:     'habit-tracker-e4b8f.firebasestorage.app',
+  messagingSenderId: '106291587390',
+  appId:             '1:106291587390:web:98d5d60a9f345062d3646f',
+});
+const db = firebase.firestore();
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+const errorEl = document.getElementById('error-msg');
+function showError(msg) {
+  errorEl.textContent = msg;
+  errorEl.style.display = 'block';
+}
+
+document.getElementById('pin-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('import-btn').click();
+});
+
+document.getElementById('import-btn').addEventListener('click', async () => {
+  const pin = document.getElementById('pin-input').value.trim();
+  errorEl.style.display = 'none';
+
+  if (pin.length < 4) { showError('PIN must be at least 4 digits.'); return; }
+
+  const btn = document.getElementById('import-btn');
+  btn.disabled = true;
+  btn.textContent = 'Importing…';
+
+  try {
+    const hash = await sha256(pin);
+
+    // Get existing Firestore data (if any)
+    const snap = await db.collection('users').doc(hash).get();
+    let data;
+    if (snap.exists) {
+      data = JSON.parse(snap.data().payload);
+    } else {
+      // No existing data — create fresh with this PIN
+      data = { pin: hash, exercises: ['Gym / Strength Training','Run','Walk','Bike','Swim'], entries: {} };
+    }
+    if (!data.entries) data.entries = {};
+
+    // Merge entries (always overwrite these historical dates)
+    let added = 0, updated = 0;
+    for (const [date, entry] of Object.entries(ENTRIES)) {
+      if (data.entries[date]) updated++;
+      else added++;
+      data.entries[date] = entry;
+    }
+
+    // Write to Firestore
+    await db.collection('users').doc(hash).set({
+      payload:   JSON.stringify(data),
+      updatedAt: new Date().toISOString(),
+    });
+
+    // Also write to localStorage so the app picks it up immediately
+    localStorage.setItem('habitTracker', JSON.stringify(data));
+
+    // Show result
+    document.getElementById('form-area').style.display = 'none';
+    document.getElementById('result-area').style.display = 'block';
+    document.getElementById('result-msg').textContent =
+      `Done — added ${added} entr${added === 1 ? 'y' : 'ies'}, updated ${updated} existing.`;
+
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Import';
+    showError('Error: ' + e.message);
+    console.error(e);
+  }
+});
+</script>
+</body>
+</html>
