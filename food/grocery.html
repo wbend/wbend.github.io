@@ -67,31 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="grocery-header">
       <h1>Grocery List</h1>
       <div class="grocery-meta">
-        <div class="grocery-recipes"><a href="chicken-maafe-west-african-peanut-stew.html" class="badge badge-tag recipe-link">Chicken Maafe  West African Peanut Stew</a> <a href="german-pork-rouladen.html" class="badge badge-tag recipe-link">German Pork Rouladen</a></div>
-        <div class="grocery-time">Generated Feb 19, 01:01 AM</div>
+        <div class="grocery-recipes"><a href="chicken-maafe-west-african-peanut-stew.html" class="badge badge-tag recipe-link">Chicken Maafe  West African Peanut Stew</a> <a href="overnight-chuck-roast-canadian-wagyu.html" class="badge badge-tag recipe-link">Overnight Chuck Roast (&quot;Canadian Wagyu&quot;)</a></div>
+        <div class="grocery-time">Generated Feb 19, 01:08 AM</div>
       </div>
     </div>
     <div class="grocery-controls">
-      <span id="counter">0 / 14 items</span>
+      <span id="counter">0 / 12 items</span>
       <button class="btn btn-secondary" onclick="resetAll()">Reset</button>
     </div>
     <div class="grocery-body">
       
       <div class="grocery-section">
         <h3>Produce</h3>
-        <ul><li class="grocery-item" data-key="2 carrots" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>2 carrots</span></li><li class="grocery-item" data-key="1 head white cabbage" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 head white cabbage</span></li><li class="grocery-item" data-key="1 onion" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 onion</span><span class="recipe-count-hint">(2)</span></li><li class="grocery-item" data-key="1 Scotch bonnet pepper" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 Scotch bonnet pepper</span></li><li class="grocery-item" data-key="1 sweet potato" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 sweet potato</span></li></ul>
+        <ul><li class="grocery-item" data-key="1 bunch carrots" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 bunch carrots</span></li><li class="grocery-item" data-key="1 head garlic (~10 cloves)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 head garlic (~10 cloves)</span></li><li class="grocery-item" data-key="2 onions, large" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>2 onions, large</span></li><li class="grocery-item" data-key="1 Scotch bonnet pepper" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 Scotch bonnet pepper</span></li><li class="grocery-item" data-key="1 small head white cabbage" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>1 small head white cabbage</span></li><li class="grocery-item" data-key="2 medium sweet potatoes" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>2 medium sweet potatoes</span></li></ul>
       </div>
       <div class="grocery-section">
         <h3>Meat &amp; Seafood</h3>
-        <ul><li class="grocery-item" data-key="4 slices bacon" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>4 slices bacon</span></li><li class="grocery-item" data-key="800 g bone-in chicken thighs" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>800 g bone-in chicken thighs</span></li><li class="grocery-item" data-key="4 pork cutlets (scallopini)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>4 pork cutlets (scallopini)</span></li><li class="grocery-item" data-key="Salted anchovies (6 g / about 2 fillets)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Salted anchovies (6 g / about 2 fillets)</span></li></ul>
+        <ul><li class="grocery-item" data-key="4-5 pound chuck roast" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>4-5 pound chuck roast</span></li><li class="grocery-item" data-key="3 pounds bone-in chicken thighs, skin removed" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>3 pounds bone-in chicken thighs, skin removed</span></li><li class="grocery-item" data-key="Salted anchovies, small amount (or fish sauce)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Salted anchovies, small amount (or fish sauce)</span></li></ul>
       </div>
       <div class="grocery-section">
         <h3>Pantry &amp; Dry Goods</h3>
-        <ul><li class="grocery-item" data-key="Natural peanut butter or peanut powder (180 g)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Natural peanut butter or peanut powder (180 g)</span></li></ul>
-      </div>
-      <div class="grocery-section">
-        <h3>Canned &amp; Jarred</h3>
-        <ul><li class="grocery-item" data-key="Beef broth or stock (2 cups)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Beef broth or stock (2 cups)</span></li><li class="grocery-item" data-key="Dill pickles (1-2)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Dill pickles (1-2)</span></li><li class="grocery-item" data-key="Grainy German mustard, such as fig-apple mustard (1-2 tbsp)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Grainy German mustard, such as fig-apple mustard (1-2 tbsp)</span></li><li class="grocery-item" data-key="Tomato purée (30 g / about 2 tbsp)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Tomato purée (30 g / about 2 tbsp)</span></li></ul>
+        <ul><li class="grocery-item" data-key="Peanut powder or natural peanut butter, unsalted (about 1.5 cups)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Peanut powder or natural peanut butter, unsalted (about 1.5 cups)</span></li><li class="grocery-item" data-key="Tomato purée (small can or tube)" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Tomato purée (small can or tube)</span></li><li class="grocery-item" data-key="Wood chips for smoking" onclick="toggle(this)"><input type="checkbox" tabindex="-1"><span>Wood chips for smoking</span></li></ul>
       </div>
     </div></main>
 </body>
